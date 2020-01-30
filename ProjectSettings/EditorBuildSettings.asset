@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 0a55851a7a78a09489157c37b98b2ab3
   - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: d9f28338eeb8f484d9040833c15b11f9
+  - enabled: 1
     path: Assets/Scenes/frost1.unity
     guid: b9df5b332e63e8343873e196f1fef362
   - enabled: 1
