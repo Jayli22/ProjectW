@@ -268,10 +268,7 @@ public class Player : Character
                     releasedSkills[2] = InstantiateEffectRotate(skillPrefabs[2], mouseAngle); 
                     PlayAnimation("Skill_3");
                     skillCoolDown_3.Run();
-
-
-            
-
+         
                    DetermineSkillType(releasedSkills[2]);
                 }
             }
@@ -375,71 +372,7 @@ public class Player : Character
 
         }
 
-        //if (stateInfo.IsName("BaseAttack1"))
-        //{
-        //    if (comboEffectMark == 0 && comboEffectFirstMark)
-        //    {
-        //        comboEffectFirstMark = false;
-        //        comboEffectMark = 1;
-
-        //        curAttackEffect = InstantiateEffectRotate(attackEffect[0], mouseAngle);
-
-        //        SetIdleDir();
-
-        //    }
-        //    animator.SetBool("Attack", false);
-        //    Player.MyInstance.comboMark = true;
-        //    if (Player.MyInstance.noOfClicks >= 2)
-        //    {
-        //        animator.SetInteger("AttackCMD", 2);
-        //    }
-
-        //    canMove = false;
-
-
-        //}
-        //else if (stateInfo.IsName("BaseAttack2"))
-        //{
-        //    if (comboEffectMark == 1)
-        //    {
-        //        comboEffectMark = 2;
-
-        //        curAttackEffect = InstantiateEffectRotate(attackEffect[1], mouseAngle); ;
-        //        SetIdleDir();
-
-        //    }
-        //    animator.SetBool("Attack", false);
-        //    Player.MyInstance.comboMark = true;
-        //    if (Player.MyInstance.noOfClicks >= 3)
-        //    {
-        //        animator.SetInteger("AttackCMD", 3);
-        //    }
-
-        //    canMove = false;
-
-        //}
-        //else if (stateInfo.IsName("BaseAttack3"))
-        //{
-        //    if (comboEffectMark == 2)
-        //    {
-        //        comboEffectMark = 0;
-        //        comboEffectFirstMark = true;
-        //        curAttackEffect = InstantiateEffectRotate(attackEffect[2], mouseAngle); ;
-
-        //        SetIdleDir();
-        //    }
-        //    animator.SetBool("AttackAttack", false);
-        //    Player.MyInstance.comboMark = true;
-        //    if (Player.MyInstance.noOfClicks >= 4)
-        //    {
-        //        animator.SetInteger("AttackCMD", 1);
-        //        Player.MyInstance.noOfClicks = 1;
-
-        //    }
-
-        //    canMove = false;
-
-        //}
+       
         if (Time.time - lastClickTime > maxComboDelayTime)
         {
             clickCount = 0;
@@ -645,6 +578,11 @@ public class Player : Character
         canChangeMouseDir = b;
     }
 
+    /// <summary>
+    /// 切换攻击wei
+    /// </summary>
+    /// <param name="attackAngle"></param>
+    /// <returns></returns>
     public GameObject SwitchAttackPosition(float attackAngle)
     {
        // Debug.Log(attackAngle);

@@ -58,7 +58,7 @@ public class SpearSkill_ChongFeng : BaseSkill
         PhaseNumber = 2;
         isDetectHit = true;
         animator.SetTrigger("Phase_2");
-        Player.MyInstance.StartLineDrive(rushDistance, 0.2f);
+        Player.MyInstance.StartLineDrive(rushDistance, 0.5f);
         Invoke("TryDestory",0.2f);
     }
 }

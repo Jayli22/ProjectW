@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-    // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
@@ -38,7 +41,11 @@ public class MeleeEnemy : Enemy
         if(actionCastTri)
         {
             GameObject p = ChooseHitBox();
-            GameObject a = Instantiate(attacksPrefabs[0], p.transform.position, transform.rotation, transform);
+            // GameObject a = Instantiate(attacksPrefabs[0], transform.position, transform.rotation, transform);
+            GameObject a = Instantiate(attacksPrefabs[0],transform);
+            float angle = GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position - gameObject.transform.position);
+            a.transform.RotateAround(gameObject.transform.position,Vector3.forward, angle);
+            //a.transform.Rotate(Vector3.forward, 45f,relativeTo:Space.World);
             a.SetActive(true);
         }
       
@@ -54,10 +61,10 @@ public class MeleeEnemy : Enemy
         {
             StopMoving();
             // StartCoroutine(AttackDelay(0.2f));
-            if (attackCooldownTimer.Finished)
+            if (baseattackCooldownTimer.Finished)
             {
                 BaseAttack(t);
-                attackCooldownTimer.Run();
+                baseattackCooldownTimer.Run();
             }
             else
             {
@@ -79,10 +86,10 @@ public class MeleeEnemy : Enemy
         {
             StopMoving();
             // StartCoroutine(AttackDelay(0.2f));
-            if (attackCooldownTimer.Finished)
+            if (baseattackCooldownTimer.Finished)
             {
                 //BaseAttack();
-                attackCooldownTimer.Run();
+                baseattackCooldownTimer.Run();
             }
             else
             {
