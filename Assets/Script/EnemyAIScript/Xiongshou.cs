@@ -62,8 +62,6 @@ public class Xiongshou : MeleeEnemy
     {
         if (isAlive)
         {
-          
-            canMove = false;
             base.Update();
             if(castingTimer.Finished)
             {
@@ -74,7 +72,7 @@ public class Xiongshou : MeleeEnemy
                 //AttackDetection(0.5f);
                 //AlarmRadiusDetection();
                 CombatLogic();
-                
+                YieldAniFinish("Skill");
             }
         }
         else
@@ -92,8 +90,18 @@ public class Xiongshou : MeleeEnemy
     {
         if (hitable)
         {
-            base.TakeDamage(damage);
-            //DoStiffness();
+            //health reduce 
+            currentHp -= damage;
+            if (currentHp <= 0)
+            {
+                isAlive = false;
+                Debug.Log(isAlive);
+                //
+            }
+            //else
+            //{
+            //    DoStiffness();//造成硬直
+            //}
             Debug.Log("我受到了攻击");
         }
     }
@@ -104,20 +112,18 @@ public class Xiongshou : MeleeEnemy
     /// </summary>
     private void CombatLogic()
     {
-        if (actionCooldownTimer.Finished)
+        if (actionCooldownTimer.Finished && !isRandomIdle && !isRandomMove)
         {
             switch (Random.Range(0, 4))
             {
                 case 0:
-                    Swoop();
+                    Dash();
                     break;
                 case 1:
-                    Swoop();
-
+                    Roar();
                     break;
                 case 2:
-                    Swoop();
-
+                    Bite();
                     break;
                 case 3:
                     Swoop();
@@ -125,14 +131,11 @@ public class Xiongshou : MeleeEnemy
                     break;
             }
 
-            actionCooldownTimer.Duration = Random.Range(2, actionCooldown);
+            //actionCooldownTimer.Duration = Random.Range(2, actionCooldown);
+            actionCooldownTimer.Duration = 4f;
+            actionCooldownTimer.Run();
 
 
-            if (castingTimer.Finished)
-            {
-                actionCooldownTimer.Run();
-
-            }
 
         }
 
@@ -218,51 +221,117 @@ public class Xiongshou : MeleeEnemy
         //skillScript.GetComponent<BaseSkill>().Release();
         canMove = false;
         curState = 4;
-        StartCoroutine(Scale(2f,1.1f,1.3f));
+        JumpToPostion();
 
     }
 
+    /// <summary>
+    /// 跳跃至玩家位置
+    /// </summary>
     private void JumpToPostion()
     {
-        transform.localScale *= 1.2f;
-        transform.localScale *= 1.0f;
+        StartCoroutine(ScaleUp(0.1f, 1.03f, 1.3f));
+        StartCoroutine(ToPosition(playerCharacterPos, 0.3f));
+
         jumpTargetPos = playerCharacterPos;
         skillTrigger_4 = true;
     }
 
-    public float maxSize;
-    public float growFactor;
-    public float waitTime;
-    IEnumerator Scale(float scaleTime , float growFactor , float maxScale)
+    /// <summary>
+    /// 跳跃至指定位置
+    /// </summary>
+    /// <param name="pos"></param>
+    private void JumpToPostion(Vector2 pos)
+    {
+        StartCoroutine(ScaleUp(0.1f, 1.03f, 2.5f));
+        StartCoroutine(ToPosition(playerCharacterPos, 0.3f));
+        jumpTargetPos = pos;
+        skillTrigger_4 = true;
+    }
+
+    IEnumerator ScaleUp(float scaleTime , float growFactor , float maxScale)
     {
         float timer = 0;
 
-        while (true) // this could also be a condition indicating "alive or dead"
-        {
-            // we scale all axis, so they will have the same value, 
-            // so we can work with a float instead of comparing vectors
-            while (maxScale > transform.localScale.x)
+        // while (true) // this could also be a condition indicating "alive or dead"
+        // {
+        // we scale all axis, so they will have the same value, 
+        // so we can work with a float instead of comparing vectors
+        yield return new WaitForSeconds(0.6f);
+
+        while (maxScale > transform.localScale.x)
             {
                 timer += Time.deltaTime;
                 transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
-                yield return null;
+               yield return null;
             }
-            // reset the timer
+        // reset the timer
+       // Debug.Log("扩大");
+        yield return new WaitForSeconds(scaleTime);
 
-            yield return new WaitForSeconds(scaleTime);
+        StartCoroutine(ScaleDown(0.5f,1.3f,2f));
+        yield break;
+    }
+    IEnumerator ScaleDown(float scaleTime, float growFactor, float minScale)
+    {
+        float timer = 0;
 
-            timer = 0;
-            while (1 < transform.localScale.x)
-            {
-                timer += Time.deltaTime;
-                transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
-                yield return null;
-            }
+     
 
-            timer = 0;
-            yield return new WaitForSeconds(scaleTime);
+        timer = 0;
+        while (minScale < transform.localScale.x)
+        {
+            timer += Time.deltaTime;
+            transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+            yield return null;
         }
+        //Debug.Log("缩小");
+
+        timer = 0;
+        //yield return new WaitForSeconds(scaleTime);
+        yield break;
+        //}
     }
 
+
+   /// <summary>
+   /// 监听动画回调
+   /// </summary>
+   /// <param name="ani"></param>
+   /// <param name="aniName"></param>
+   /// <param name="action"></param>
+   /// <returns></returns>
+    public void YieldAniFinish(string aniName )
+    {
+        AnimatorStateInfo stateinfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateinfo.IsTag(aniName) && (stateinfo.normalizedTime >= 1.0f))
+        {
+            curState = 0;
+            animator.SetInteger("CurState", 0);
+            canMove = true;
+        }
+
+    }
+    public IEnumerator ToPosition(Vector2 Pos, float time = 0.1f)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(0.6f);
+
+        float rate = 1 / time;
+        float duration = 0.0f;
+        Vector2 startPos = transform.position;
+        //  Vector2 targetPos = transform.position + (Vector3)playerCharacterPos - transform.position).normalized);
+          Vector2 targetPos = playerCharacterPos;
+
+        while (duration < 1.0)
+        {
+            duration += Time.deltaTime;
+            transform.position = Vector2.Lerp(startPos, targetPos, duration);
+            duration += rate * Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
+    }
 }
 

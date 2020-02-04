@@ -13,6 +13,7 @@ public class DDASystem : MonoBehaviour
     protected int specialEnemyQuantity;
     protected int specialSkillFactor;
 
+    private int playerCurHp;
     private int playerMaxHp;
     private int playerSkillPoint;
     private int playerQi;
@@ -37,14 +38,22 @@ public class DDASystem : MonoBehaviour
             player = Player.MyInstance;
 
     }
+
+    /// <summary>
+    /// 获取当前角色各状态数值
+    /// </summary>
     private void GetPlayerStat()
     {
         playerMaxHp = player.maxHp;
+        playerCurHp = player.currentHp;
         playerSkillPoint = player.skillStars;
         playerQi = player.qi;
         playerATK = player.baseATK;
     }
 
+    /// <summary>
+    /// 计算CPF
+    /// </summary>
     public void CalculateCPF()
     {
         GetPlayerStat();
@@ -52,6 +61,10 @@ public class DDASystem : MonoBehaviour
         Debug.Log("cpf:" + CurrentPlayerFactor);
     }
 
+    /// <summary>
+    /// 计算CLF
+    /// </summary>
+    /// <param name="enemyList"></param>
     public void CalculateCLF(List<GameObject> enemyList)
     {
         CurrentLevelFactor = 0;
