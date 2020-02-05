@@ -462,7 +462,7 @@ public class Player : Character
                     clipOverrides["BaseAttackUpLeft_2"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_2[7];
                     clipOverrides["BaseAttackUpLeft_3"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_3[7];
                     animatorOverrideController.ApplyOverrides(clipOverrides);
-                    preCastTimer_1 = baseAttackPrefabs.
+                    //preCastTimer_1 = baseAttackPrefabs.
                 }
                 break;
         }
