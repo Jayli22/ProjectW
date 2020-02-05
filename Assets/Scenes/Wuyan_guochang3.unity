@@ -8057,7 +8057,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "The resuced manA:\u201CWe are really lucky, no one rules the TianYun
     valley, It is hard enough for people not to hurt each other. Wuyan has such a
-    powerful force, but can maintain the Xia sprite, it is rare.\u201D"
+    powerful force, but can maintain the Xia spirit, it is rare.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8242,8 +8242,7 @@ MonoBehaviour:
   itemId: 3
   indentLevel: 0
   storyText: "Wuyan:\u201C That\u2019s nothing, you are wounded, better leaving the
-    valley now, this forest is dangerous, I have something important to do, I should
-    move now.\u201D"
+    danferous valley now. I have something important to do.\""
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8416,8 +8415,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 833412882}
+  selectedCommands:
+  - {fileID: 833412878}
   variables:
   - {fileID: 833412887}
   description: 

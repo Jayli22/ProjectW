@@ -4453,7 +4453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u524D\u65B9\u6709\u4E9B\u5435\u95F9\uFF0C\u53D1\u751F\u4E86\u4EC0\u4E48\uFF1F?\u201D"
+  storyText: "Player\uFF1A\u201CSome noise ahead, what happened?\u201C"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4518,9 +4518,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 511481736}
   selectedCommands:
-  - {fileID: 511481728}
+  - {fileID: 511481735}
   variables:
   - {fileID: 511481734}
   description: 
@@ -4704,7 +4705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u4E0D\u597D\uFF0C\u6B64\u4EBA\u6709\u5371\u9669\u3002\u201D"
+  storyText: "Player\uFF1A\u201CNo, this woman is in danger.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}

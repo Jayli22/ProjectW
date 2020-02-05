@@ -73,6 +73,8 @@ public class Character : MonoBehaviour
         randomMoveCooldownTimer = gameObject.AddComponent<Timer>(); 
 
         inhitableTimer.Duration = inhitableDuration;
+
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

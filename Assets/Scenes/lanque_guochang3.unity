@@ -1297,6 +1297,86 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &232529799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232529800}
+  - component: {fileID: 232529801}
+  m_Layer: 0
+  m_Name: Tree-luxuriant-01-S
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232529800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232529799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.025999984, y: -0.35000002, z: 0}
+  m_LocalScale: {x: 0.2626925, y: 0.2626925, z: 0.39403874}
+  m_Children: []
+  m_Father: {fileID: 1226464338}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &232529801
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232529799}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -2
+  m_Sprite: {fileID: 21300000, guid: 36d3899b16cb7fd49bc8d071d12d18e3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.5, y: 0.76}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &262805910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,6 +4296,7 @@ GameObject:
   - component: {fileID: 634214099}
   - component: {fileID: 634214098}
   - component: {fileID: 634214097}
+  - component: {fileID: 634214100}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -4301,7 +4382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u4E0D\u597D\uFF0C\u5979\u6709\u5371\u9669\u3002\u201D"
+  storyText: "Player\uFF1A\u201CNo, she\u2019s in danger.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4328,7 +4409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "\u6B79\u5F92\u5934\u9886\uFF1A\u201C\u5510\u95E8\u5185\u95E8\u5F1F\u5B50\uFF0C\u4E0D\u8FC7\u5982\u6B64\u554A\uFF0C\u8FD9\u5C0F\u599E\u751F\u5F97\u5982\u6B64\u4FCA\u4FCF\uFF0C\u4F55\u4E0D\u653E\u4E0B\u624B\u4E2D\u5175\u5203\uFF0C\u548C\u5927\u7237\u6211\u597D\u597D\u4EAB\u53D7\u4E00\u756A\u3002"
+  storyText: "Bandit Leader\uFF1A\u201CYou are the apprentice of Tang School, there
+    must be some treasures with you, give it to me or prepare to die. \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4355,7 +4437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u90A3\u662F\uFF01\u662F\u4E4B\u524D\u68EE\u6797\u89C1\u8FC7\u7684\u5973\u5B50\u3002\u201D"
+  storyText: "Player\uFF1A\u201DIt's the woman I saw in the forest before! \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4519,8 +4601,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 634214093}
-  selectedCommands: []
+  - {fileID: 634214099}
+  selectedCommands:
+  - {fileID: 634214098}
   variables:
   - {fileID: 634214087}
   - {fileID: 634214086}
@@ -4562,7 +4645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  text: "\u51B7\u773C\u65C1\u89C2"
+  text: Better waiting
   description: 
   targetBlock: {fileID: 634214092}
   hideIfVisited: 0
@@ -4639,7 +4722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  text: "\u62D4\u5200\u76F8\u52A9"
+  text: Help her
   description: 
   targetBlock: {fileID: 634214093}
   hideIfVisited: 0
@@ -4792,7 +4875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u8FD9\u662F\u4F55\u7269\uFF0C\u7ADF\u6709\u5982\u6B64\u5A01\u529B\uFF01\u770B\u6765\u4E4B\u524D\u88AB\u91CE\u517D\u56F4\u653B\u4E5F\u5E76\u6CA1\u6709\u5C06\u5176\u903C\u5165\u7EDD\u5883\""
+  storyText: "Player:\"What\u2018s this powerful stuff? \""
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4819,7 +4902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: "\u53EA\u89C1\u4F17\u4EBA\u56F4\u7740\u84DD\u96C0\uFF0C\u5305\u56F4\u5708\u9010\u6E10\u7F29\u8FDB\uFF0C\u84DD\u96C0\u4ECE\u6000\u4E2D\u638F\u51FA\u4E00\u7269\uFF0C\u62E8\u5F04\u4E4B\u4E0B\uFF0C\u7ADF\u5C04\u51FA\u6570\u767E\u6839\u94A2\u9488\uFF0C\u4F17\u4EBA\u8EB2\u95EA\u4E0D\u53CA\uFF0C\u7EB7\u7EB7\u88AB\u94A2\u9488\u523A\u904D\u5168\u8EAB\uFF0C\u96BE\u4EE5\u52A8\u5F39\u3002"
+  storyText: 'The bandits circle the Woman, the circle gradually retracted. '
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4858,7 +4941,37 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 634214098}
+  - {fileID: 634214100}
   - {fileID: 634214097}
+--- !u!114 &634214100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634214080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 15
+  indentLevel: 0
+  storyText: ' The Woman from the chest out of a thing, play under, but shot hundreds
+    of steel needles. The bandits can not dodge, have been pierced all over the body,
+    unable to move.'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &652358246
 GameObject:
   m_ObjectHideFlags: 0
@@ -7524,7 +7637,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 2.9
+          value: 4.3
         - useVariable: 0
           name: 
           tooltip: 
@@ -9600,7 +9713,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.66, y: 1.44, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 232529800}
   m_Father: {fileID: 0}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

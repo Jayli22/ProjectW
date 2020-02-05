@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    protected Timer attackCooldownTimer; //攻击间隔计时器
+    protected Timer baseattackCooldownTimer; //攻击间隔计时器
 
     protected Vector2 playerCharacterPos;
     protected float playerDistance;
@@ -26,20 +26,24 @@ public class Enemy : Character
     /// <summary>
     /// 怪物类型1-普通怪物,2-群居怪物,3-精英怪物
     /// </summary>
-    [ShowInInspector, Wrap(0,4), PropertyTooltip("怪物类型1-普通怪物,2-群居怪物,3-精英怪物")]
+    [ShowInInspector, Wrap(0,5), PropertyTooltip("怪物类型1-普通怪物,2-群居怪物,3-精英怪物,4-BOSS")]
     public int Type { get => type; set => type = value; }
 
     private Vector2 moveDirection;
 
     public float attackDetectionRadius;//攻击检测半径
-    // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         playerCharacterPos = Player.MyInstance.transform.position;
         playerDistance = (playerCharacterPos - new Vector2(transform.position.x,transform.position.y)).magnitude;
-        attackCooldownTimer = gameObject.AddComponent<Timer>();
-        attackCooldownTimer.Duration = attackCooldown;
-        attackCooldownTimer.Run();
+        baseattackCooldownTimer = gameObject.AddComponent<Timer>();
+        baseattackCooldownTimer.Duration = attackCooldown;
+        baseattackCooldownTimer.Run();
         randomMoveCooldownTimer.Duration = 1f;
         randomMoveCooldownTimer.Run();
         randomMoveTimer.Duration = 1f;
@@ -65,7 +69,6 @@ public class Enemy : Character
         stateInfo = this.animator.GetCurrentAnimatorStateInfo(0);
 
             
-            //if (!stateInfo.IsName("BaseAttack"))
             if(stateInfo.IsName("Run"))
             {
                 Turn();
@@ -226,7 +229,7 @@ public class Enemy : Character
     {
         if(playerDistance < alarmRadius)
         {
-            Debug.Log("进入预警半径");
+            //Debug.Log("进入预警半径");
             EndIdle();
             Turn();
         }
@@ -259,7 +262,7 @@ public class Enemy : Character
         
         gameObject.transform.position = gameObject.transform.position + randomDir * Time.deltaTime * randomSpeed;
         Turn();
-        Debug.Log("正在随机移动");
+        //Debug.Log("正在随机移动");
 
 
             

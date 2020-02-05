@@ -3512,7 +3512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "\u84DD\u96C0\uFF1A\u201C\u611F\u8C22\u5C11\u4FA0\u6551\u547D\u4E4B\u6069\u3002\u201D"
+  storyText: "The Woman\uFF1A\u201CThanks for saving my live.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3581,8 +3581,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 511481736}
+  selectedCommands:
+  - {fileID: 511481735}
   variables:
   - {fileID: 511481734}
   description: 
@@ -3766,7 +3768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u5510\u95E8\u4E4B\u4EBA\u679C\u7136\u8F7B\u529F\u4E86\u5F97\uFF0C\u8D70\u7684\u5982\u6B64\u5306\u5FD9\uFF0C\u90FD\u6CA1\u6765\u5F97\u53CA\u95EE\u5979\u59D3\u540D\u3002\u8EAB\u60A3\u75BE\u75C5\u8FD8\u8981\u5B64\u519B\u6DF1\u5165\uFF0C\u5979\u662F\u6709\u4EC0\u4E48\u8981\u7D27\u4E4B\u4E8B\u5728\u8EAB\u5417\uFF1F\u201D"
+  storyText: "Player\uFF1A\u201CTang school is really good at the Qing Gong.  I even
+    not ask her name. Dose she have anything important to do? \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3949,7 +3952,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: "\u84DD\u96C0\uFF1A\u201C\u6211\u6765\u8C37\u4E2D\u53EA\u4E3A\u53D6\u8D70\u4E00\u7269\uFF0C\u5F97\u4E4B\u5373\u8D70\uFF0C\u4E0D\u4F1A\u4E0E\u4ED6\u4EBA\u7F20\u6597\uFF0C\u611F\u8C22\u5C11\u4FA0\u5173\u5FC3\uFF0C\u6211\u5F97\u52A8\u8EAB\u4E86\uFF0C\u65E5\u540E\u6709\u7F18\u518D\u4F1A\u5427\u3002\u201D"
+  storyText: "The Woman\uFF1A\u201CI enter the valley just for finding a stuff. I
+    will avoid get fought with others. Thanks for you care\uFF0CI have to move.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3976,7 +3980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u8EAB\u4F53\u5982\u6B64\u865A\u5F31\u8FD8\u6562\u8FDB\u5165\u5929\u9668\u8C37\uFF1F\u6B64\u5730\u73B0\u5728\u5371\u673A\u56DB\u4F0F\uFF0C\u4F60\u62D6\u7740\u75C5\u4F53\uFF0C\u592A\u5371\u9669\u4E86\u3002\u59D1\u5A18\u8FD8\u662F\u5148\u51FA\u8C37\u517B\u75C5\uFF0C\u7B49\u8EAB\u4F53\u6062\u590D\uFF0C\u518D\u8FDB\u5165\u4E5F\u4E0D\u8FDF\u554A\uFF1F\u201D"
+  storyText: "Player\uFF1A\u201CIt's too dangerous for you a sick person to enter
+    the TianYun valley.  You better leave this valley, restore your body first.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4003,7 +4008,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "\u84DD\u96C0\uFF1A\u201C\u8BF4\u6765\u60ED\u6127\uFF0C\u6211\u8EAB\u4F53\u62B1\u6059\uFF0C\u8EAB\u4F53\u865A\u5F31\uFF0C\u529F\u529B\u5927\u6253\u6298\u6263\u3002\u65B9\u624D\u53C8\u88AB\u91CE\u517D\u80CC\u540E\u5077\u88AD\u8D1F\u4F24\uFF0C\u5982\u82E5\u4E0D\u662F\u5C11\u4FA0\u76F8\u6551\uFF0C\u8FD9\u56DE\u53EF\u80FD\u771F\u662F\u51F6\u591A\u5409\u5C11\u4E86\u201D"
+  storyText: "The Woman\uFF1A\u201CSpeaking ashamed\uFF0CI catch a sickness which
+    make me weak. I even didn\u2019t notice these beasts behind me and get attacked
+    by them. if you didn\u2019t appear, I might be a dead person now. \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4030,7 +4037,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "\u4E3B\u89D2\uFF1A\u201C\u4E3E\u624B\u4E4B\u52B3\u4F55\u8DB3\u6302\u9F7F\uFF0C\u59D1\u5A18\u8A00\u91CD\u4E86\u3002\u6211\u6C5F\u6E56\u9605\u5386\u5C1A\u6D45\uFF0C\u4F46\u662F\u5982\u679C\u6211\u6CA1\u6709\u770B\u9519\u7684\u8BDD\uFF0C\u59D1\u5A18\u7A7F\u7684\u8863\u670D\u662F\u5510\u95E8\u5185\u95E8\u5F1F\u5B50\u7684\u670D\u88C5\u5427\uFF0C\u600E\u4E48\u4F1A\u88AB\u8FD9\u7FA4\u5C0F\u72FC\u6240\u56F0\u5462\uFF1F\u201D"
+  storyText: "Player\uFF1A\u201CThat's nothing. If I didn't mistake your uniform,
+    you are apprentice of Tang School, so how are you trapped by these wolves? \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}

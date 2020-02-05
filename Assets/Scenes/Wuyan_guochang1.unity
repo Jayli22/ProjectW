@@ -8422,7 +8422,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 860103641}
   selectedCommands:
-  - {fileID: 860103637}
+  - {fileID: 860103634}
   variables:
   - {fileID: 860103631}
   description: 
@@ -8751,7 +8751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "player:\u201C May I ask what is Xia sprite?\u201D"
+  storyText: "player:\u201C May I ask what is Xia spirit?\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8779,7 +8779,7 @@ MonoBehaviour:
   itemId: 10
   indentLevel: 0
   storyText: "Mysterous Man:\u201C Young man but with a good heart, hope you won\u2019t
-    lost your Xia sprite in the dangerous JiangHu.\u201D"
+    lost your Xia spirit in the dangerous JiangHu.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8952,7 +8952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 235.42242
+    x: 236.42242
     y: 71.93318
     width: 120
     height: 40
