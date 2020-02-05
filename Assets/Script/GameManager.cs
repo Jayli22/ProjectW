@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private LevelController levelController;
     private Player player;
     public GameObject playerPrefeb;
+    public int brachTag;
 
     private static GameManager instance;
     public static GameManager MyInstance

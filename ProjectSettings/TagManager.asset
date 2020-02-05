@@ -8,6 +8,7 @@ TagManager:
   - deadTrigger
   - CameraBound
   - Enemy
+  - PlayerSkill
   layers:
   - Default
   - TransparentFX

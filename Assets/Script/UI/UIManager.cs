@@ -24,9 +24,16 @@ public class UIManager : MonoBehaviour
     {
         switch (name)
             {
-            case "StartButton":
+            case "StartButton1":
                 //levelChanger.FadeToLevel(Random.Range(1,5));
                 gameManagement.EnterNewLevel("frost1");
+                gameManagement.brachTag = 1;
+                break;
+            case "StartButton2":
+                //levelChanger.FadeToLevel(Random.Range(1,5));
+                gameManagement.EnterNewLevel("frost1");
+                gameManagement.brachTag = 2;
+
                 break;
             case "RestartButton":
                 Destroy(Player.MyInstance.gameObject);

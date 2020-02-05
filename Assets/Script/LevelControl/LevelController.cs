@@ -106,7 +106,16 @@ public class LevelController : MonoBehaviour
     {
         if(player.levelTag % 3 == 0)
         {
-            gameManagement.EnterNewLevel(LanqueCutScenes[cutSceneTag]);
+            if(gameManagement.brachTag == 1)
+            {
+                gameManagement.EnterNewLevel(wuyanCutScenes[cutSceneTag]);
+
+            }
+            else
+            {
+                gameManagement.EnterNewLevel(LanqueCutScenes[cutSceneTag]);
+
+            }
             cutSceneTag++;
         }
         else
