@@ -48,7 +48,7 @@ public class BaseAttackEffect : MonoBehaviour
                     if (hit.tag == "Enemy")
                     {
                         hit.GetComponent<Enemy>().TakeDamage(10);
-                        KnockBack(hit);
+                        //KnockBack(hit);
                        // Debug.Log(hit.name + "受到了攻击");
                     }
                 }

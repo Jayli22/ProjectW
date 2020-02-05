@@ -28,8 +28,8 @@ public class Character : MonoBehaviour
     protected Rigidbody2D rb2d;
 
     protected Vector3 randomDir; //随机移动方向
-    protected Timer stiffnessTime;   //僵直计时器
-    protected Timer dizzyTime; //眩晕计时器
+    protected Timer stiffnessTimer;   //僵直计时器
+    protected Timer dizzyTimer; //眩晕计时器
     protected Timer inhitableTimer;   //僵直计时器
     protected Timer randomIdleTimer; //间歇时长计时器
     protected Timer randomIdleCoolDownTimer; //间歇计时器
@@ -63,9 +63,9 @@ public class Character : MonoBehaviour
         hitable = true;
 
         animator = gameObject.GetComponent<Animator>();
-        stiffnessTime = gameObject.AddComponent<Timer>();
-        stiffnessTime.Duration = stiffnessDuration;
-        dizzyTime = gameObject.AddComponent<Timer>();
+        stiffnessTimer = gameObject.AddComponent<Timer>();
+        stiffnessTimer.Duration = stiffnessDuration;
+        dizzyTimer = gameObject.AddComponent<Timer>();
         inhitableTimer = gameObject.AddComponent<Timer>();
         randomIdleTimer = gameObject.AddComponent<Timer>();
         randomIdleCoolDownTimer = gameObject.AddComponent<Timer>();
@@ -82,7 +82,7 @@ public class Character : MonoBehaviour
     {
         if (isAlive)
         {
-            if (stiffnessTime.Finished)
+            if (stiffnessTimer.Finished)
             {
                 UndoStiffness();
             }
@@ -108,7 +108,6 @@ public class Character : MonoBehaviour
             if (currentHp <= 0)
             {
                 isAlive = false;
-                //m_animator.SetBool("death", false);    
             }
             else
             {
@@ -116,6 +115,25 @@ public class Character : MonoBehaviour
                 Inhitable();
             }
           
+        }
+    }
+
+    public virtual void TakeDamage(Vector3 Pos,int damage)
+    {
+        if (hitable)
+        {
+            //health reduce 
+            currentHp -= damage;
+            if (currentHp <= 0)
+            {
+                isAlive = false;
+            }
+            else
+            {
+                DoStiffness();//造成硬直
+                Inhitable();
+            }
+
         }
     }
     public virtual void TakeDamage(int damage,Transform t)
@@ -142,7 +160,7 @@ public class Character : MonoBehaviour
     {
         actionCastTri = false;
         animator.SetBool("Hitted", true);
-        stiffnessTime.Run();
+        stiffnessTimer.Run();
         animator.speed = 0;
         canMove = false;
         isStiffness = true;
@@ -174,8 +192,8 @@ public class Character : MonoBehaviour
         isDizzy = true;
         animator.SetBool("dizzy", true);
         rb2d.velocity = Vector2.zero;
-        dizzyTime.Duration = stunDuration;
-        dizzyTime.Run();
+        dizzyTimer.Duration = stunDuration;
+        dizzyTimer.Run();
     }
 
     public virtual void Sober()
@@ -226,6 +244,7 @@ public class Character : MonoBehaviour
     {
         canMove = true;
         animator.SetBool("Move", true);
+        //Debug.Log(gameObject.name);
     }
     /// <summary>
     /// 停止移动
@@ -257,6 +276,8 @@ public class Character : MonoBehaviour
     {
         isRandomIdle = false;
         StartMoving();
+        Debug.Log("结束Idle");
+
     }
- 
+
 }

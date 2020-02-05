@@ -502,11 +502,12 @@ MonoBehaviour:
   isAlive: 0
   hitable: 0
   canMove: 0
-  stiffnessDuration: 0
+  stiffnessDuration: -0.1
   inhitableDuration: 0
   attacksPrefabs: []
   alarmRadius: 0
   attackCooldown: 0
+  backFactor: 0
   strengthValue: 100
   attackDetectionRadius: 0
   skillsCooldown:

@@ -13,6 +13,7 @@ public class Enemy : Character
 
     public float alarmRadius;  //预警半径
     public float attackCooldown; //攻击间隔
+    public float backFactor; //受击后退距离
     private int type;
     [SerializeField]
     private int strengthValue;
@@ -48,7 +49,6 @@ public class Enemy : Character
         randomMoveCooldownTimer.Run();
         randomMoveTimer.Duration = 1f;
         randomMoveTimer.Run();
-
         canMove = true;
         isRandomMove = true;
         animator.SetBool("Move", true);
@@ -73,26 +73,28 @@ public class Enemy : Character
             {
                 Turn();
             }
-            if (canMove && !isRandomIdle)
+            if (canMove )
             {
-                RandomMoveTime();
-                if (isRandomMove)
-            {
-                RandomMove();
+                if(!isRandomIdle)
+                {
+                    RandomMoveTime();
+                    if (isRandomMove)
+                    {
+                        RandomMove();
+                    }
+                    else
+                    {
+                        agent.maxSpeed = moveSpeed;
+                        MoveToPlayer();
+                    }
+                }        
             }
             else
             {
-                agent.maxSpeed = moveSpeed;
-                MoveToPlayer();
-            }
-                
-            }
-            else
-            {
-                agent.maxSpeed = 0;
+                StopMoving();
             }
 
-            if (randomIdleTimer.Finished)
+            if (randomIdleTimer.Finished && isRandomIdle) 
             {
                 EndIdle();
                 
@@ -102,7 +104,6 @@ public class Enemy : Character
 
 
     }
-
 
     public override void TakeDamage(int damage)
     {
@@ -117,7 +118,22 @@ public class Enemy : Character
         else
         {
             DoStiffness();//造成硬直
-
+        }
+    }
+    public override void TakeDamage(Vector3 pos,int damage)
+    {
+        //health reduce 
+        currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            isAlive = false;
+            Debug.Log(isAlive);
+            //
+        }
+        else
+        {
+            DoStiffness();//造成硬直
+            KnockBack(pos - transform.position, backFactor);
         }
     }
 
