@@ -11,10 +11,14 @@ public class LevelController : MonoBehaviour
     private GameManager gameManagement;
     public GameObject[] enemyPrefabs;
 
+    private string[] wuyanCutScenes = { "Wuyan_guochang1","Wuyan_guochang2","Wuyan_guochang3","Wuyan_guochang4","Wuyan_guochang5","Wuyan_guochang6","Wuyan_guochang7"};
+    private string[] LanqueCutScenes = { "Wuyan_guochang1", "Wuyan_guochang2", "Wuyan_guochang3", "Wuyan_guochang4", "Wuyan_guochang5", "Wuyan_guochang6", "Wuyan_guochang7" };
+    private int cutSceneTag;
 
     private List<GameObject> enemyList;
     private DDASystem dDASystem;
-
+    public GameObject guideArrow;
+    private float tangle;
     //单体高强度怪物
     public Dictionary<string, int> eliteEnemy;
     //群体出没怪物
@@ -29,6 +33,7 @@ public class LevelController : MonoBehaviour
 
     private void Awake()
     {
+
         GenerateEnemyDictionary();
 
     }
@@ -37,6 +42,7 @@ public class LevelController : MonoBehaviour
     {
         checkList = new List<Collider2D>();
         gameManagement = GameManager.MyInstance;
+        cutSceneTag = 0;
     }
 
     // Update is called once per frame
@@ -46,13 +52,24 @@ public class LevelController : MonoBehaviour
         {
             player = Player.MyInstance;
         }
+
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             levelClear = true;
         }
+        else
+        {
+            levelClear = false;
+        }
+
         if (levelClear)
         {
             CheckExit();
+            ArrowGuide();
+        }
+        else
+        {
+             guideArrow.SetActive(false);
         }
 
     }
@@ -66,21 +83,50 @@ public class LevelController : MonoBehaviour
         {
             if (obj.tag == "Player")
             {
-                gameManagement.EnterNewLevel();
-
-
+                //  gameManagement.EnterNewLevel("frost2");
+                SwitchLevel();
+                GetComponent<LevelController>().enabled = false;
             }
-
-
         }
     }
+
+    private void ArrowGuide()
+    {
+        float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), ((Vector3)GameObject.Find("ExitPoint").transform.position - player.transform.position).normalized);
+        guideArrow.transform.position = player.transform.position;
+        guideArrow.transform.RotateAround(player.transform.position, Vector3.forward, angle - tangle);
+        tangle = angle;
+        guideArrow.SetActive(true);
+
+    }
+    /// <summary>
+    /// Testshiyong
+    /// </summary>
+    public void SwitchLevel()
+    {
+        if(player.levelTag % 3 == 0)
+        {
+            gameManagement.EnterNewLevel(wuyanCutScenes[cutSceneTag]);
+            cutSceneTag++;
+        }
+        else
+        {
+            int i = Random.Range(1, 5);
+            gameManagement.EnterNewLevel("frost" + i);
+        }
+    }
+
 
     /// <summary>
     /// 生成新关卡
     /// </summary>
     public void GenerateNewLevel()
     {
-        
+        if(levelClear)
+        {
+            player.levelTag++;
+        }
+
         levelClear = false;
         GenerateLevel();
         ResetPlayerLocation();
@@ -122,9 +168,10 @@ public class LevelController : MonoBehaviour
     public void GenerateEnemyList()
     {
         enemyList = new List<GameObject>();
-        if(player.LevelTag < 10)
-        {
-            for(int i = 0; i < 3; i++)
+        //if(player.levelTag < 10)
+        //{
+        Debug.Log(player.levelTag);
+            for(int i = 0; i < 1 + player.levelTag/3; i++)
             {
                 int r = Random.Range(0, normalEnemy.Count);
                 enemyList.Add(enemyPrefabs[r]);
@@ -133,11 +180,11 @@ public class LevelController : MonoBehaviour
             {
                 return g1.GetComponent<Enemy>().StrengthValue.CompareTo(g2.GetComponent<Enemy>().StrengthValue);
             });
-        }
+       // }
     }
 
     /// <summary>
-    /// 进行DDA判断
+    /// 进行DDA判断,
     /// </summary>
     public void DDAFunction()
     {
@@ -149,21 +196,22 @@ public class LevelController : MonoBehaviour
         int f = dDASystem.FactorCompare(EnemyList);  //LF和PF对比
         Debug.Log("差值为" + f);
 
-        int levelTag = player.LevelTag;
+        int levelTag = player.levelTag;
 
-        if (levelTag < 10)   // 对比差值判断部分，根据差值进行后续操作
-        {
-            if (f > 10)
+        //if (levelTag < 10)   
+        //{
+            if (f > 15)// 对比差值判断部分，根据差值进行后续操作
             {
                 EnemyList.RemoveAt(0);
                 DDAFunction();
             }
-        }
-        for (int i = 0; i < EnemyList.Count; i++)
-        {
-            Debug.Log(EnemyList[i].name);
+            else if(f < -15)
+            {
+                EnemyList.Add(enemyPrefabs[Random.Range(1,3)]);
+                DDAFunction();
 
-        }
+            }
+
     }
 
     /// <summary>

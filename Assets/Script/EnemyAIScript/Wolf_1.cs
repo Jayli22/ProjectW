@@ -13,14 +13,17 @@ public class Wolf_1 : MeleeEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        baseUpdateInfo();
 
         if (isAlive)
         {
+            base.Update();
+
             if (!isStiffness)
             {
                 AttackDetection(0.5f);
                 AlarmRadiusDetection();
+
             }
         }
         else
@@ -40,7 +43,7 @@ public class Wolf_1 : MeleeEnemy
         {
             base.TakeDamage(damage);
             //DoStiffness();
-            Debug.Log("我受到了攻击");
+            Debug.Log(name + "受到了攻击");
         }
     }
 

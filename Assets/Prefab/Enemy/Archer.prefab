@@ -302,16 +302,17 @@ MonoBehaviour:
   isAlive: 0
   hitable: 0
   canMove: 0
-  stiffnessDuration: 0
+  stiffnessDuration: 0.3
   inhitableDuration: 0
   attacksPrefabs:
   - {fileID: 4907952162175893062, guid: 8ff64277db5c3874fa88a40a0b210889, type: 3}
   alarmRadius: 5
-  attackCooldown: 3
+  attackCooldown: 3.5
   backFactor: 0.1
-  strengthValue: 0
+  strengthValue: 20
   attackDetectionRadius: 4
   aimLine: {fileID: 7141263124070921618}
+  aimTime: 1
 --- !u!1 &7846707323799680395
 GameObject:
   m_ObjectHideFlags: 0

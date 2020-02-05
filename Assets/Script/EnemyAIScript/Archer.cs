@@ -9,6 +9,7 @@ public class Archer : Enemy
     public GameObject aimLine;
     private Timer aimTimer;//瞄准时间计时器
     private float tangle = 0;
+    public float aimTime;
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +24,7 @@ public class Archer : Enemy
 
     protected override void Update()
     {
+        baseUpdateInfo();
         if (isAlive)
         {
             base.Update();
@@ -67,7 +69,7 @@ public class Archer : Enemy
         animator.SetBool("Move", false);
         aimTarget = true;
         animator.SetBool("Aim", true);
-        aimTimer.Duration = 2f;
+        aimTimer.Duration = aimTime;
         aimTimer.Run();
 
         //StartCoroutine(TriggerAttack(t));
@@ -81,7 +83,8 @@ public class Archer : Enemy
     protected void TriggerAttack()
     {
         animator.SetBool("Attack", true);
-        GameObject a = Instantiate(attacksPrefabs[0],transform.position, transform.rotation * Quaternion.Euler(0, 0, GetAngleBetweenVectors(new Vector2(0, 1), playerCharacterPos)));
+        GameObject a = Instantiate(attacksPrefabs[0],transform.position,transform.rotation);
+        a.transform.Rotate(Vector3.forward, ToolsHub.GetAngleBetweenVectors(Vector2.up, playerCharacterPos));
         a.GetComponent<ArcherArrow>().damage = baseATK;
     }
 
@@ -118,8 +121,7 @@ public class Archer : Enemy
     /// </summary>
     private void AimTarget()
     {
-        //aimLine = Instantiate(, transform);
-        float angle = GetAngleBetweenVectors(new Vector2(0, 1), ((Vector3)playerCharacterPos - transform.position).normalized);
+        float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), ((Vector3)playerCharacterPos - transform.position).normalized);
         aimLine.transform.RotateAround(gameObject.transform.position, Vector3.forward, angle - tangle);
         tangle = angle;
         aimLine.SetActive(true);
@@ -140,6 +142,7 @@ public class Archer : Enemy
             base.TakeDamage(damage);
             if(aimTarget)
                 StopAim();
+
             Debug.Log("我受到了攻击");
         }
     }

@@ -27,17 +27,13 @@ public class Enemy : Character
     /// <summary>
     /// 怪物类型1-普通怪物,2-群居怪物,3-精英怪物
     /// </summary>
-    [ShowInInspector, Wrap(0,5), PropertyTooltip("怪物类型1-普通怪物,2-群居怪物,3-精英怪物,4-BOSS")]
+    [ShowInInspector, Wrap(0,4), PropertyTooltip("怪物类型1-普通怪物,2-群居怪物,3-精英怪物")]
     public int Type { get => type; set => type = value; }
 
     private Vector2 moveDirection;
 
     public float attackDetectionRadius;//攻击检测半径
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
+    // Start is called before the first frame update
     protected override void Start()
     {
         playerCharacterPos = Player.MyInstance.transform.position;
@@ -63,17 +59,13 @@ public class Enemy : Character
     protected override void Update()
     {
         base.Update();
-        playerCharacterPos = Player.MyInstance.transform.position;
-        playerDistance = (playerCharacterPos - new Vector2(transform.position.x, transform.position.y)).magnitude;
-       // Debug.Log(playerDistance+","+attackDetectionRadius);
-        stateInfo = this.animator.GetCurrentAnimatorStateInfo(0);
-
-            
+                 
+            //if (!stateInfo.IsName("BaseAttack"))
             if(stateInfo.IsName("Run"))
             {
                 Turn();
             }
-            if (canMove )
+            if (canMove)
             {
                 if(!isRandomIdle)
                 {
@@ -103,6 +95,14 @@ public class Enemy : Character
             RandomIdle();
 
 
+    }
+
+    protected void baseUpdateInfo()
+    {
+        playerCharacterPos = Player.MyInstance.transform.position;
+        playerDistance = (playerCharacterPos - new Vector2(transform.position.x, transform.position.y)).magnitude;
+        // Debug.Log(playerDistance+","+attackDetectionRadius);
+        stateInfo = this.animator.GetCurrentAnimatorStateInfo(0);
     }
 
     public override void TakeDamage(int damage)
@@ -186,7 +186,7 @@ public class Enemy : Character
     public GameObject ChooseHitBox()
     {
         GameObject g = attackPositions[0];
-        float attackAngle = GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position);
+        float attackAngle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position);
         if (337.5 >= attackAngle || attackAngle < 22.5)
         {
             g = attackPositions[0];
@@ -228,8 +228,9 @@ public class Enemy : Character
     /// </summary>
     public void DeathComing()
     {
-        animator.SetBool("Death", true);
-        //UndoStiffness();
+        animator.SetTrigger("Death");
+
+        UndoStiffness();
         if (stateInfo.IsName("Death") && stateInfo.normalizedTime >= 1.0f)
         {
             Destroy(gameObject);

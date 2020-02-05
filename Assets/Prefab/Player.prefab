@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 1439634955635594468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 0, z: -0.5}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1952928606362980494}
   - {fileID: 6444910134745188628}
@@ -233,6 +233,7 @@ MonoBehaviour:
   uitSkill_2_CoolDown: {fileID: 0}
   uitSkill_3_CoolDown: {fileID: 0}
   uitSkill_4_CoolDown: {fileID: 0}
+  levelTag: 1
   skillPrefabs:
   - {fileID: 4573258074834044531, guid: 2c5af54d3e60fc24ea2605877fcb1422, type: 3}
   - {fileID: 6940741909970835823, guid: 3ccd1797bb32b3a408eac9988c0c662d, type: 3}
@@ -255,6 +256,8 @@ MonoBehaviour:
   clickCount: 0
   comboEffectMark: 0
   maxComboDelayTime: 0.3
+  isCastingSkill: 0
+  isBaseAttack: 0
 --- !u!1 &1679598450458943779
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,25 +1,69 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Xiongshou : MeleeEnemy
 {
-    // Start is called before the first frame update
+    private Timer skillTimer_0;
+    private Timer skillTimer_1;
+    private Timer skillTimer_2;
+    private Timer skillTimer_3;
+    private Timer actionCooldownTimer;
+
+    [ShowInInspector, PropertyTooltip("各技能的冷却时间")]
+    public float[] skillsCooldown;
+    //"当前状态0-未攻击,1-普通攻击,2-技能1，3-技能2..
+    private int curState;
+
+    [ShowInInspector, PropertyTooltip("最长动作间隔时间")]
+    public float actionCooldown;
+
+    private Timer castingTimer;
+
+    private Vector2 jumpTargetPos;
+    private Vector2 jumpStartPos;
+
+    private bool skillTrigger_4;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
+        skillTimer_0 = gameObject.AddComponent<Timer>();
+        skillTimer_1 = gameObject.AddComponent<Timer>();
+        skillTimer_2 = gameObject.AddComponent<Timer>();
+        skillTimer_3 = gameObject.AddComponent<Timer>();
+        actionCooldownTimer = gameObject.AddComponent<Timer>();
+        castingTimer = gameObject.AddComponent<Timer>();
+        curState = 0;
+        skillTimer_0.Duration = skillsCooldown[0];
+        skillTimer_1.Duration = skillsCooldown[1];
+        skillTimer_2.Duration = skillsCooldown[2];
+        skillTimer_3.Duration = skillsCooldown[3];
+        actionCooldownTimer.Duration = Random.Range(0, actionCooldown);
+        skillTimer_0.Run();
+        skillTimer_1.Run();
+        skillTimer_2.Run();
+        skillTimer_3.Run();
+        actionCooldownTimer.Run();
+        skillTimer_0.RemainTime = 0.1f;
+        skillTimer_1.RemainTime = 0.1f;
+        skillTimer_2.RemainTime = 0.1f;
+        skillTimer_3.RemainTime = 0.1f;
+        skillTrigger_4 = false;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
-
         if (isAlive)
         {
-<<<<<<< HEAD
             base.Update();
-            if(castingTimer.Finished)
+            if (castingTimer.Finished)
             {
                 skillTrigger_4 = false;
             }
@@ -29,12 +73,6 @@ public class Xiongshou : MeleeEnemy
                 //AlarmRadiusDetection();
                 CombatLogic();
                 YieldAniFinish("Skill");
-=======
-            if (!isStiffness)
-            {
-                AttackDetection(0.5f);
-                AlarmRadiusDetection();
->>>>>>> 9cac520fdb832df9dc310ad33fbd8a63d96c0d2f
             }
         }
         else
@@ -69,7 +107,6 @@ public class Xiongshou : MeleeEnemy
     }
 
 
-<<<<<<< HEAD
     /// <summary>
     /// 凶兽攻击逻辑
     /// </summary>
@@ -212,7 +249,7 @@ public class Xiongshou : MeleeEnemy
         skillTrigger_4 = true;
     }
 
-    IEnumerator ScaleUp(float scaleTime , float growFactor , float maxScale)
+    IEnumerator ScaleUp(float scaleTime, float growFactor, float maxScale)
     {
         float timer = 0;
 
@@ -223,23 +260,23 @@ public class Xiongshou : MeleeEnemy
         yield return new WaitForSeconds(0.6f);
 
         while (maxScale > transform.localScale.x)
-            {
-                timer += Time.deltaTime;
-                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
-               yield return null;
-            }
+        {
+            timer += Time.deltaTime;
+            transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+            yield return null;
+        }
         // reset the timer
-       // Debug.Log("扩大");
+        // Debug.Log("扩大");
         yield return new WaitForSeconds(scaleTime);
 
-        StartCoroutine(ScaleDown(0.5f,1.3f,2f));
+        StartCoroutine(ScaleDown(0.5f, 1.3f, 2f));
         yield break;
     }
     IEnumerator ScaleDown(float scaleTime, float growFactor, float minScale)
     {
         float timer = 0;
 
-     
+
 
         timer = 0;
         while (minScale < transform.localScale.x)
@@ -257,14 +294,14 @@ public class Xiongshou : MeleeEnemy
     }
 
 
-   /// <summary>
-   /// 监听动画回调
-   /// </summary>
-   /// <param name="ani"></param>
-   /// <param name="aniName"></param>
-   /// <param name="action"></param>
-   /// <returns></returns>
-    public void YieldAniFinish(string aniName )
+    /// <summary>
+    /// 监听动画回调
+    /// </summary>
+    /// <param name="ani"></param>
+    /// <param name="aniName"></param>
+    /// <param name="action"></param>
+    /// <returns></returns>
+    public void YieldAniFinish(string aniName)
     {
         AnimatorStateInfo stateinfo = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -285,7 +322,7 @@ public class Xiongshou : MeleeEnemy
         float duration = 0.0f;
         Vector2 startPos = transform.position;
         //  Vector2 targetPos = transform.position + (Vector3)playerCharacterPos - transform.position).normalized);
-          Vector2 targetPos = playerCharacterPos;
+        Vector2 targetPos = playerCharacterPos;
 
         while (duration < 1.0)
         {
@@ -296,6 +333,4 @@ public class Xiongshou : MeleeEnemy
         }
         transform.position = targetPos;
     }
-=======
->>>>>>> 9cac520fdb832df9dc310ad33fbd8a63d96c0d2f
 }

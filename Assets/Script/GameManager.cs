@@ -43,17 +43,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "StartScene" && SceneManager.GetActiveScene().name != "LoadingScene")
+        
+        if(GameObject.Find("CameraBound") == null)
+        {
+            if (player != null)
+            {
+                player.gameObject.SetActive(false);
+                levelController.enabled = false;
+            }
+        }
+        else
         {
             if (player == null)
             {
-                GameObject g  =  Instantiate(playerPrefeb);
+                GameObject g = Instantiate(playerPrefeb);
                 g.SetActive(true);
                 player = Player.MyInstance;
                 levelController.enabled = true;
                 levelController.player = player;
                 levelController.GenerateNewLevel();
-                
+            }
+            else if(player.isActiveAndEnabled == false )
+            {
+                player.gameObject.SetActive(true);
+                levelController.GenerateNewLevel();
+                levelController.enabled = true;
 
             }
         }
@@ -67,16 +81,18 @@ public class GameManager : MonoBehaviour
     /// 进入新关卡，调用levelcontroller
     /// 
     /// </summary>
-    public void EnterNewLevel()
+    public void EnterNewLevel(string sceneName)
     {
         if(player == null)
         {
-            LevelSwitch(1);     
+            LevelSwitch(1);
+            LoadingSceneScript.gSceneName = sceneName;
         }
         else
         {
-            player.LevelTag++;
-
+           
+            LevelSwitch(1);
+            LoadingSceneScript.gSceneName = sceneName;
         }
 
        //levelController.GenerateNewLevel();
@@ -89,6 +105,14 @@ public class GameManager : MonoBehaviour
     public void LevelSwitch(int sceneID)
     {
         LevelChanger levelChanger = FindObjectOfType<LevelChanger>();
-        levelChanger.FadeToLevel(sceneID);
+        levelChanger.FadeToLevel(1);
+        LoadingSceneScript.gSceneNumber = sceneID;
+    }
+
+    public void LevelSwitch(string sceneName)
+    {
+        LevelChanger levelChanger = FindObjectOfType<LevelChanger>();
+        levelChanger.FadeToLevel(1);
+        //LoadingSceneScript.gSceneName = "Wuyan_guochang1";
     }
 }

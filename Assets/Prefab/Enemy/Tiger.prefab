@@ -301,10 +301,10 @@ GameObject:
   - component: {fileID: 5192025118705739997}
   - component: {fileID: 5192025118705739996}
   - component: {fileID: 5192025118705739986}
-  - component: {fileID: 5192025118705739985}
   - component: {fileID: 5192025118705739998}
   - component: {fileID: 5192025118705739999}
   - component: {fileID: 4843554960690432170}
+  - component: {fileID: 2177336341790935789}
   m_Layer: 9
   m_Name: Tiger
   m_TagString: Enemy
@@ -411,43 +411,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46008873, y: 0.419513}
   m_EdgeRadius: 0
---- !u!114 &5192025118705739985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192025118705739984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10d159342e9106429e6806eed87c8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 100
-  baseATK: 15
-  qi: 0
-  qiEffect: 0
-  skillStars: 0
-  attackPositions:
-  - {fileID: 5192025118547301237}
-  - {fileID: 5192025118234197582}
-  - {fileID: 5192025119581247133}
-  - {fileID: 5192025118303113514}
-  - {fileID: 5192025118610212635}
-  - {fileID: 5192025119247696637}
-  - {fileID: 5192025118469700965}
-  - {fileID: 5192025119576754225}
-  moveSpeed: 3
-  isAlive: 0
-  hitable: 0
-  stiffnessDuration: 0.01
-  inhitableDuration: 0
-  attacksPrefabs:
-  - {fileID: 5192025118358711663}
-  strengthValue: 1
-  moveCoolDown: 0
-  attackDetectionRadius: 0.8
 --- !u!114 &5192025118705739998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +479,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2177336341790935789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192025118705739984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b91245f62e499499592eb3cca405f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 120
+  currentHp: 120
+  baseATK: 20
+  qi: 0
+  qiEffect: 0
+  skillStars: 0
+  attackPositions: []
+  moveSpeed: 2.2
+  isAlive: 0
+  hitable: 0
+  canMove: 0
+  stiffnessDuration: 0.2
+  inhitableDuration: 0
+  attacksPrefabs:
+  - {fileID: 5192025118358711663}
+  alarmRadius: 1
+  attackCooldown: 3
+  backFactor: 0.1
+  strengthValue: 15
+  attackDetectionRadius: 0.5
 --- !u!1 &5192025119247696637
 GameObject:
   m_ObjectHideFlags: 0

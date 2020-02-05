@@ -12,10 +12,13 @@ public class Tiger : MeleeEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        baseUpdateInfo();
+
 
         if (isAlive)
         {
+            base.Update();
+
             if (!isStiffness)
             {
                 AttackDetection(0.4f);
@@ -39,8 +42,8 @@ public class Tiger : MeleeEnemy
         {
             base.TakeDamage(damage);
             //KnockBack(Player.MyInstance.transform.position - transform.position);
-            UndoStiffness();
-            Debug.Log("我受到了攻击");
+            //UndoStiffness();
+            Debug.Log(name + "受到了攻击");
         }
     }
 

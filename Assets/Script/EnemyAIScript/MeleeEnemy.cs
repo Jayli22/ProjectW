@@ -38,17 +38,17 @@ public class MeleeEnemy : Enemy
     {
         yield return new WaitForSeconds(t);
         Debug.Log(actionCastTri);
-        if(actionCastTri)
+        if (actionCastTri)
         {
-            GameObject p = ChooseHitBox();
+            //GameObject p = ChooseHitBox();
             // GameObject a = Instantiate(attacksPrefabs[0], transform.position, transform.rotation, transform);
-            GameObject a = Instantiate(attacksPrefabs[0],transform);
-            float angle = GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position - gameObject.transform.position);
-            a.transform.RotateAround(gameObject.transform.position,Vector3.forward, angle);
+            GameObject a = Instantiate(attacksPrefabs[0], transform);
+            float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position - gameObject.transform.position);
+            a.transform.RotateAround(gameObject.transform.position, Vector3.forward, angle);
             //a.transform.Rotate(Vector3.forward, 45f,relativeTo:Space.World);
             a.SetActive(true);
         }
-      
+
     }
 
     /// <summary>

@@ -30,10 +30,6 @@ public class Timer : MonoBehaviour
 	/// <value>duration</value>
 	public float Duration
     {
-		get
-		{
-			return totalSeconds;
-		}
 		set
         {
 			if (!running)
@@ -92,7 +88,7 @@ public class Timer : MonoBehaviour
 	public void Run()
     {	
 		// only run with valid duration
-		if (totalSeconds >= 0)
+		if (totalSeconds > 0)
         {
 			started = true;
 			running = true;
@@ -115,10 +111,11 @@ public class Timer : MonoBehaviour
     /// <returns></returns>
     public float RemainTime
     {   set {
-			if(value < totalSeconds)
+			if(value > 0)
 			{
 				elapsedSeconds = totalSeconds - value;
 			}
+
 		}
         get{
            return totalSeconds - elapsedSeconds;

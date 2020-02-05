@@ -14,6 +14,9 @@ public class LoadingSceneScript : MonoBehaviour
 
     private AsyncOperation operation;
 
+    public static int gSceneNumber;
+    public static string gSceneName;
+
     // Use this for initialization
     void Start()
     {
@@ -21,13 +24,21 @@ public class LoadingSceneScript : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "LoadingScene")
         {
             //启动协程
-            StartCoroutine(AsyncLoading());
+            StartCoroutine(AsyncLoading(gSceneName));
         }
     }
 
-    IEnumerator AsyncLoading()
+    IEnumerator AsyncLoading(int scenenumber)
     {
-        operation = SceneManager.LoadSceneAsync(2);
+        operation = SceneManager.LoadSceneAsync(scenenumber);
+        //阻止当加载完成自动切换
+        operation.allowSceneActivation = false;
+
+        yield return operation;
+    }
+    IEnumerator AsyncLoading(string scenename)
+    {
+        operation = SceneManager.LoadSceneAsync(scenename);
         //阻止当加载完成自动切换
         operation.allowSceneActivation = false;
 

@@ -18,7 +18,7 @@ public class DDASystem : MonoBehaviour
     private int playerSkillPoint;
     private int playerQi;
     private int playerATK;
-
+    private int levelTag;
     public int CurrentPlayerFactor { get => currentPlayerFactor; set => currentPlayerFactor = value; }
     public int CurrentLevelFactor { get => currentLevelFactor; set => currentLevelFactor = value; }
 
@@ -49,6 +49,7 @@ public class DDASystem : MonoBehaviour
         playerSkillPoint = player.skillStars;
         playerQi = player.qi;
         playerATK = player.baseATK;
+        levelTag = player.levelTag;
     }
 
     /// <summary>
@@ -57,7 +58,12 @@ public class DDASystem : MonoBehaviour
     public void CalculateCPF()
     {
         GetPlayerStat();
-        CurrentPlayerFactor = playerMaxHp / 100 + playerSkillPoint + playerQi + playerATK;
+        CurrentPlayerFactor = playerCurHp / 10 + playerSkillPoint + playerQi + playerATK;
+        int t = playerMaxHp - playerCurHp;
+        if(t < levelTag)
+        {
+            currentPlayerFactor += playerCurHp / (10- levelTag);
+        }
         Debug.Log("cpf:" + CurrentPlayerFactor);
     }
 

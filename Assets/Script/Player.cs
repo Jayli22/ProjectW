@@ -15,12 +15,10 @@ public class Player : Character
     public Text uitSkill_2_CoolDown;
     public Text uitSkill_3_CoolDown;
     public Text uitSkill_4_CoolDown;
-
-    private int levelTag;
     /// <summary>
     /// 当前关卡标记
     /// </summary>
-    public int LevelTag { get => levelTag; set => levelTag = value; }
+    public int levelTag; 
     public enum CurrentState
     {
         BaseAttack,
@@ -56,13 +54,22 @@ public class Player : Character
     private float lastClickTime; //最后一次点击时间
     protected AnimationClipOverrides clipOverrides;
 
-    private Timer skillCoolDown_1;
-    private Timer skillCoolDown_2;
-    private Timer skillCoolDown_3;
-    private Timer skillCoolDown_4;
+    private Timer skillCoolDownTimer_1;
+    private Timer skillCoolDownTimer_2;
+    private Timer skillCoolDownTimer_3;
+    private Timer skillCoolDownTimer_4;
     private Timer castingTimer;
-    private bool isCastingSkill;
-    private bool isBaseAttack;
+
+    private Buffer buffers;
+
+    public bool isCastingSkill;
+    public bool isBaseAttack;
+
+    private Timer preCastTimer_1;
+    private Timer preCastTimer_2;
+    private Timer preCastTimer_3;
+
+
     public static Player MyInstance
     {
         get
@@ -86,7 +93,7 @@ public class Player : Character
     public void Init()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        LevelTag = 0;
+        levelTag = 0;
         animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
         animator.runtimeAnimatorController = animatorOverrideController;
 
@@ -99,11 +106,16 @@ public class Player : Character
         comboEffectFirstMark = false;
         canMove = true;
         canChangeMouseDir = true;
+        buffers = gameObject.AddComponent<Buffer>();
+        skillCoolDownTimer_1 = gameObject.AddComponent<Timer>();
+        skillCoolDownTimer_2 = gameObject.AddComponent<Timer>();
+        skillCoolDownTimer_3 = gameObject.AddComponent<Timer>();
+        skillCoolDownTimer_4 = gameObject.AddComponent<Timer>();
+        preCastTimer_1 = gameObject.AddComponent<Timer>();
+        preCastTimer_2 = gameObject.AddComponent<Timer>();
+        preCastTimer_3 = gameObject.AddComponent<Timer>();
 
-        skillCoolDown_1 = gameObject.AddComponent<Timer>();
-        skillCoolDown_2 = gameObject.AddComponent<Timer>();
-        skillCoolDown_3 = gameObject.AddComponent<Timer>();
-        skillCoolDown_4 = gameObject.AddComponent<Timer>();
+
         castingTimer = gameObject.AddComponent<Timer>();
         skills = new BaseSkill[4];
         releasedSkills = new GameObject[4];
@@ -127,7 +139,7 @@ public class Player : Character
     {
         animator.SetFloat("AttackHorizontal", mouseDir.x);
         animator.SetFloat("AttackVertical", mouseDir.y);
-        mouseAngle = GetAngleBetweenVectors(new Vector2(0, 1), mouseDir);
+        mouseAngle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), mouseDir);
     }
 
     protected override void Update()
@@ -149,34 +161,40 @@ public class Player : Character
             {
                 SetPlayerDirection();
             }
-            if (stateInfo.normalizedTime > 0.9f && stateInfo.IsTag("BaseAttack"))
+            if (stateInfo.IsTag("BaseAttack"))
             {
-                canMove = true;
-                if (canChangeMouseDir)
+                isBaseAttack = true;
+                canMove = false;
+                if (stateInfo.normalizedTime > 0.9f)
                 {
-                    SetPlayerDirection();
+                    canMove = true;
+                    if (canChangeMouseDir)
+                    {
+                        SetPlayerDirection();
+                    }
                 }
             }
+            else
+            {
+                isBaseAttack = false;
+            }
+
+          
             if (castingTimer.Finished && !stateInfo.IsTag("BaseAttack"))
             {
                 PlayAnimation("IsCasting", false);
                 canMove = true;
                 isCastingSkill = false;
+
+                moveSpeed = 3f;
+
                 if (canChangeMouseDir)
                 {
                     SetPlayerDirection();
                 }
             }
 
-                if (stateInfo.IsTag("BaseAttack"))
-            {
-                isBaseAttack = true;
-            }
-            else
-            {
-                isBaseAttack = false;
-
-            }
+            
             mouseDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             mouseDir = mouseDir.normalized;
 
@@ -213,33 +231,32 @@ public class Player : Character
 
         }
         movement = movement.normalized;
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)))
-        {
-            lastClickTime = Time.time;
-            //if (comboMark)
-            //{
-            //    noOfClicks++;
-            //    comboMark = false;
-            //}
-            comboMark = true;
-
-            if (clickCount == 0)
+        if (!isCastingSkill)
             {
-                clickCount = 1;
-               // comboMark = true;
-                comboEffectFirstMark = true;
-            }
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)))
+            {
+                lastClickTime = Time.time;
 
+                comboMark = true;
+
+                if (clickCount == 0)
+                {
+                    clickCount = 1;
+                    // comboMark = true;
+                    comboEffectFirstMark = true;
+                }
+
+            }
         }
         if (!isCastingSkill && !isBaseAttack)
         {
             if (Input.GetMouseButtonDown(1)) //Skill1
             {
-                if (skillCoolDown_1.Finished)
+                if (skillCoolDownTimer_1.Finished)
                 {
                     releasedSkills[0] = InstantiateEffectRotate(skillPrefabs[0], mouseAngle); 
                     PlayAnimation("Skill_1");
-                    skillCoolDown_1.Run();
+                    skillCoolDownTimer_1.Run();
 
                     DetermineSkillType(releasedSkills[0]);
 
@@ -248,10 +265,10 @@ public class Player : Character
             }
             if (Input.GetKeyDown(KeyCode.Q)) //Skill2
             {
-                if (skillCoolDown_2.Finished)
+                if (skillCoolDownTimer_2.Finished)
                 {
                     releasedSkills[1] = InstantiateEffectRotate(skillPrefabs[1], mouseAngle); 
-                    skillCoolDown_2.Run();
+                    skillCoolDownTimer_2.Run();
                     PlayAnimation("Skill_2");
 
                     Debug.Log(releasedSkills[1].GetComponent<BaseSkill>().skillType);
@@ -263,21 +280,24 @@ public class Player : Character
             }
             if (Input.GetKeyDown(KeyCode.E)) //Skill3
             {
-                if (skillCoolDown_3.Finished)
+                if (skillCoolDownTimer_3.Finished)
                 {
                     releasedSkills[2] = InstantiateEffectRotate(skillPrefabs[2], mouseAngle); 
                     PlayAnimation("Skill_3");
-                    skillCoolDown_3.Run();
-         
+                    skillCoolDownTimer_3.Run();
+
+
+            
+
                    DetermineSkillType(releasedSkills[2]);
                 }
             }
             if (Input.GetKeyDown(KeyCode.R)) //Skill4
             {
-                if (skillCoolDown_4.Finished)
+                if (skillCoolDownTimer_4.Finished)
                 {
                     releasedSkills[3] = InstantiateEffectRotate(skillPrefabs[3], mouseAngle); 
-                    skillCoolDown_4.Run();
+                    skillCoolDownTimer_4.Run();
                     PlayAnimation("Skill_4");
 
                     DetermineSkillType(releasedSkills[3]);
@@ -321,9 +341,9 @@ public class Player : Character
     {
 
         return Instantiate(g, SwitchAttackPosition(mouseAngle).transform.position, transform.rotation * Quaternion.Euler(0, 0, mouseAngle), transform);
-
-
     }
+
+
     private GameObject InstantiateEffectRotate(GameObject g)
     {
         //g.transform.RotateAround(transform.position, Vector3.forward, mouseAngle);
@@ -372,7 +392,7 @@ public class Player : Character
 
         }
 
-       
+        
         if (Time.time - lastClickTime > maxComboDelayTime)
         {
             clickCount = 0;
@@ -442,6 +462,7 @@ public class Player : Character
                     clipOverrides["BaseAttackUpLeft_2"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_2[7];
                     clipOverrides["BaseAttackUpLeft_3"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_3[7];
                     animatorOverrideController.ApplyOverrides(clipOverrides);
+                    preCastTimer_1 = baseAttackPrefabs.
                 }
                 break;
         }
@@ -462,8 +483,9 @@ public class Player : Character
         clipOverrides["Skill_1DownLeft"] = skillPrefabs[0].GetComponent<BaseSkill>().dirPrefabs[5];
         clipOverrides["Skill_1Left"] = skillPrefabs[0].GetComponent<BaseSkill>().dirPrefabs[6];
         clipOverrides["Skill_1UpLeft"] = skillPrefabs[0].GetComponent<BaseSkill>().dirPrefabs[7];
-        skillCoolDown_1.Duration = skillPrefabs[0].GetComponent<BaseSkill>().cooldown;
-        skillCoolDown_1.Run();
+        skillCoolDownTimer_1.Duration = skillPrefabs[0].GetComponent<BaseSkill>().cooldown;
+        skillCoolDownTimer_1.Run();
+        skillCoolDownTimer_1.RemainTime = 0.1f;
 
         skills[1] = skillPrefabs[1].GetComponent<BaseSkill>();
         clipOverrides["Skill_2Up"] = skillPrefabs[1].GetComponent<BaseSkill>().dirPrefabs[0];
@@ -474,8 +496,10 @@ public class Player : Character
         clipOverrides["Skill_2DownLeft"] = skillPrefabs[1].GetComponent<BaseSkill>().dirPrefabs[5];
         clipOverrides["Skill_2Left"] = skillPrefabs[1].GetComponent<BaseSkill>().dirPrefabs[6];
         clipOverrides["Skill_2UpLeft"] = skillPrefabs[1].GetComponent<BaseSkill>().dirPrefabs[7];
-        skillCoolDown_2.Duration = skillPrefabs[1].GetComponent<BaseSkill>().cooldown;
-        skillCoolDown_2.Run();
+        skillCoolDownTimer_2.Duration = skillPrefabs[1].GetComponent<BaseSkill>().cooldown;
+
+        skillCoolDownTimer_2.Run();
+        skillCoolDownTimer_2.RemainTime = 0.1f;
 
         skills[2] = skillPrefabs[2].GetComponent<BaseSkill>();
         clipOverrides["Skill_3Up"] = skills[2].dirPrefabs[0];
@@ -486,8 +510,10 @@ public class Player : Character
         clipOverrides["Skill_3DownLeft"] = skillPrefabs[2].GetComponent<BaseSkill>().dirPrefabs[5];
         clipOverrides["Skill_3Left"] = skillPrefabs[2].GetComponent<BaseSkill>().dirPrefabs[6];
         clipOverrides["Skill_3UpLeft"] = skillPrefabs[2].GetComponent<BaseSkill>().dirPrefabs[7];
-        skillCoolDown_3.Duration = skillPrefabs[2].GetComponent<BaseSkill>().cooldown;
-        skillCoolDown_3.Run();
+        skillCoolDownTimer_3.Duration = skillPrefabs[2].GetComponent<BaseSkill>().cooldown;
+
+        skillCoolDownTimer_3.Run();
+        skillCoolDownTimer_3.RemainTime = 0.1f;
 
         skills[3] = skillPrefabs[3].GetComponent<BaseSkill>();
         clipOverrides["Skill_4Up"] = skills[3].dirPrefabs[0];
@@ -498,8 +524,9 @@ public class Player : Character
         clipOverrides["Skill_4DownLeft"] = skillPrefabs[3].GetComponent<BaseSkill>().dirPrefabs[5];
         clipOverrides["Skill_4Left"] = skillPrefabs[3].GetComponent<BaseSkill>().dirPrefabs[6];
         clipOverrides["Skill_4UpLeft"] = skillPrefabs[3].GetComponent<BaseSkill>().dirPrefabs[7];
-        skillCoolDown_4.Duration = skillPrefabs[3].GetComponent<BaseSkill>().cooldown;
-        skillCoolDown_4.Run();
+        skillCoolDownTimer_4.Duration = skillPrefabs[3].GetComponent<BaseSkill>().cooldown;
+        skillCoolDownTimer_4.Run();
+        skillCoolDownTimer_4.RemainTime = 0.1f;
 
         animatorOverrideController.ApplyOverrides(clipOverrides);
         //          }
@@ -578,11 +605,6 @@ public class Player : Character
         canChangeMouseDir = b;
     }
 
-    /// <summary>
-    /// 切换攻击wei
-    /// </summary>
-    /// <param name="attackAngle"></param>
-    /// <returns></returns>
     public GameObject SwitchAttackPosition(float attackAngle)
     {
        // Debug.Log(attackAngle);
@@ -630,17 +652,17 @@ public class Player : Character
     private void UIUpdate()
     {
         UIBinding();
-        //
+        
         HealthBar.fillAmount = (float)currentHp / (float)maxHp;
 
-        uiiSkill_1_CoolDown.fillAmount = 1 - (skills[0].cooldown - skillCoolDown_1.RemainTime) / skills[0].cooldown;
-        uiiSkill_2_CoolDown.fillAmount = 1 - (skills[1].cooldown - skillCoolDown_2.RemainTime) / skills[1].cooldown;
-        uiiSkill_3_CoolDown.fillAmount = 1 - (skills[2].cooldown - skillCoolDown_3.RemainTime) / skills[2].cooldown;
-        uiiSkill_4_CoolDown.fillAmount = 1 - (skills[3].cooldown - skillCoolDown_4.RemainTime) / skills[3].cooldown;
-        uitSkill_1_CoolDown.text = ((int)skillCoolDown_1.RemainTime).ToString();
-        uitSkill_2_CoolDown.text = ((int)skillCoolDown_2.RemainTime).ToString();
-        uitSkill_3_CoolDown.text = ((int)skillCoolDown_3.RemainTime).ToString();
-        uitSkill_4_CoolDown.text = ((int)skillCoolDown_4.RemainTime).ToString();
+        uiiSkill_1_CoolDown.fillAmount = 1 - (skills[0].cooldown - skillCoolDownTimer_1.RemainTime) / skills[0].cooldown;
+        uiiSkill_2_CoolDown.fillAmount = 1 - (skills[1].cooldown - skillCoolDownTimer_2.RemainTime) / skills[1].cooldown;
+        uiiSkill_3_CoolDown.fillAmount = 1 - (skills[2].cooldown - skillCoolDownTimer_3.RemainTime) / skills[2].cooldown;
+        uiiSkill_4_CoolDown.fillAmount = 1 - (skills[3].cooldown - skillCoolDownTimer_4.RemainTime) / skills[3].cooldown;
+        uitSkill_1_CoolDown.text = ((int)skillCoolDownTimer_1.RemainTime).ToString();
+        uitSkill_2_CoolDown.text = ((int)skillCoolDownTimer_2.RemainTime).ToString();
+        uitSkill_3_CoolDown.text = ((int)skillCoolDownTimer_3.RemainTime).ToString();
+        uitSkill_4_CoolDown.text = ((int)skillCoolDownTimer_4.RemainTime).ToString();
     }
 
     public void DetermineSkillType(GameObject tSkill)
@@ -670,6 +692,9 @@ public class Player : Character
                 castingTimer.Run();
                 PlayAnimation("IsCasting", true);
                 skillScript.GetComponent<BaseSkill>().Release();
+
+                buffers.Active(skillScript.castingDuration);
+
                 isCastingSkill = true;
 
                 break;
@@ -683,7 +708,6 @@ public class Player : Character
                 break;
         }
     }
-
     public void UIBinding()
     {
         HealthBar = GameObject.Find("HealthBar").GetComponent<Image>() ;
@@ -696,4 +720,6 @@ public class Player : Character
         uitSkill_3_CoolDown = GameObject.Find("Skill_3_CoolDownText").GetComponent<Text>();
         uitSkill_4_CoolDown = GameObject.Find("Skill_4_CoolDownText").GetComponent<Text>();
     }
+
+
 }

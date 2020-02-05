@@ -288,6 +288,8 @@ namespace Fungus
             }
         }
 
+
+
         protected virtual Block CreateBlockComponent(GameObject parent)
         {
             Block block = parent.AddComponent<Block>();
@@ -1339,6 +1341,40 @@ namespace Fungus
                 }
             }
         }
+
+        /// <summary> 
+        /// 进入新关卡，调用levelcontroller
+        /// 
+        /// </summary>
+        public void EnterNewLevel(string sceneName)
+        {
+                LevelSwitch(sceneName);
+                //player.LevelTag++;
+
+
+            //levelController.GenerateNewLevel();
+        }
+
+
+        /// <summary>
+        /// 切换关卡场景
+        /// </summary>
+        public void LevelSwitch(int sceneID)
+        {
+            LevelChanger levelChanger = FindObjectOfType<LevelChanger>();
+            levelChanger.FadeToLevel(1);
+            LoadingSceneScript.gSceneNumber = sceneID;
+        }
+
+        public void LevelSwitch(string sceneName)
+        {
+            LevelChanger levelChanger = FindObjectOfType<LevelChanger>();
+            levelChanger.FadeToLevel(1);
+            LoadingSceneScript.gSceneName = sceneName;
+
+        }
+
+
 
         #endregion
 

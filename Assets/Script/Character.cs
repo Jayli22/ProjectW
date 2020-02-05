@@ -73,8 +73,6 @@ public class Character : MonoBehaviour
         randomMoveCooldownTimer = gameObject.AddComponent<Timer>(); 
 
         inhitableTimer.Duration = inhitableDuration;
-
-        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -161,7 +159,7 @@ public class Character : MonoBehaviour
         actionCastTri = false;
         animator.SetBool("Hitted", true);
         stiffnessTimer.Run();
-        animator.speed = 0;
+       // animator.speed = 0;
         canMove = false;
         isStiffness = true;
     }
@@ -182,7 +180,7 @@ public class Character : MonoBehaviour
     public void UndoStiffness()
     {
         //stiffnessTime.Run();
-        animator.speed = 1;
+       //animator.speed = 1;
         canMove = true;
         isStiffness = false;
         animator.SetBool("Hitted", false);
@@ -215,27 +213,27 @@ public class Character : MonoBehaviour
             transform.position = new Vector2(transform.position.x - backDir.x, transform.position.y - backDir.y);
         }
     }
-    public float GetAngleBetweenVectors(Vector2 vector1, Vector2 vector2)
-    {
-        Vector2 difference = vector2 - vector1;
-        float rawTargetAngle = Vector2.Angle(Vector2.up, vector2);
-        float angle = rawTargetAngle;
+    //public float GetAngleBetweenVectors(Vector2 vector1, Vector2 vector2)
+    //{
+    //    Vector2 difference = vector2 - vector1;
+    //    float rawTargetAngle = Vector2.Angle(Vector2.up, vector2);
+    //    float angle = rawTargetAngle;
 
-        difference *= -1;
+    //    difference *= -1;
 
 
-        if (difference.x < 0 && difference.y >= 0)
-        {
-            angle = 360 - rawTargetAngle;
-        }
-        else if (difference.x < 0 && difference.y <= 0)
-        {
-            angle = 360 - rawTargetAngle;
-        }
+    //    if (difference.x < 0 && difference.y >= 0)
+    //    {
+    //        angle = 360 - rawTargetAngle;
+    //    }
+    //    else if (difference.x < 0 && difference.y <= 0)
+    //    {
+    //        angle = 360 - rawTargetAngle;
+    //    }
 
-        //Debug.Log("Angle: " + angle + " ---- Difference: " + difference + " ---- Raw: " + rawTargetAngle);
-        return angle;
-    }
+    //    //Debug.Log("Angle: " + angle + " ---- Difference: " + difference + " ---- Raw: " + rawTargetAngle);
+    //    return angle;
+    //}
 
     /// <summary>
     /// 开始移动
@@ -266,7 +264,7 @@ public class Character : MonoBehaviour
         randomIdleTimer.Duration = Random.Range(0.5f, 2f); //随机此次间歇时长
         randomIdleTimer.Run();
         isRandomIdle = true;
-        Debug.Log("开始Idle");
+       // Debug.Log("开始Idle");
 
     }
     /// <summary>
@@ -276,7 +274,7 @@ public class Character : MonoBehaviour
     {
         isRandomIdle = false;
         StartMoving();
-        Debug.Log("结束Idle");
+        //Debug.Log("结束Idle");
 
     }
 
