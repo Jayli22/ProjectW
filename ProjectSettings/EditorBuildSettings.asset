@@ -53,4 +53,43 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Wuyan_guochang7.unity
     guid: 4fa3229da76f9c04c853f2009fa8bc03
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang1.unity
+    guid: f573a5536a330af41884ea34c77ea806
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang2.unity
+    guid: 36df6717c7cf428418de76f7feb703e2
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang3.unity
+    guid: 690588c9f4857ce40800b5404472dda8
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang4.unity
+    guid: 4d66a18639faa844b9844217b6d636af
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang4.5.unity
+    guid: b2c75ef97f0635947a0f4c3280eed5dd
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang5.unity
+    guid: 36aa31c31a965cd46b55f6705a690eef
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang5.5.unity
+    guid: d884cd2ba7c8afd4c83cddf33b7df426
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang6.unity
+    guid: 7f850ddc2390942438aa7ffb45c6fdfa
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang6.5.unity
+    guid: 7da26e38d8c1e2346a3c454ef6157859
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang7.5_spare.unity
+    guid: 1c64caa838e3cb546a729f5eb9970ce8
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang7_kill.unity
+    guid: 93c1ec2845a31be4e98d192d4fb603da
+  - enabled: 1
+    path: Assets/Scenes/lanque_guochang7_spare.unity
+    guid: b4aab316c5b1cfe438c69b0e29c598dd
+  - enabled: 1
+    path: Assets/Scenes/LanqueBoss.unity
+    guid: 07bab16d6243f31449035f40dedf4d2e
   m_configObjects: {}

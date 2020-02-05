@@ -117,6 +117,8 @@ public class Player : Character
 
 
         castingTimer = gameObject.AddComponent<Timer>();
+        castingTimer.Duration = 0.1f;
+        castingTimer.Run();
         skills = new BaseSkill[4];
         releasedSkills = new GameObject[4];
         isBaseAttack = false;
@@ -165,9 +167,11 @@ public class Player : Character
             {
                 isBaseAttack = true;
                 canMove = false;
-                if (stateInfo.normalizedTime > 0.9f)
+                if (stateInfo.normalizedTime >= 0.9f)
                 {
+                    Debug.Log("??");
                     canMove = true;
+                    
                     if (canChangeMouseDir)
                     {
                         SetPlayerDirection();
@@ -368,7 +372,7 @@ public class Player : Character
             comboEffectMark = true;
 
             SetIdleDir();
-            canMove = false;
+            //canMove = false;
         }
         if (clickCount == 2 && !comboEffectMark)
         {
@@ -378,7 +382,7 @@ public class Player : Character
             comboEffectMark = true;
 
             SetIdleDir();
-            canMove = false;
+           // canMove = false;
 
         }
         if (clickCount == 3 && !comboEffectMark)
@@ -388,7 +392,7 @@ public class Player : Character
             comboEffectMark = true;
 
             SetIdleDir();
-            canMove = false;
+            //canMove = false;
 
         }
 

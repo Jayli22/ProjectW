@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] enemyPrefabs;
 
     private string[] wuyanCutScenes = { "Wuyan_guochang1","Wuyan_guochang2","Wuyan_guochang3","Wuyan_guochang4","Wuyan_guochang5","Wuyan_guochang6","Wuyan_guochang7"};
-    private string[] LanqueCutScenes = { "Wuyan_guochang1", "Wuyan_guochang2", "Wuyan_guochang3", "Wuyan_guochang4", "Wuyan_guochang5", "Wuyan_guochang6", "Wuyan_guochang7" };
+    private string[] LanqueCutScenes = { "lanque_guochang1", "lanque_guochang2", "lanque_guochang3", "lanque_guochang4", "lanque_guochang5", "lanque_guochang6" };
     private int cutSceneTag;
 
     private List<GameObject> enemyList;
@@ -106,7 +106,7 @@ public class LevelController : MonoBehaviour
     {
         if(player.levelTag % 3 == 0)
         {
-            gameManagement.EnterNewLevel(wuyanCutScenes[cutSceneTag]);
+            gameManagement.EnterNewLevel(LanqueCutScenes[cutSceneTag]);
             cutSceneTag++;
         }
         else
