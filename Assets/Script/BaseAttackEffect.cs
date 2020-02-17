@@ -10,6 +10,7 @@ public class BaseAttackEffect : MonoBehaviour
     private List<Collider2D> hittedObjects;
     public float rotateAngle;
     public float knockBackFactor;
+    public float duration;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class BaseAttackEffect : MonoBehaviour
         destoryTimer = gameObject.AddComponent<Timer>();
         hitObjects = new Collider2D[50];
 
-        destoryTimer.Duration = 0.5f;
+        destoryTimer.Duration = duration;
         destoryTimer.Run();
         transform.RotateAround(Player.MyInstance.transform.position, Vector3.forward, rotateAngle);
         HitCheck();
@@ -48,7 +49,7 @@ public class BaseAttackEffect : MonoBehaviour
                     if (hit.tag == "Enemy")
                     {
                         hit.GetComponent<Enemy>().TakeDamage(10);
-                        //KnockBack(hit);
+                        KnockBack(hit);
                        // Debug.Log(hit.name + "受到了攻击");
                     }
                 }
@@ -62,7 +63,7 @@ public class BaseAttackEffect : MonoBehaviour
     {
         if (c.tag == "Enemy")
         {
-            c.GetComponent<Enemy>().KnockBack(Player.MyInstance.transform.position - c.transform.position, knockBackFactor);
+            c.GetComponent<Enemy>().KnockBack(Player.MyInstance.transform.position - c.transform.position, 1 * c.GetComponent<Enemy>().backFactor);
         }
 
     }

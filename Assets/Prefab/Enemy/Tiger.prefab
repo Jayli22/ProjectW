@@ -502,6 +502,8 @@ MonoBehaviour:
   isAlive: 0
   hitable: 0
   canMove: 0
+  hittedEffectPrefab: {fileID: 537426716137418970, guid: 710b345e82439984e8982833bc69ea48,
+    type: 3}
   stiffnessDuration: 0.2
   inhitableDuration: 0
   attacksPrefabs:

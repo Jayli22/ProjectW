@@ -18,7 +18,7 @@ public class BaseSkill : MonoBehaviour
 
     public int damage;
     public string description;
-    [Tooltip("击退距离")]
+    [Tooltip("击退倍率")]
     public float knockbackFactor;
     [Tooltip("眩晕目标的时间长度")]
     public float stunDuration;
@@ -118,7 +118,7 @@ public class BaseSkill : MonoBehaviour
                     //Debug.Log(hit.name);
                     if (hit.tag == "Enemy")
                     {
-                        hit.GetComponent<Enemy>().KnockBack(transform.position - hit.transform.position, knockbackFactor);
+                        hit.GetComponent<Enemy>().KnockBack(transform.position - hit.transform.position, knockbackFactor * hit.GetComponent<Enemy>().backFactor);
                     }
                 }
             }
@@ -131,7 +131,7 @@ public class BaseSkill : MonoBehaviour
     {
         if (c.tag == "Enemy")
         {
-            c.GetComponent<Enemy>().KnockBack(transform.position - c.transform.position, knockbackFactor);
+            c.GetComponent<Enemy>().KnockBack(transform.position - c.transform.position, knockbackFactor * c.GetComponent<Enemy>().backFactor);
         }
          
     }

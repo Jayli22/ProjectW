@@ -5,34 +5,42 @@ using UnityEngine;
 public class BaseAttackCombo1 : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Player.MyInstance.comboEffectMark = true ;
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    Player.MyInstance.comboEffectMark = true ;
 
 
-    }
+    //}
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Player.MyInstance.comboMark)
+        Player.MyInstance.StatusSwitch(Player.CurrentState.BaseAttack);
+
+        if (stateInfo.normalizedTime > Player.MyInstance.baseAttackPreCastTime[0] && Player.MyInstance.comboEffectMark == false)
         {
-            animator.SetBool("Attack", false);
-
-            Player.MyInstance.clickCount = 2;
-
-            
-            //Player.MyInstance.comboMark = false;
+            Player.MyInstance.InstantiateEffectRotate(Player.MyInstance.attackEffect[0], Player.MyInstance.mouseAngle);
+            Player.MyInstance.comboEffectMark = true;
 
         }
-        else
-        {
-            animator.SetBool("Attack", false);
+        //if (Player.MyInstance.comboMark)
+        //{
+        //    animator.SetBool("Attack", false);
 
-            Player.MyInstance.clickCount = 0;
+        //    Player.MyInstance.clickCount = 2;
 
-        }
-        Player.MyInstance.comboEffectMark = true;
+
+        //    //Player.MyInstance.comboMark = false;
+
+        //}
+        //else
+        //{
+        //    animator.SetBool("Attack", false);
+
+        //    Player.MyInstance.clickCount = 0;
+
+        //}
+        //Player.MyInstance.comboEffectMark = true;
 
     }
 
@@ -62,5 +70,11 @@ public class BaseAttackCombo1 : StateMachineBehaviour
 
         //  }
         Player.MyInstance.comboEffectMark = false;
+        if (Player.MyInstance.clickCount >= 2)
+        {
+            animator.SetInteger("AttackCMD", 2);
+        }
+        Player.MyInstance.StatusSwitch(Player.CurrentState.Normal);
+
     }
 }

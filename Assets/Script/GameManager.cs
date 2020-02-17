@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private DDASystem DDASystem;
+    private DDASystem ddaSystem;
     private EnemyGenerator enemyGenerator;
     private LevelController levelController;
     private Player player;
@@ -31,9 +31,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {      
-        DDASystem = GetComponent<DDASystem>();
+        ddaSystem = GetComponent<DDASystem>();
         DontDestroyOnLoad(gameObject);
-
     }
     void Start()
     {

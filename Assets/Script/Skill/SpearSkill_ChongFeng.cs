@@ -22,7 +22,6 @@ public class SpearSkill_ChongFeng : BaseSkill
     {
         base.Awake();
         chargeTimer = gameObject.AddComponent<Timer>();
-       // Debug.Log("??");
         chargeTimer.Duration = chargeDuration;
     }
 

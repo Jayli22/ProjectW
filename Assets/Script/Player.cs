@@ -21,8 +21,12 @@ public class Player : Character
     public int levelTag; 
     public enum CurrentState
     {
+        Normal,
         BaseAttack,
-        CastingSkill
+        Skill,
+        MoveSkill,
+        Hitteed,
+        Move,
     }
     protected Vector3 movement;
     private static Player instance;
@@ -37,19 +41,15 @@ public class Player : Character
 
     public bool canChangeMouseDir;
     private Vector2 mouseDir;
-    private float mouseAngle;
+    public float mouseAngle;
     private Collider2D[] hitObjects;
 
     public GameObject[] attackEffect;
-    private GameObject curAttackEffect;
+    //private GameObject curAttackEffect;
     //public Vector2 attackPosition;
-    // private bool canMove;
 
-    public bool comboEffectFirstMark;
-    //combo攻击判断标记
-    public bool comboMark;//当前combo区间内是否有按下攻击键
+  
     public int clickCount; //combo次数判断标记
-    public bool comboEffectMark;  
     public float maxComboDelayTime; //最大combo攻击间隔时间
     private float lastClickTime; //最后一次点击时间
     protected AnimationClipOverrides clipOverrides;
@@ -62,8 +62,19 @@ public class Player : Character
 
     private Buffer buffers;
 
-    public bool isCastingSkill;
-    public bool isBaseAttack;
+    //public bool comboEffectFirstMark;
+    //combo攻击判断标记
+    public bool comboMark;//当前combo区间内是否有按下攻击键
+    public bool comboEffectMark;
+    public float[] baseAttackPreCastTime = { 0.01f, 0.01f, 0.1f };
+
+
+    public bool isCastingSkill; //释放技能
+    public bool isBaseAttack; //基础三连击
+    public bool canBaseAttack; //是否可以进行三连击
+    public bool canSkill; //是否可以释放技能
+    public CurrentState curStatus; //当前状态
+
 
     private Timer preCastTimer_1;
     private Timer preCastTimer_2;
@@ -96,16 +107,17 @@ public class Player : Character
         levelTag = 0;
         animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
         animator.runtimeAnimatorController = animatorOverrideController;
-
         clipOverrides = new AnimationClipOverrides(animatorOverrideController.overridesCount);
         animatorOverrideController.GetOverrides(clipOverrides);
 
         comboMark = false;
         clickCount = 0;
         comboEffectMark = false;
-        comboEffectFirstMark = false;
-        canMove = true;
-        canChangeMouseDir = true;
+        //comboEffectFirstMark = false;
+
+        curStatus = CurrentState.Normal;
+        StatusSwitch(curStatus);
+
         buffers = gameObject.AddComponent<Buffer>();
         skillCoolDownTimer_1 = gameObject.AddComponent<Timer>();
         skillCoolDownTimer_2 = gameObject.AddComponent<Timer>();
@@ -114,7 +126,6 @@ public class Player : Character
         preCastTimer_1 = gameObject.AddComponent<Timer>();
         preCastTimer_2 = gameObject.AddComponent<Timer>();
         preCastTimer_3 = gameObject.AddComponent<Timer>();
-
 
         castingTimer = gameObject.AddComponent<Timer>();
         castingTimer.Duration = 0.1f;
@@ -137,6 +148,10 @@ public class Player : Character
         
     }
 
+
+    /// <summary>
+    /// 设置玩家朝向
+    /// </summary>
     private void SetPlayerDirection()
     {
         animator.SetFloat("AttackHorizontal", mouseDir.x);
@@ -153,55 +168,52 @@ public class Player : Character
         {
           
             GetInput();
+
             if (canMove)
             {
                 Move();
-
             }
+
             ComboCheck();
             if (stateInfo.IsName("Idle") || stateInfo.IsName("Movement"))
             {
                 SetPlayerDirection();
             }
-            if (stateInfo.IsTag("BaseAttack"))
-            {
-                isBaseAttack = true;
-                canMove = false;
-                if (stateInfo.normalizedTime >= 0.9f)
-                {
-                    Debug.Log("??");
-                    canMove = true;
+            
+            
+            
+            //if (stateInfo.IsTag("BaseAttack"))
+            //{
+            //    isBaseAttack = true;
+            //    canMove = false;
+            //    if (stateInfo.normalizedTime >= 0.9f)
+            //    {
+            //        canMove = true;
                     
-                    if (canChangeMouseDir)
-                    {
-                        SetPlayerDirection();
-                    }
-                }
-            }
-            else
-            {
-                isBaseAttack = false;
-            }
+            //        if (canChangeMouseDir)
+            //        {
+            //            SetPlayerDirection();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    isBaseAttack = false;
+            //}
 
           
-            if (castingTimer.Finished && !stateInfo.IsTag("BaseAttack"))
+            if (castingTimer.Finished && (curStatus == CurrentState.Skill || curStatus == CurrentState.MoveSkill))
             {
-                PlayAnimation("IsCasting", false);
-                canMove = true;
-                isCastingSkill = false;
-
-                moveSpeed = 3f;
-
-                if (canChangeMouseDir)
-                {
-                    SetPlayerDirection();
-                }
+                StatusSwitch(CurrentState.Normal);               
             }
 
             
             mouseDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             mouseDir = mouseDir.normalized;
-
+            if (canChangeMouseDir)
+            {
+                SetPlayerDirection();
+            }
             UIUpdate();
         }
         else
@@ -212,6 +224,9 @@ public class Player : Character
     }
 
 
+    /// <summary>
+    /// 获取输入
+    /// </summary>
     protected void GetInput()
     {
         movement = new Vector3(0, 0, 0);
@@ -235,33 +250,39 @@ public class Player : Character
 
         }
         movement = movement.normalized;
-        if (!isCastingSkill)
+        if (canBaseAttack)
             {
             if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)))
             {
                 lastClickTime = Time.time;
-
                 comboMark = true;
 
-                if (clickCount == 0)
+                clickCount++;
+                // if (clickCount == 0)
+                //  {
+                //    clickCount = 1;
+                // comboMark = true;
+                // comboEffectFirstMark = true;
+                // }
+                if (clickCount == 1)
                 {
-                    clickCount = 1;
-                    // comboMark = true;
-                    comboEffectFirstMark = true;
+                    animator.SetBool("Attack", true);
+                    animator.SetInteger("AttackCMD", 1);
+                    StatusSwitch(CurrentState.BaseAttack);
                 }
 
+                clickCount = Mathf.Clamp(clickCount, 0, 3);
             }
         }
-        if (!isCastingSkill && !isBaseAttack)
+        if (canSkill)
         {
             if (Input.GetMouseButtonDown(1)) //Skill1
             {
                 if (skillCoolDownTimer_1.Finished)
                 {
-                    releasedSkills[0] = InstantiateEffectRotate(skillPrefabs[0], mouseAngle); 
-                    PlayAnimation("Skill_1");
+                    releasedSkills[0] = InstantiateEffectRotate(skillPrefabs[0], mouseAngle);
+                    animator.SetTrigger("Skill_1");
                     skillCoolDownTimer_1.Run();
-
                     DetermineSkillType(releasedSkills[0]);
 
                 }
@@ -273,11 +294,9 @@ public class Player : Character
                 {
                     releasedSkills[1] = InstantiateEffectRotate(skillPrefabs[1], mouseAngle); 
                     skillCoolDownTimer_2.Run();
-                    PlayAnimation("Skill_2");
+                    animator.SetTrigger("Skill_2");
 
-                    Debug.Log(releasedSkills[1].GetComponent<BaseSkill>().skillType);
-               
-
+                    Debug.Log(releasedSkills[1].GetComponent<BaseSkill>().skillType);             
                     DetermineSkillType(releasedSkills[1]);
 
                 }
@@ -286,14 +305,10 @@ public class Player : Character
             {
                 if (skillCoolDownTimer_3.Finished)
                 {
-                    releasedSkills[2] = InstantiateEffectRotate(skillPrefabs[2], mouseAngle); 
-                    PlayAnimation("Skill_3");
-                    skillCoolDownTimer_3.Run();
-
-
-            
-
-                   DetermineSkillType(releasedSkills[2]);
+                    releasedSkills[2] = InstantiateEffectRotate(skillPrefabs[2], mouseAngle);
+                    animator.SetTrigger("Skill_3");
+                    skillCoolDownTimer_3.Run();         
+                    DetermineSkillType(releasedSkills[2]);
                 }
             }
             if (Input.GetKeyDown(KeyCode.R)) //Skill4
@@ -302,7 +317,7 @@ public class Player : Character
                 {
                     releasedSkills[3] = InstantiateEffectRotate(skillPrefabs[3], mouseAngle); 
                     skillCoolDownTimer_4.Run();
-                    PlayAnimation("Skill_4");
+                    animator.SetTrigger("Skill_4");
 
                     DetermineSkillType(releasedSkills[3]);
 
@@ -313,6 +328,10 @@ public class Player : Character
         }
     }
 
+
+    /// <summary>
+    /// 移动
+    /// </summary>
     public void Move()
     {
        
@@ -326,6 +345,11 @@ public class Player : Character
             animator.SetFloat("IdleDirectionY", movement.y);
         }
     }
+
+
+    /// <summary>
+    /// 设置玩家Idel朝向
+    /// </summary>
     void SetIdleDir()
     {
         if (stateInfo.IsName("Movement") && movement.magnitude > 0.1)
@@ -341,14 +365,14 @@ public class Player : Character
 
     }
 
-    private GameObject InstantiateEffectRotate(GameObject g, float mouseAngle)
+    public GameObject InstantiateEffectRotate(GameObject g, float mouseAngle)
     {
 
         return Instantiate(g, SwitchAttackPosition(mouseAngle).transform.position, transform.rotation * Quaternion.Euler(0, 0, mouseAngle), transform);
     }
 
 
-    private GameObject InstantiateEffectRotate(GameObject g)
+    public GameObject InstantiateEffectRotate(GameObject g)
     {
         //g.transform.RotateAround(transform.position, Vector3.forward, mouseAngle);
         //g.transform.Rotate(g.transform.position, Vector3.forward, mouseAngle);
@@ -363,44 +387,11 @@ public class Player : Character
     /// </summary>
     void ComboCheck()
     {
-
-        if (clickCount == 1  && !comboEffectMark)
-        {
-            animator.SetBool("Attack", true);
-            animator.SetInteger("AttackCMD", 1);
-            curAttackEffect = InstantiateEffectRotate(attackEffect[0], mouseAngle);
-            comboEffectMark = true;
-
-            SetIdleDir();
-            //canMove = false;
-        }
-        if (clickCount == 2 && !comboEffectMark)
-        {
-            animator.SetBool("Attack", false);
-            animator.SetInteger("AttackCMD", 2);
-            curAttackEffect = InstantiateEffectRotate(attackEffect[1], mouseAngle);
-            comboEffectMark = true;
-
-            SetIdleDir();
-           // canMove = false;
-
-        }
-        if (clickCount == 3 && !comboEffectMark)
-        {
-            animator.SetInteger("AttackCMD", 3);
-            curAttackEffect = InstantiateEffectRotate(attackEffect[2], mouseAngle);
-            comboEffectMark = true;
-
-            SetIdleDir();
-            //canMove = false;
-
-        }
-
-        
+              
         if (Time.time - lastClickTime > maxComboDelayTime)
         {
             clickCount = 0;
-            comboEffectMark = false;
+            //comboEffectMark = false;
             comboMark = false;
             animator.SetInteger("AttackCMD", 0);
             animator.SetBool("Attack", false);
@@ -408,6 +399,11 @@ public class Player : Character
         //noOfClicks = Mathf.Clamp(noOfClicks, 0, 4);
     }
 
+
+    /// <summary>
+    /// 获取玩家属性
+    /// </summary>
+    /// <returns></returns>
     public int[] GetPlayerStats()
     {
         int[] playerStats = new int[10];
@@ -466,7 +462,7 @@ public class Player : Character
                     clipOverrides["BaseAttackUpLeft_2"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_2[7];
                     clipOverrides["BaseAttackUpLeft_3"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_3[7];
                     animatorOverrideController.ApplyOverrides(clipOverrides);
-                    //preCastTimer_1 = baseAttackPrefabs.
+                    baseAttackPreCastTime = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().preCastTime;
                 }
                 break;
         }
@@ -537,39 +533,7 @@ public class Player : Character
         //          break;
         //  }
     }
-    /// <summary>
-    /// 触发动画播放事件的代理播放动画的方法,
-    /// 使用此方法的目的是:
-    ///     1. 防止后面瞎几把改Animator里面的各种trigger,bool时候,不会搞得整个代码都要重新改
-    /// </summary>
-    /// <param name="animator"></param>
-    /// <param name="animationStr"></param>
-    public void PlayAnimation(string animationStr, bool b = false)
-    {
-        switch (animationStr)
-        {
-            case "Skill_1":
-                animator.SetTrigger("Skill_1");
-                break;
-            case "Skill_2":
-                animator.SetTrigger("Skill_2");
-                break;
-            case "Skill_3":
-                animator.SetTrigger("Skill_3");
-                break;
-            case "Skill_4":
-                animator.SetTrigger("Skill_4");
-                break;
-            case "Idle":
-                animator.SetTrigger("Idle");
-                break;
-            case "IsCasting":
-                animator.SetBool("IsCasting", b);
-                break;
-            default:
-                break;
-        }
-    }
+   
 
     /// <summary>
     /// 直线冲刺
@@ -577,7 +541,7 @@ public class Player : Character
     /// <param name="distance"></param>
     public IEnumerator LineDrive(float distance, float time = 0.1f)
     {
-        canMove = false;
+        //canMove = false;
         float duration = 0.0f;
         Vector2 targetPos = transform.position + (Vector3)(distance * mouseDir);
 
@@ -596,19 +560,16 @@ public class Player : Character
     }
 
 
-    /// <summary>
-    /// 设置能否移动
-    /// </summary>
-    public void SetMove(bool b)
-    {
-        canMove = b;
-    }
-
     public void AbleToSetMousePos(bool b)
     {
         canChangeMouseDir = b;
     }
 
+    /// <summary>
+    /// 选择攻击位置
+    /// </summary>
+    /// <param name="attackAngle"></param>
+    /// <returns></returns>
     public GameObject SwitchAttackPosition(float attackAngle)
     {
        // Debug.Log(attackAngle);
@@ -648,11 +609,72 @@ public class Player : Character
         return g;
     }
 
+
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
+        if (hitable)
+        {
+            //health reduce 
+            currentHp -= damage;
+            Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
+            if (currentHp <= 0)
+            {
+                isAlive = false;
+            }
+            else
+            {
+                DoStiffness();//造成硬直
+                Inhitable();
+            }
+        }
+    }
+    public override void TakeDamage(int damage, Transform t)
+    {
+        if (hitable)
+        {
+            //health reduce 
+            currentHp -= damage;
+            if (currentHp <= 0)
+            {
+                isAlive = false;
+                //m_animator.SetBool("death", false);    
+            }
+            //DoStiffness();//造成硬直
+            KnockBack(t.position - transform.position, 0.1f);
+            Inhitable();
+        }
+    }
+    public override void DoStiffness()
+    {
+        actionCastTri = false;
+        animator.SetBool("Hitted", true);
+        stiffnessTimer.Run();
+        // animator.speed = 0;
+        canMove = false;
+        isStiffness = true;
     }
 
+    public override void Inhitable()
+    {
+        hitable = false;
+        inhitableTimer.Run();
+    }
+    public override void UnInhitable()
+    {
+        hitable = true;
+    }
+
+    /// <summary>
+    /// 解除硬直
+    /// </summary>
+    public override void UndoStiffness()
+    {
+        //stiffnessTime.Run();
+        //animator.speed = 1;
+        canMove = true;
+        isStiffness = false;
+        animator.SetBool("Hitted", false);
+    }
     private void UIUpdate()
     {
         UIBinding();
@@ -678,37 +700,35 @@ public class Player : Character
             case SkillType.FIXCASTING:
                 castingTimer.Duration = skillScript.castingDuration;
                 castingTimer.Run();
-                PlayAnimation("IsCasting", true);
+                animator.SetBool("IsCasting", true);
                 skillScript.GetComponent<BaseSkill>().Release();
-                canMove = false;
-                isCastingSkill = true;
+                StatusSwitch(CurrentState.Skill);
+                
                 break;
             case SkillType.LINEDRIVECASTING:
                 castingTimer.Duration = skillScript.castingDuration;
                 castingTimer.Run();
-                PlayAnimation("IsCasting", true);
+                animator.SetBool("IsCasting", true);
                 skillScript.GetComponent<BaseSkill>().Release();
-                canMove = false;
-                isCastingSkill = true;
+                StatusSwitch(CurrentState.Skill);
                 break;
             case SkillType.MOVECASTING:
                 castingTimer.Duration = skillScript.castingDuration;
                 castingTimer.Run();
-                PlayAnimation("IsCasting", true);
+                animator.SetBool("IsCasting", true);
                 skillScript.GetComponent<BaseSkill>().Release();
 
                 buffers.Active(skillScript.castingDuration);
 
-                isCastingSkill = true;
+                StatusSwitch(CurrentState.MoveSkill);
 
                 break;
             case SkillType.NORMALCASTING:
                 castingTimer.Duration = skillScript.castingDuration;
                 castingTimer.Run();
-                PlayAnimation("IsCasting", true);
+                animator.SetBool("IsCasting", true);
                 skillScript.Release();
-                canMove = false;
-                isCastingSkill = true;
+                StatusSwitch(CurrentState.Normal);
                 break;
         }
     }
@@ -726,4 +746,74 @@ public class Player : Character
     }
 
 
+
+    public void StatusSwitch(CurrentState currentState)
+    {
+        switch (currentState)
+        {
+            case CurrentState.Normal:
+                canMove = true;
+                isCastingSkill = false;
+                isBaseAttack = false;
+                curStatus = CurrentState.Normal;
+                canChangeMouseDir = true;
+                canBaseAttack = true;
+                //animator.SetBool("Move", false);
+                animator.SetBool("IsCasting", false);
+                canSkill = true;
+                break;
+            case CurrentState.Move:
+                isCastingSkill = false;
+                canMove = true;
+                curStatus = CurrentState.Move;
+                canChangeMouseDir = true;
+                canBaseAttack = true;
+                //animator.SetBool("Move", true);
+                canSkill = true;
+
+                break;
+            case CurrentState.MoveSkill:
+                isCastingSkill = true;
+                canMove = true;
+                curStatus = CurrentState.MoveSkill;
+                canChangeMouseDir = true;
+                canBaseAttack = false;
+                animator.SetBool("IsCasting", true);
+                canSkill = false;
+
+                break;
+
+            case CurrentState.Skill:
+                isCastingSkill = true;
+                canMove = false;
+                curStatus = CurrentState.Skill;
+                canChangeMouseDir = false;
+                canBaseAttack = false;
+                animator.SetBool("IsCasting", true);
+                canSkill = false;
+
+                break;
+            
+            case CurrentState.Hitteed:
+                canMove = false;
+                curStatus = CurrentState.Hitteed;
+                canChangeMouseDir = false;
+                canBaseAttack = false;
+                canSkill = false;
+
+                break;
+
+            case CurrentState.BaseAttack:
+                canMove = false;
+                isBaseAttack = true;
+                curStatus = CurrentState.BaseAttack;
+                canSkill = false;
+                canChangeMouseDir = false;
+
+                break;
+            default:
+                break;
+        }
+    }
+    
 }

@@ -7,7 +7,8 @@ public class BaseAttackPrefab : MonoBehaviour
     public AnimationClip[] attack_1;
     public AnimationClip[] attack_2;
     public AnimationClip[] attack_3;
-    public float[] preCastTime = { 0.01f, 0.01f, 0.1f };
+    [SerializeField]
+    public float[] preCastTime;
     // Start is called before the first frame update
     void Start()
     {

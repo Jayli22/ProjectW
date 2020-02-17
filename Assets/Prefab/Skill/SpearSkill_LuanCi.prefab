@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: d8b5b6d31bf270f46a26b43c28de6b4b, type: 2}
   damage: 5
   description: 
-  knockbackFactor: 0.1
+  knockbackFactor: 1
   stunDuration: 0
   cooldown: 6
   castingDuration: 3

@@ -40,6 +40,7 @@ public class Character : MonoBehaviour
     protected bool isRandomMove;//随机移动标记
 
     public bool canMove;  //是否可移动标记
+    public GameObject hittedEffectPrefab; //受击特效
 
     protected bool isStiffness = false;//硬直标记
     public float stiffnessDuration; //硬直时间、
@@ -146,7 +147,7 @@ public class Character : MonoBehaviour
                 //m_animator.SetBool("death", false);    
             }
             //DoStiffness();//造成硬直
-            KnockBack(t.position - transform.position, 0.1f);
+            //KnockBack(t.position - transform.position, 0.1f);
             Inhitable();
         }
     }
@@ -154,22 +155,22 @@ public class Character : MonoBehaviour
     /// <summary>
     /// 造成硬直
     /// </summary>
-    public void DoStiffness()
+    public virtual void DoStiffness()
     {
         actionCastTri = false;
         animator.SetBool("Hitted", true);
         stiffnessTimer.Run();
-       // animator.speed = 0;
-        canMove = false;
+        // animator.speed = 0;
+        StopMoving();
         isStiffness = true;
     }
 
-    public void Inhitable()
+    public virtual void Inhitable()
     {
         hitable = false;
         inhitableTimer.Run();
     }
-    public void UnInhitable()
+    public virtual void UnInhitable()
     {
         hitable = true;
     }
@@ -177,11 +178,11 @@ public class Character : MonoBehaviour
     /// <summary>
     /// 解除硬直
     /// </summary>
-    public void UndoStiffness()
+    public virtual void UndoStiffness()
     {
         //stiffnessTime.Run();
-       //animator.speed = 1;
-        canMove = true;
+        //animator.speed = 1;
+        StartMoving();
         isStiffness = false;
         animator.SetBool("Hitted", false);
     }
@@ -207,7 +208,7 @@ public class Character : MonoBehaviour
     /// <param name="backFactor">击退距离</param>
     public void KnockBack(Vector2 backDir, float backFactor = 0.3f)
     {
-        if (hitable)
+        if (backFactor != 0)
         {
             backDir = backDir.normalized * backFactor;
             transform.position = new Vector2(transform.position.x - backDir.x, transform.position.y - backDir.y);
@@ -264,7 +265,7 @@ public class Character : MonoBehaviour
         randomIdleTimer.Duration = Random.Range(0.5f, 2f); //随机此次间歇时长
         randomIdleTimer.Run();
         isRandomIdle = true;
-       // Debug.Log("开始Idle");
+       Debug.Log("开始Idle");
 
     }
     /// <summary>
@@ -274,7 +275,7 @@ public class Character : MonoBehaviour
     {
         isRandomIdle = false;
         StartMoving();
-        //Debug.Log("结束Idle");
+        Debug.Log("结束Idle");
 
     }
 

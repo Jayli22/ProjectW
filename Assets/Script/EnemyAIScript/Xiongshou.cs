@@ -60,6 +60,7 @@ public class Xiongshou : MeleeEnemy
     // Update is called once per frame
     protected override void Update()
     {
+        baseUpdateInfo();
         if (isAlive)
         {
             base.Update();
@@ -79,6 +80,8 @@ public class Xiongshou : MeleeEnemy
         {
             canMove = false;
             hitable = false;
+            animator.SetInteger("CurState", 0);
+
             DeathComing();
         }
     }
@@ -91,12 +94,12 @@ public class Xiongshou : MeleeEnemy
         if (hitable)
         {
             //health reduce 
+            Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
             currentHp -= damage;
             if (currentHp <= 0)
             {
                 isAlive = false;
-                Debug.Log(isAlive);
-                //
+
             }
             //else
             //{
@@ -132,7 +135,7 @@ public class Xiongshou : MeleeEnemy
             }
 
             //actionCooldownTimer.Duration = Random.Range(2, actionCooldown);
-            actionCooldownTimer.Duration = 4f;
+            actionCooldownTimer.Duration = actionCooldown;
             actionCooldownTimer.Run();
 
 
@@ -146,7 +149,7 @@ public class Xiongshou : MeleeEnemy
     /// <param name="distance"></param>
     public IEnumerator LineDrive(float distance, float time = 0.1f)
     {
-        canMove = false;
+        StopMoving();
         float rate = 1 / time;
         float duration = 0.0f;
         Vector2 startPos = transform.position;
@@ -179,7 +182,7 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 1);
         //skillScript.GetComponent<BaseSkill>().Release();
-        canMove = false;
+        StopMoving();
         curState = 1;
         StartLineDrive(4f, 2f);
 
@@ -193,7 +196,7 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 2);
         //skillScript.GetComponent<BaseSkill>().Release();
-        canMove = false;
+        StopMoving();
         curState = 2;
 
     }
@@ -206,7 +209,7 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 3);
         //skillScript.GetComponent<BaseSkill>().Release();
-        canMove = false;
+        StopMoving();
         curState = 3;
 
     }
@@ -219,7 +222,7 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 4);
         //skillScript.GetComponent<BaseSkill>().Release();
-        canMove = false;
+        StopMoving();
         curState = 4;
         JumpToPostion();
 
@@ -309,13 +312,13 @@ public class Xiongshou : MeleeEnemy
         {
             curState = 0;
             animator.SetInteger("CurState", 0);
-            canMove = true;
-        }
+            StartMoving();
+                }
 
     }
     public IEnumerator ToPosition(Vector2 Pos, float time = 0.1f)
     {
-        canMove = false;
+        StopMoving();
         yield return new WaitForSeconds(0.6f);
 
         float rate = 1 / time;

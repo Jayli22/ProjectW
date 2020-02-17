@@ -68,7 +68,7 @@ public class Enemy : Character
             if (canMove)
             {
                 if(!isRandomIdle)
-                {
+                {   
                     RandomMoveTime();
                     if (isRandomMove)
                     {
@@ -92,7 +92,9 @@ public class Enemy : Character
                 
             }
 
+
             RandomIdle();
+
 
 
     }
@@ -109,6 +111,7 @@ public class Enemy : Character
     {
         //health reduce 
         currentHp -= damage;
+        Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
         if (currentHp <= 0)
         {
             isAlive = false;
@@ -124,16 +127,17 @@ public class Enemy : Character
     {
         //health reduce 
         currentHp -= damage;
+        Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
+
         if (currentHp <= 0)
         {
             isAlive = false;
-            Debug.Log(isAlive);
             //
         }
         else
         {
             DoStiffness();//造成硬直
-            KnockBack(pos - transform.position, backFactor);
+            //KnockBack(pos - transform.position, backFactor);
         }
     }
 
@@ -170,6 +174,7 @@ public class Enemy : Character
             if(Random.Range(0,1f) < 0.5f)
             {
                 EnterIdle();
+                Debug.Log("执行idle");
             }
         }
 

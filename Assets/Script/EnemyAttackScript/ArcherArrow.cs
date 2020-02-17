@@ -64,8 +64,13 @@ public class ArcherArrow : MonoBehaviour
             collision.transform.GetComponent<Player>().TakeDamage(damage);
             Debug.Log(collision.transform.name + "受到了攻击");
         }
-        if(tag!="PlayerSkill")
+        if(collision.transform.tag !="PlayerSkill")
+        {
             Destroy(gameObject);
+
+        }
+
+
 
     }
 

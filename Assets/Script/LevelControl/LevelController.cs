@@ -17,6 +17,7 @@ public class LevelController : MonoBehaviour
 
     private List<GameObject> enemyList;
     private DDASystem dDASystem;
+    private bool ddaEnable;
     public GameObject guideArrow;
     private float tangle;
     //单体高强度怪物
@@ -30,6 +31,7 @@ public class LevelController : MonoBehaviour
     /// 当前生成怪物列表
     /// </summary>
     public List<GameObject> EnemyList { get => enemyList; set => enemyList = value; }
+    public bool DDAEnable { get => ddaEnable; set => ddaEnable = value; }
 
     private void Awake()
     {
@@ -109,11 +111,13 @@ public class LevelController : MonoBehaviour
             if(gameManagement.brachTag == 1)
             {
                 gameManagement.EnterNewLevel(wuyanCutScenes[cutSceneTag]);
+                DDAEnable = true;
 
             }
             else
             {
                 gameManagement.EnterNewLevel(LanqueCutScenes[cutSceneTag]);
+                DDAEnable = false;
 
             }
             cutSceneTag++;
@@ -197,30 +201,32 @@ public class LevelController : MonoBehaviour
     /// </summary>
     public void DDAFunction()
     {
-        for (int i = 0; i < EnemyList.Count; i++)
+        if (DDAEnable)
         {
-            Debug.Log(EnemyList[i].name);
+            for (int i = 0; i < EnemyList.Count; i++)
+            {
+                Debug.Log(EnemyList[i].name);
 
-        }
-        int f = dDASystem.FactorCompare(EnemyList);  //LF和PF对比
-        Debug.Log("差值为" + f);
+            }
+            int f = dDASystem.FactorCompare(EnemyList);  //LF和PF对比
+            Debug.Log("差值为" + f);
 
-        int levelTag = player.levelTag;
+            int levelTag = player.levelTag;
 
-        //if (levelTag < 10)   
-        //{
+            //if (levelTag < 10)   
+            //{
             if (f > 15)// 对比差值判断部分，根据差值进行后续操作
             {
                 EnemyList.RemoveAt(0);
                 DDAFunction();
             }
-            else if(f < -15)
+            else if (f < -15)
             {
-                EnemyList.Add(enemyPrefabs[Random.Range(1,3)]);
+                EnemyList.Add(enemyPrefabs[Random.Range(1, 3)]);
                 DDAFunction();
 
             }
-
+        }
     }
 
     /// <summary>

@@ -34,11 +34,5 @@ public class SpearSkill_ZhengDi : BaseSkill
         HitCheck();
     }
 
-    protected override void KnockBack(Collider2D c)
-    {
-        if (c.tag == "Enemy")
-        {
-            c.GetComponent<Enemy>().KnockBack(Player.MyInstance.transform.position - c.transform.position, knockbackFactor);
-        }
-    }
+
 }

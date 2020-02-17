@@ -247,17 +247,24 @@ MonoBehaviour:
   baseAttackIndex: 0
   skillIndex: 0
   canChangeMouseDir: 0
+  mouseAngle: 0
   attackEffect:
   - {fileID: 286126217039962052, guid: 4426469f4b87a1746b23553728c6c941, type: 3}
   - {fileID: 1808755672464401980, guid: 21bc9c4681f72b640ad029ee3e384fbc, type: 3}
   - {fileID: 4757977466125879621, guid: e479c12a4f3e20e459d220db0e33e805, type: 3}
-  comboEffectFirstMark: 0
-  comboMark: 0
   clickCount: 0
+  maxComboDelayTime: 0.5
+  comboMark: 0
   comboEffectMark: 0
-  maxComboDelayTime: 0.3
+  baseAttackPreCastTime:
+  - 0.01
+  - 0.01
+  - 0.1
   isCastingSkill: 0
   isBaseAttack: 0
+  canBaseAttack: 0
+  canSkill: 0
+  curStatus: 0
 --- !u!1 &1679598450458943779
 GameObject:
   m_ObjectHideFlags: 0
