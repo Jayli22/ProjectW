@@ -42,12 +42,14 @@ public class Player : Character
     public bool canChangeMouseDir;
     private Vector2 mouseDir;
     public float mouseAngle;
+    public float tmouseAngle;
+
     private Collider2D[] hitObjects;
 
     public GameObject[] attackEffect;
     //private GameObject curAttackEffect;
     //public Vector2 attackPosition;
-
+    public GameObject guideArrow;
   
     public int clickCount; //combo次数判断标记
     public float maxComboDelayTime; //最大combo攻击间隔时间
@@ -80,7 +82,7 @@ public class Player : Character
     private Timer preCastTimer_2;
     private Timer preCastTimer_3;
 
-
+    public GameObject attackGuidePrefab;
     public static Player MyInstance
     {
         get
@@ -168,7 +170,7 @@ public class Player : Character
         {
           
             GetInput();
-
+            AttackGuide();
             if (canMove)
             {
                 Move();
@@ -315,7 +317,7 @@ public class Player : Character
             {
                 if (skillCoolDownTimer_4.Finished)
                 {
-                    releasedSkills[3] = InstantiateEffectRotate(skillPrefabs[3], mouseAngle); 
+                    releasedSkills[3] = InstantiateEffectRotate(skillPrefabs[3]); 
                     skillCoolDownTimer_4.Run();
                     animator.SetTrigger("Skill_4");
 
@@ -368,7 +370,12 @@ public class Player : Character
     public GameObject InstantiateEffectRotate(GameObject g, float mouseAngle)
     {
 
-        return Instantiate(g, SwitchAttackPosition(mouseAngle).transform.position, transform.rotation * Quaternion.Euler(0, 0, mouseAngle), transform);
+        //return Instantiate(g, SwitchAttackPosition(mouseAngle).transform.position, transform.rotation * Quaternion.Euler(0, 0, mouseAngle), transform);
+        GameObject n = Instantiate(g, transform);
+        //n.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, mouseAngle);
+        n.transform.RotateAround(gameObject.transform.position, Vector3.forward, mouseAngle);
+        return n;
+
     }
 
 
@@ -376,7 +383,7 @@ public class Player : Character
     {
         //g.transform.RotateAround(transform.position, Vector3.forward, mouseAngle);
         //g.transform.Rotate(g.transform.position, Vector3.forward, mouseAngle);
-        return Instantiate(g, transform);
+        return Instantiate(g, transform);   
 
 
     }
@@ -462,6 +469,11 @@ public class Player : Character
                     clipOverrides["BaseAttackUpLeft_2"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_2[7];
                     clipOverrides["BaseAttackUpLeft_3"] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().attack_3[7];
                     animatorOverrideController.ApplyOverrides(clipOverrides);
+                    attackEffect = new GameObject[3];
+                    attackEffect[0] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().effectPrefabs[0];
+                    attackEffect[1] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().effectPrefabs[1];
+                    attackEffect[2] = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().effectPrefabs[2];
+
                     baseAttackPreCastTime = baseAttackPrefabs[0].GetComponent<BaseAttackPrefab>().preCastTime;
                 }
                 break;
@@ -616,6 +628,7 @@ public class Player : Character
         {
             //health reduce 
             currentHp -= damage;
+            Debug.Log("玩家受到了攻击"+damage);
             Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
             if (currentHp <= 0)
             {
@@ -623,7 +636,7 @@ public class Player : Character
             }
             else
             {
-                DoStiffness();//造成硬直
+                //DoStiffness();//造成硬直
                 Inhitable();
             }
         }
@@ -634,6 +647,7 @@ public class Player : Character
         {
             //health reduce 
             currentHp -= damage;
+            Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
             if (currentHp <= 0)
             {
                 isAlive = false;
@@ -642,6 +656,26 @@ public class Player : Character
             //DoStiffness();//造成硬直
             KnockBack(t.position - transform.position, 0.1f);
             Inhitable();
+        }
+    }
+    public override void TakeDamage(Vector3 pos, float backFactor, int damage)
+    {
+        if (hitable)
+        {
+            //health reduce 
+            currentHp -= damage;
+            Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
+
+            if (currentHp <= 0)
+            {
+                isAlive = false;
+            }
+            else
+            {
+                KnockBack(pos - transform.position, backFactor);
+                Inhitable();
+            }
+
         }
     }
     public override void DoStiffness()
@@ -728,7 +762,7 @@ public class Player : Character
                 castingTimer.Run();
                 animator.SetBool("IsCasting", true);
                 skillScript.Release();
-                StatusSwitch(CurrentState.Normal);
+                StatusSwitch(CurrentState.Skill);
                 break;
         }
     }
@@ -816,4 +850,12 @@ public class Player : Character
         }
     }
     
+    private void AttackGuide()
+    {
+        //float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), ((Vector3)playerCharacterPos - transform.position).normalized);
+        //aimLine.transform.RotateAround(gameObject.transform.position, Vector3.forward, angle - tangle);
+        //
+        attackGuidePrefab.transform.Rotate(Vector3.forward, mouseAngle - tmouseAngle);
+        tmouseAngle = mouseAngle;
+    }
 }

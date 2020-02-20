@@ -81,11 +81,12 @@ public class Character : MonoBehaviour
     {
         if (isAlive)
         {
-            if (stiffnessTimer.Finished)
+            if (stiffnessTimer.Finished && isStiffness)
             {
                 UndoStiffness();
+
             }
-            if (inhitableTimer.Finished)
+            if (inhitableTimer.Finished && !hitable)
             {
                 UnInhitable();
             }
@@ -117,7 +118,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(Vector3 Pos,int damage)
+    public virtual void TakeDamage(Vector3 pos,  float backFactor , int damage)
     {
         if (hitable)
         {
@@ -130,6 +131,7 @@ public class Character : MonoBehaviour
             else
             {
                 DoStiffness();//造成硬直
+                KnockBack(pos - transform.position, backFactor);
                 Inhitable();
             }
 
@@ -182,6 +184,7 @@ public class Character : MonoBehaviour
     {
         //stiffnessTime.Run();
         //animator.speed = 1;
+        Debug.Log("undostiffness");
         StartMoving();
         isStiffness = false;
         animator.SetBool("Hitted", false);
@@ -212,6 +215,7 @@ public class Character : MonoBehaviour
         {
             backDir = backDir.normalized * backFactor;
             transform.position = new Vector2(transform.position.x - backDir.x, transform.position.y - backDir.y);
+            //Debug.Log("击退" + backFactor + " ?" + backDir);
         }
     }
     //public float GetAngleBetweenVectors(Vector2 vector1, Vector2 vector2)
@@ -265,7 +269,7 @@ public class Character : MonoBehaviour
         randomIdleTimer.Duration = Random.Range(0.5f, 2f); //随机此次间歇时长
         randomIdleTimer.Run();
         isRandomIdle = true;
-       Debug.Log("开始Idle");
+       //Debug.Log("开始Idle");
 
     }
     /// <summary>
@@ -273,9 +277,10 @@ public class Character : MonoBehaviour
     /// </summary>
     protected void EndIdle()
     {
+
         isRandomIdle = false;
         StartMoving();
-        Debug.Log("结束Idle");
+        //Debug.Log("结束Idle");
 
     }
 

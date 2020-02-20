@@ -7,6 +7,7 @@ public class BaseAttackPrefab : MonoBehaviour
     public AnimationClip[] attack_1;
     public AnimationClip[] attack_2;
     public AnimationClip[] attack_3;
+    public GameObject[] effectPrefabs;
     [SerializeField]
     public float[] preCastTime;
     // Start is called before the first frame update

@@ -11,8 +11,8 @@ public class BaseAttackEffect : MonoBehaviour
     public float rotateAngle;
     public float knockBackFactor;
     public float duration;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         destoryTimer = gameObject.AddComponent<Timer>();
@@ -21,6 +21,12 @@ public class BaseAttackEffect : MonoBehaviour
         destoryTimer.Duration = duration;
         destoryTimer.Run();
         transform.RotateAround(Player.MyInstance.transform.position, Vector3.forward, rotateAngle);
+        //transform.Rotate(Player.MyInstance.transform.position,  rotateAngle);
+
+    }
+    void Start()
+    {
+        
         HitCheck();
 
     }
@@ -28,7 +34,7 @@ public class BaseAttackEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime> 1.0f )
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime>= 1.0f )
         {
             Destroy(gameObject);
         }
@@ -38,7 +44,7 @@ public class BaseAttackEffect : MonoBehaviour
     {
         ContactFilter2D c = new ContactFilter2D();
         c.useTriggers = true;
-        Physics2D.OverlapCollider(this.GetComponent<PolygonCollider2D>(), c, hitObjects);
+        Physics2D.OverlapCollider(GetComponent<PolygonCollider2D>(), c, hitObjects);
         if (hitObjects.Length > 0)
         {
             foreach (Collider2D hit in hitObjects)
@@ -48,9 +54,8 @@ public class BaseAttackEffect : MonoBehaviour
                     //Debug.Log(hit.name);
                     if (hit.tag == "Enemy")
                     {
-                        hit.GetComponent<Enemy>().TakeDamage(10);
-                        KnockBack(hit);
-                       // Debug.Log(hit.name + "受到了攻击");
+                        hit.GetComponent<Enemy>().TakeDamage(Player.MyInstance.transform.position, knockBackFactor * hit.GetComponent<Enemy>().backFactor, 10 );
+                        //Debug.Log(hit.name + "受到了攻击");
                     }
                 }
 
@@ -59,12 +64,5 @@ public class BaseAttackEffect : MonoBehaviour
         }
     }
 
-    protected void KnockBack(Collider2D c)
-    {
-        if (c.tag == "Enemy")
-        {
-            c.GetComponent<Enemy>().KnockBack(Player.MyInstance.transform.position - c.transform.position, 1 * c.GetComponent<Enemy>().backFactor);
-        }
 
-    }
 }

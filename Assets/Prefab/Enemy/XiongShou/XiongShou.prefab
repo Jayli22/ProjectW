@@ -1,5 +1,125 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &126558917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 126558918}
+  - component: {fileID: 126558920}
+  - component: {fileID: 126558919}
+  m_Layer: 9
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &126558918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126558917}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.091, z: -0.287}
+  m_LocalScale: {x: 0.775, y: 0.85, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8605024436758320666}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &126558920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126558917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93dcd1acf281edd4aa381dce4829a45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &126558919
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126558917}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
+--- !u!1 &1575825750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575825751}
+  - component: {fileID: 1575825753}
+  - component: {fileID: 1575825752}
+  m_Layer: 9
+  m_Name: Swoop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1575825751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575825750}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.004, y: -0.079, z: -0.287}
+  m_LocalScale: {x: 1.0659, y: 0.748, z: 0.748}
+  m_Children: []
+  m_Father: {fileID: 8605024436758320666}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1575825753
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575825750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
+--- !u!114 &1575825752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575825750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93dcd1acf281edd4aa381dce4829a45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8605024436155072649
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +453,8 @@ Transform:
   - {fileID: 8605024436524925857}
   - {fileID: 8605024437497132789}
   - {fileID: 8605024436304237487}
+  - {fileID: 1575825751}
+  - {fileID: 126558918}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -491,8 +613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e296414d8589040bdfda6057649302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
-  currentHp: 1000
+  maxHp: 500
+  currentHp: 500
   baseATK: 50
   qi: 0
   qiEffect: 0
@@ -506,7 +628,8 @@ MonoBehaviour:
     type: 3}
   stiffnessDuration: -0.1
   inhitableDuration: 0
-  attacksPrefabs: []
+  attacksPrefabs:
+  - {fileID: 8605024436304237480}
   alarmRadius: 0
   attackCooldown: 0
   backFactor: 0
@@ -518,6 +641,11 @@ MonoBehaviour:
   - 1
   - 1
   actionCooldown: 4
+  swoopEffect: {fileID: 0}
+  dashEffect: {fileID: 0}
+  fellowPrefabs:
+  - {fileID: 7840765473917766057, guid: ba8c4a4955378704696caad6adcb88f1, type: 3}
+  - {fileID: 5192025118705739984, guid: ad5e7bee6a914d54fa11c0bbd5a0df0c, type: 3}
 --- !u!1 &8605024437294562362
 GameObject:
   m_ObjectHideFlags: 0

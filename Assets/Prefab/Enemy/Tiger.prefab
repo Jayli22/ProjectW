@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dcd1acf281edd4aa381dce4829a45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerTime: 0
 --- !u!1 &5192025118469700965
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +432,7 @@ MonoBehaviour:
   accelerationRate: 2
   decelerationRate: 2
   lookAheadDistance: 1
-  avoidRadius: 0
+  avoidRadius: 0.6
   centerOffset: {x: 0, y: 0}
   rotateTransform: 0
   rotateSpeed: 350
@@ -491,8 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b91245f62e499499592eb3cca405f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 120
-  currentHp: 120
+  maxHp: 150
+  currentHp: 150
   baseATK: 20
   qi: 0
   qiEffect: 0
@@ -510,8 +511,9 @@ MonoBehaviour:
   - {fileID: 5192025118358711663}
   alarmRadius: 1
   attackCooldown: 3
-  backFactor: 0.1
-  strengthValue: 15
+  backFactor: 0.05
+  type: 1
+  strengthValue: 16
   attackDetectionRadius: 0.5
 --- !u!1 &5192025119247696637
 GameObject:

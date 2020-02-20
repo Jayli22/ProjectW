@@ -1,0 +1,10 @@
+2020/2/17 18:04:08 [Exception][Player.UIBinding () (at Assets/Script/Player.cs:737)
+Player.Awake () (at Assets/Script/Player.cs:100)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 18:04:27 [Exception][UnityEngine.Object.Internal_InstantiateSingle (UnityEngine.Object data, UnityEngine.Vector3 pos, UnityEngine.Quaternion rot) <0x1da0f6ad1f0 + 0x00062> in <2ce230928a98496ba12ca183760fb5f6>:0
+UnityEngine.Object.Instantiate (UnityEngine.Object original, UnityEngine.Vector3 position, UnityEngine.Quaternion rotation) (at C:/buildslave/unity/build/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:202)
+UnityEngine.Object.Instantiate[T] (T original, UnityEngine.Vector3 position, UnityEngine.Quaternion rotation) (at C:/buildslave/unity/build/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:276)
+Player.TakeDamage (System.Int32 damage) (at Assets/Script/Player.cs:619)
+ArcherArrow.OnTriggerEnter2D (UnityEngine.Collider2D collision) (at Assets/Script/EnemyAttackScript/ArcherArrow.cs:64)
+] : UnassignedReferenceException: The variable hittedEffectPrefab of Player has not been assigned.
+You probably need to assign the hittedEffectPrefab variable of the Player script in the inspector.

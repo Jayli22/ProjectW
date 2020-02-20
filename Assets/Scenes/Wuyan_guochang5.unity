@@ -3552,7 +3552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: XXX:"ChaoZhou?"
+  storyText: Lukas:"ChaoZhou?"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3579,8 +3579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "WuYan:\u201DI will let you clear before you die, remember where ChaoZhou
-    is?\u201D"
+  storyText: "WuYan:\u201DI will tell you the reason why I chase you before you die,
+    remember where ChaoZhou is?\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3607,7 +3607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "XXX\uFF1A\u201CWhat did I do that's bothering you?!\u201D(angrily)"
+  storyText: "Lukas(angrily)\uFF1A\u201CWhat did I do that's bothering you?!\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3714,7 +3714,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 67
-    y: 70
+    y: 69
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3755,7 +3755,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 470581888}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 470581883}
   variables:
   - {fileID: 470581887}
   description: 
@@ -9128,6 +9129,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 823
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292801834956910, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802149385780, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802988615432, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803310262291, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803443707675, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12bab1c4126a8f46896483b37dcd52d, type: 3}

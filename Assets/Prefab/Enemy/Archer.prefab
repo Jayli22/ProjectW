@@ -231,7 +231,7 @@ MonoBehaviour:
   accelerationRate: 2
   decelerationRate: 2
   lookAheadDistance: 1
-  avoidRadius: 0
+  avoidRadius: 1
   centerOffset: {x: 0, y: 0}
   rotateTransform: 0
   rotateSpeed: 350
@@ -291,8 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b2b1435bf63bd429dfd9730207eaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 200
-  currentHp: 200
+  maxHp: 60
+  currentHp: 60
   baseATK: 20
   qi: 0
   qiEffect: 0
@@ -310,8 +310,9 @@ MonoBehaviour:
   - {fileID: 4907952162175893062, guid: 8ff64277db5c3874fa88a40a0b210889, type: 3}
   alarmRadius: 5
   attackCooldown: 3.5
-  backFactor: 0.1
-  strengthValue: 20
+  backFactor: 0.2
+  type: 1
+  strengthValue: 12
   attackDetectionRadius: 4
   aimLine: {fileID: 7141263124070921618}
   aimTime: 1

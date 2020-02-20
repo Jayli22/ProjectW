@@ -1,0 +1,211 @@
+2020/2/17 19:35:41 [Exception][LoadingSceneScript+<AsyncLoading>d__8.MoveNext () (at Assets/Script/LoadingSceneScript.cs:43)
+UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) (at C:/buildslave/unity/build/Runtime/Export/Scripting/Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator)
+LoadingSceneScript:Start() (at Assets/Script/LoadingSceneScript.cs:27)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:41 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:42 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object
+2020/2/17 19:35:43 [Exception][LoadingSceneScript.Update () (at Assets/Script/LoadingSceneScript.cs:51)
+] : NullReferenceException: Object reference not set to an instance of an object

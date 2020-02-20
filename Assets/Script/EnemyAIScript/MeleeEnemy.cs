@@ -37,7 +37,7 @@ public class MeleeEnemy : Enemy
     protected IEnumerator TriggerAttack(float t)
     {
         yield return new WaitForSeconds(t);
-        Debug.Log(actionCastTri);
+        //Debug.Log(actionCastTri);
         if (actionCastTri)
         {
             //GameObject p = ChooseHitBox();

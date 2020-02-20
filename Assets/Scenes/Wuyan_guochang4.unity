@@ -339,8 +339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "XXX\uFF1A\u201Chahaha, WuYan, You've been chasing me for months. You
-    don\u2019t know give up? What did I do that's bothering you?\u201D"
+  storyText: "Lukas\uFF1A\u201Chahaha, WuYan, You've been chasing me for months. You
+    don\u2019t know how to give up? What did I do that's bothering you?\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "WuYan:\u201CXXX\uFF0CHide in the woods and think I can't find you?\u201C"
+  storyText: "WuYan:\u201C Lukas\uFF0CHide in the woods and think I can't find you?\u201C"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "XXX\uFF1A\u201Chahaha, you think I have no preparation? WuYan, next
+  storyText: "Lukas\uFF1A\u201Chahaha, you think I have no preparation? WuYan, next
     year today is your death anniversary.\u201C"
   description: 
   character: {fileID: 0}
@@ -9323,6 +9323,31 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 823
       objectReference: {fileID: 0}
+    - target: {fileID: 8418292801834956910, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802149385780, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802988615432, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803310262291, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803443707675, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12bab1c4126a8f46896483b37dcd52d, type: 3}
 --- !u!1 &1000495618 stripped
@@ -11587,7 +11612,7 @@ MonoBehaviour:
           floatValue: 0
           intValue: 0
           boolValue: 0
-          stringValue: frost3
+          stringValue: forest3
           vector4Value: {x: 0, y: 0, z: 0, w: 0}
           objectReference: {fileID: 0}
           arrayValue:

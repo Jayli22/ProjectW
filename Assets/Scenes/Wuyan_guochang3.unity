@@ -5851,7 +5851,7 @@ MonoBehaviour:
           floatValue: 0
           intValue: 0
           boolValue: 0
-          stringValue: frost4
+          stringValue: forest4
           vector4Value: {x: 0, y: 0, z: 0, w: 0}
           objectReference: {fileID: 0}
           arrayValue:
@@ -8175,8 +8175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "The resuced manB:\u201DWe just come to valley to find the herbs, now
-    I think it\u2018s enough, Let\u2019s leave this place quickly.\u201D"
+  storyText: "The resuced manB:\u201D We just came to the valley to find the herbs,
+    now I think it\u2018s enough, Let\u2019s leave this place quickly.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8203,9 +8203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "The resuced manA:\u201CWe are really lucky, no one rules the TianYun
+  storyText: "The resuced manA:\u201CWe are really lucky, no one rules the Meteorites
     valley, It is hard enough for people not to hurt each other. Wuyan has such a
-    powerful force, but can maintain the Xia sprite, it is rare.\u201D"
+    powerful force, but can maintain the Xia spirit, it is rare.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8419,7 +8419,7 @@ MonoBehaviour:
   itemId: 2
   indentLevel: 0
   storyText: "The rescued manA:\u201C thanks for saving our life, These gangsters
-    is well trained, if you don\u2019t appear, we must be dead people now.\u201D"
+    are well trained, if you didn\u2019t appear, we would be dead people now.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8525,7 +8525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
+    x: 65
     y: 70
     width: 120
     height: 40
@@ -8567,7 +8567,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 833412882}
   selectedCommands:
-  - {fileID: 833412878}
+  - {fileID: 833412880}
   variables:
   - {fileID: 833412887}
   description: 
@@ -9685,6 +9685,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 823
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292801834956910, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802149385780, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802988615432, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803310262291, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803443707675, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12bab1c4126a8f46896483b37dcd52d, type: 3}

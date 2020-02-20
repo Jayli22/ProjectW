@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 861521650318563347}
   m_Layer: 0
   m_Name: SpearSkill_MoveZhuanQiang
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8238338042834468688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,9 +57,9 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 7dd5e0ff6c226a84086458acfa2cbc5e, type: 2}
   - {fileID: 7400000, guid: 6f4c5bfcb361cc4458b84633d33dfd15, type: 2}
   - {fileID: 7400000, guid: a26c0c8f57efc164a8dce4a8efad8eaa, type: 2}
-  damage: 5
+  damage: 8
   description: "\u79FB\u52A8\u8F6C\u67AA\u8303\u56F4\u653B\u51FB\u6280\u80FD"
-  knockbackFactor: 1
+  knockbackFactor: 0.4
   stunDuration: 0
   cooldown: 10
   castingDuration: 2

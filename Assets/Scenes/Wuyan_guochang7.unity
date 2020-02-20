@@ -8148,6 +8148,31 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 823
       objectReference: {fileID: 0}
+    - target: {fileID: 8418292801834956910, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802149385780, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802988615432, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803310262291, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803443707675, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12bab1c4126a8f46896483b37dcd52d, type: 3}
 --- !u!1 &1000495618 stripped
@@ -13928,7 +13953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: "XXX:\u201D Then why?!\u201D (more angry)"
+  storyText: "Lukas:\u201D Then why?!\u201D (more angry)"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -13982,8 +14007,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "XXX:\u201D Hahaha! WuYan,so You here for revenge. was your friend or
-    relatives in that village? \u201D"
+  storyText: "Lukas:\u201D Hahaha! WuYan,so You here for revenge. was your friend
+    or relatives in that village? \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -14130,7 +14155,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 1885335833}
   selectedCommands: []
   variables:
   - {fileID: 1885335832}

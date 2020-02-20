@@ -14,7 +14,7 @@ public class Enemy : Character
     public float alarmRadius;  //预警半径
     public float attackCooldown; //攻击间隔
     public float backFactor; //受击后退距离
-    private int type;
+    public int type;
     [SerializeField]
     private int strengthValue;
 
@@ -28,7 +28,6 @@ public class Enemy : Character
     /// 怪物类型1-普通怪物,2-群居怪物,3-精英怪物
     /// </summary>
     [ShowInInspector, Wrap(0,4), PropertyTooltip("怪物类型1-普通怪物,2-群居怪物,3-精英怪物")]
-    public int Type { get => type; set => type = value; }
 
     private Vector2 moveDirection;
 
@@ -107,23 +106,8 @@ public class Enemy : Character
         stateInfo = this.animator.GetCurrentAnimatorStateInfo(0);
     }
 
-    public override void TakeDamage(int damage)
-    {
-        //health reduce 
-        currentHp -= damage;
-        Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
-        if (currentHp <= 0)
-        {
-            isAlive = false;
-            Debug.Log(isAlive);
-            //
-        }
-        else
-        {
-            DoStiffness();//造成硬直
-        }
-    }
-    public override void TakeDamage(Vector3 pos,int damage)
+
+    public override void TakeDamage(Vector3 pos, float backFactor , int damage)
     {
         //health reduce 
         currentHp -= damage;
@@ -137,7 +121,7 @@ public class Enemy : Character
         else
         {
             DoStiffness();//造成硬直
-            //KnockBack(pos - transform.position, backFactor);
+            KnockBack(pos - transform.position, backFactor);
         }
     }
 
@@ -169,12 +153,12 @@ public class Enemy : Character
     {
         if (randomIdleCoolDownTimer.Finished)
         {
-            randomIdleCoolDownTimer.Duration = Random.Range(3, 6f); //随机下次判断间歇时间
+            randomIdleCoolDownTimer.Duration = Random.Range(1, 3f); //随机下次判断间歇时间
             randomIdleCoolDownTimer.Run();
-            if(Random.Range(0,1f) < 0.5f)
+            if(Random.Range(0,1f) < 0.3f)
             {
                 EnterIdle();
-                Debug.Log("执行idle");
+                //Debug.Log("执行idle");
             }
         }
 
@@ -234,7 +218,7 @@ public class Enemy : Character
     public void DeathComing()
     {
         animator.SetTrigger("Death");
-
+        hitable = false;
         UndoStiffness();
         if (stateInfo.IsName("Death") && stateInfo.normalizedTime >= 1.0f)
         {
@@ -252,7 +236,8 @@ public class Enemy : Character
         if(playerDistance < alarmRadius)
         {
             //Debug.Log("进入预警半径");
-            EndIdle();
+            if(isRandomIdle)
+                EndIdle();
             Turn();
         }
 

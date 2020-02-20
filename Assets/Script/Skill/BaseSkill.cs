@@ -71,7 +71,6 @@ public class BaseSkill : MonoBehaviour
                         {
                             hittedObjects.Add(op);
                             Damage(op);
-                            KnockBack(op);
                         }
                     }
                 }
@@ -90,7 +89,7 @@ public class BaseSkill : MonoBehaviour
                     //Debug.Log(hit.name);
                     if (hit.tag == "Enemy")
                     {
-                        hit.GetComponent<Enemy>().TakeDamage(10);
+                        hit.GetComponent<Enemy>().TakeDamage(Player.MyInstance.transform.position, knockbackFactor * hit.GetComponent<Enemy>().backFactor,damage);
                         // Debug.Log(hit.name + "受到了攻击");
                     }
                 }
@@ -101,40 +100,10 @@ public class BaseSkill : MonoBehaviour
     {
             if (c.tag == "Enemy")
             {
-                c.GetComponent<Enemy>().TakeDamage(damage);
-            }
-    }
-    /// <summary>
-    /// 击退被击中的目标
-    /// </summary>
-    protected void KnockBack()
-    {
-        if (hitObjects.Length > 0)
-        {
-            foreach (Collider2D hit in hitObjects)
-            {
-                if (hit != null)
-                {
-                    //Debug.Log(hit.name);
-                    if (hit.tag == "Enemy")
-                    {
-                        hit.GetComponent<Enemy>().KnockBack(transform.position - hit.transform.position, knockbackFactor * hit.GetComponent<Enemy>().backFactor);
-                    }
-                }
-            }
+                c.GetComponent<Enemy>().TakeDamage(transform.position, knockbackFactor * c.GetComponent<Enemy>().backFactor, damage);
         }
     }
-    /// <summary>
-    /// 击退被击中的目标
-    /// </summary>
-    protected virtual void KnockBack(Collider2D c)
-    {
-        if (c.tag == "Enemy")
-        {
-            c.GetComponent<Enemy>().KnockBack(transform.position - c.transform.position, knockbackFactor * c.GetComponent<Enemy>().backFactor);
-        }
-         
-    }
+
 
     /// <summary>
     /// 眩晕敌人

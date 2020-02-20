@@ -61,18 +61,18 @@ public class GameManager : MonoBehaviour
                 player = Player.MyInstance;
                 levelController.enabled = true;
                 levelController.player = player;
-                levelController.GenerateNewLevel();
+                levelController.EnterNewLevel();
             }
             else if(player.isActiveAndEnabled == false )
             {
                 player.gameObject.SetActive(true);
-                levelController.GenerateNewLevel();
+                levelController.EnterNewLevel();
                 levelController.enabled = true;
 
             }
         }
        
-
+        
     }
 
 

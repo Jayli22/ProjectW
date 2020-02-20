@@ -160,7 +160,7 @@ MonoBehaviour:
   accelerationRate: 2
   decelerationRate: 2
   lookAheadDistance: 1
-  avoidRadius: 0
+  avoidRadius: 0.3
   centerOffset: {x: 0, y: 0}
   rotateTransform: 0
   rotateSpeed: 350
@@ -216,7 +216,7 @@ MonoBehaviour:
   - {fileID: 7840765474470257540}
   - {fileID: 7840765475831340060}
   - {fileID: 7840765474791975240}
-  moveSpeed: 2.5
+  moveSpeed: 3
   isAlive: 0
   hitable: 0
   canMove: 0
@@ -228,7 +228,8 @@ MonoBehaviour:
   - {fileID: 7840765475493858326}
   alarmRadius: 1
   attackCooldown: 2
-  backFactor: 0.15
+  backFactor: 0.2
+  type: 1
   strengthValue: 10
   attackDetectionRadius: 0.4
 --- !u!1 &7840765474470257540

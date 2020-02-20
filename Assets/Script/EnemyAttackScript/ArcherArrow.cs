@@ -10,7 +10,7 @@ public class ArcherArrow : MonoBehaviour
     private List<Collider2D> hittedObjects;
     public float rotateAngle;
     private Vector3 moveDir;
-    public int damage = 20;
+    public int damage;
     
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,11 @@ public class ArcherArrow : MonoBehaviour
         //destoryTimer = gameObject.AddComponent<Timer>();
         //hitObjects = new Collider2D[50];
         moveDir = (Player.MyInstance.transform.position - transform.position).normalized;
-
-        //destoryTimer.Duration = 3f;
-        //destoryTimer.Run();
+        transform.Rotate(Vector3.forward, ToolsHub.GetAngleBetweenVectors(Vector2.up, moveDir));
+        Debug.Log(ToolsHub.GetAngleBetweenVectors(Vector2.up, moveDir));
+        destoryTimer = gameObject.AddComponent<Timer>();
+        destoryTimer.Duration = 3f;
+        destoryTimer.Run();
         transform.RotateAround(transform.position, Vector3.forward, rotateAngle);
 
     }
@@ -30,7 +32,10 @@ public class ArcherArrow : MonoBehaviour
     void Update()
     {
         transform.position += moveDir * 6f * Time.deltaTime;
-
+        if (destoryTimer.Finished)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //void HitCheck()
@@ -62,7 +67,6 @@ public class ArcherArrow : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<Player>().TakeDamage(damage);
-            Debug.Log(collision.transform.name + "受到了攻击");
         }
         if(collision.transform.tag !="PlayerSkill")
         {

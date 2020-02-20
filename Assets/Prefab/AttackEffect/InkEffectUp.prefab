@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8085459154250457942}
-  - component: {fileID: 6928047088844772990}
   - component: {fileID: 3402581460543192749}
   - component: {fileID: 4692421497664425030}
   - component: {fileID: 7105522401941867921}
   m_Layer: 0
   m_Name: InkEffectUp
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,26 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757977466125879621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: -0.5}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6928047088844772990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4757977466125879621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5370e90840524f346b68e4daa23bd27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateAngle: 0
-  knockBackFactor: 0.1
 --- !u!212 &3402581460543192749
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,0 +1,5 @@
+2020/2/17 23:36:56 [Exception][LevelController.GenerateEnemyList () (at Assets/Script/LevelControl/LevelController.cs:202)
+LevelController.GenerateLevel () (at Assets/Script/LevelControl/LevelController.cs:179)
+LevelController.GenerateNewLevel () (at Assets/Script/LevelControl/LevelController.cs:157)
+GameManager.Update () (at Assets/Script/GameManager.cs:69)
+] : NullReferenceException: Object reference not set to an instance of an object

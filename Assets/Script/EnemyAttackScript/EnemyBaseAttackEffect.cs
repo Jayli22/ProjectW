@@ -9,6 +9,7 @@ public class EnemyBaseAttackEffect : MonoBehaviour
     private Animator animator;
     private Collider2D[] hitObjects;
     private List<Collider2D> hittedObjects;
+    public float triggerTime;
     //public float rotateAngle;
     // Start is called before the first frame update
     void Start()
@@ -17,14 +18,14 @@ public class EnemyBaseAttackEffect : MonoBehaviour
         {
             destoryTimer = gameObject.AddComponent<Timer>();
             destoryTimer.Duration = 0.1f;
-
+            destoryTimer.Run();
         }
         else
         {
             animator = GetComponent<Animator>();
         }
         hitObjects = new Collider2D[50];
-        destoryTimer.Run();
+        
         // transform.RotateAround(Player.MyInstance.transform.position, Vector3.forward, rotateAngle);
         damage = GetComponentInParent<Enemy>().baseATK;
 
@@ -37,13 +38,16 @@ public class EnemyBaseAttackEffect : MonoBehaviour
     {
         if(animator != null)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > triggerTime)
             {
                 HitCheck();
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
+            {
                 Destroy(gameObject);
             }
         }
-      else if (destoryTimer.Finished)
+        else if (destoryTimer.Finished)
         {
             HitCheck();
             Destroy(gameObject);
@@ -63,9 +67,9 @@ public class EnemyBaseAttackEffect : MonoBehaviour
                 {
                     if (hit.tag == "Player")
                     {
-                        hit.GetComponent<Player>().TakeDamage(damage , transform);
+                        hit.GetComponent<Player>().TakeDamage(damage);
                         if(Player.MyInstance.hitable)
-                        KnockBack(hit);
+                            KnockBack(hit);
                     }
                 }
 
@@ -80,12 +84,6 @@ public class EnemyBaseAttackEffect : MonoBehaviour
         {
             c.GetComponent<Player>().KnockBack(transform.position - Player.MyInstance.transform.position, 0.2f);
         }
-
-    }
-    private IEnumerator AttackActive()
-    {
-        yield return new WaitForSeconds(0.3f);
-        HitCheck();
 
     }
 }

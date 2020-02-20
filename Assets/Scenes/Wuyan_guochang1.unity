@@ -1583,6 +1583,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766053, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Size.x
@@ -1599,11 +1604,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766056, guid: ba8c4a4955378704696caad6adcb88f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5684,7 +5684,7 @@ MonoBehaviour:
           floatValue: 0
           intValue: 0
           boolValue: 0
-          stringValue: frost2
+          stringValue: forest2
           vector4Value: {x: 0, y: 0, z: 0, w: 0}
           objectReference: {fileID: 0}
           arrayValue:
@@ -6066,6 +6066,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766053, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Size.x
@@ -6082,11 +6087,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766056, guid: ba8c4a4955378704696caad6adcb88f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -8485,7 +8485,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 860103641}
   selectedCommands:
-  - {fileID: 860103633}
+  - {fileID: 860103634}
   variables:
   - {fileID: 860103631}
   description: 
@@ -8590,7 +8590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "Player:\u201CBe careful behind !\u201D\uFF08loudly\uFF09"
+  storyText: "Player:\u201CBe careful behind you !\u201D\uFF08loudly\uFF09"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8814,7 +8814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "player:\u201C May I ask what is Xia sprite?\u201D"
+  storyText: "player:\u201C May I ask what is Xia spirit?\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8841,8 +8841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "Mysterous Man:\u201C Young man but with a good heart, hope you won\u2019t
-    lost your Xia sprite in the dangerous JiangHu.\u201D"
+  storyText: "Mysterious Man:\u201C Young man but with a good heart, I hope you won\u2019t
+    lose your Xia spirit in the dangerous JiangHu.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8869,8 +8869,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: "player:\u201C I just learned from a normal mentor , not come from famous
-    schools, you must not heard about it.\u201D"
+  storyText: "player:\u201C I just learned from a normal mentor , I don\u2019t come
+    from a famous school, you must not heard about it.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8897,7 +8897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "Myserous Man: \"young man, where did you learn Kung fu? \u201D"
+  storyText: "Mysterious Man: \"young man, where did you learn Kung fu? \u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -10695,6 +10695,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766053, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Size.x
@@ -10711,11 +10716,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766056, guid: ba8c4a4955378704696caad6adcb88f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -14816,6 +14816,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766053, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Size.x
@@ -14837,11 +14842,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766056, guid: ba8c4a4955378704696caad6adcb88f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -17177,6 +17177,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766053, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Size.x
@@ -17193,11 +17198,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7840765473917766056, guid: ba8c4a4955378704696caad6adcb88f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7840765473917766055, guid: ba8c4a4955378704696caad6adcb88f1,
         type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -11,6 +11,7 @@ public class Xiongshou : MeleeEnemy
     private Timer skillTimer_3;
     private Timer actionCooldownTimer;
 
+
     [ShowInInspector, PropertyTooltip("各技能的冷却时间")]
     public float[] skillsCooldown;
     //"当前状态0-未攻击,1-普通攻击,2-技能1，3-技能2..
@@ -21,10 +22,16 @@ public class Xiongshou : MeleeEnemy
 
     private Timer castingTimer;
 
+    public GameObject swoopEffect;
+    public GameObject dashEffect;
+
     private Vector2 jumpTargetPos;
     private Vector2 jumpStartPos;
 
     private bool skillTrigger_4;
+
+    protected List<Collider2D> hittedObjects;
+    public GameObject[] fellowPrefabs;
 
     protected override void Awake()
     {
@@ -55,6 +62,8 @@ public class Xiongshou : MeleeEnemy
         skillTimer_2.RemainTime = 0.1f;
         skillTimer_3.RemainTime = 0.1f;
         skillTrigger_4 = false;
+        hittedObjects = new List<Collider2D>();
+
     }
 
     // Update is called once per frame
@@ -108,7 +117,23 @@ public class Xiongshou : MeleeEnemy
             Debug.Log("我受到了攻击");
         }
     }
+    public override void TakeDamage(Vector3 pos, float backFactor, int damage)
+    {
+        //health reduce 
+        currentHp -= damage;
+        Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
 
+        if (currentHp <= 0)
+        {
+            isAlive = false;
+            //
+        }
+        //else
+        //{
+        //    DoStiffness();//造成硬直
+        //    KnockBack(pos - transform.position, backFactor);
+        //}
+    }
 
     /// <summary>
     /// 凶兽攻击逻辑
@@ -121,6 +146,7 @@ public class Xiongshou : MeleeEnemy
             {
                 case 0:
                     Dash();
+
                     break;
                 case 1:
                     Roar();
@@ -185,7 +211,8 @@ public class Xiongshou : MeleeEnemy
         StopMoving();
         curState = 1;
         StartLineDrive(4f, 2f);
-
+        hittedObjects = new List<Collider2D>();
+        DashHitCheck();
     }
     /// <summary>
     /// 怒吼
@@ -198,6 +225,18 @@ public class Xiongshou : MeleeEnemy
         //skillScript.GetComponent<BaseSkill>().Release();
         StopMoving();
         curState = 2;
+        GenerateEnemy(fellowPrefabs[Random.Range(0, 2)]);
+
+    }
+    /// <summary>
+    //在地图随机范围内随机生成一个敌人对象
+    /// </summary>
+    public void GenerateEnemy(GameObject g)
+    {
+        Vector2 pos;
+        pos.x = Random.Range(-4.5f, 4.5f);
+        pos.y = Random.Range(-4.5f, 4.5f);
+        GameObject newEnemy = Instantiate(g, pos, Quaternion.identity);
 
     }
     /// <summary>
@@ -209,6 +248,8 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 3);
         //skillScript.GetComponent<BaseSkill>().Release();
+        actionCastTri = true;
+        StartCoroutine(TriggerAttack(0.3f));
         StopMoving();
         curState = 3;
 
@@ -224,8 +265,8 @@ public class Xiongshou : MeleeEnemy
         //skillScript.GetComponent<BaseSkill>().Release();
         StopMoving();
         curState = 4;
+        hittedObjects = new List<Collider2D>();
         JumpToPostion();
-
     }
 
     /// <summary>
@@ -289,7 +330,7 @@ public class Xiongshou : MeleeEnemy
             yield return null;
         }
         //Debug.Log("缩小");
-
+        SwoopHitCheck();
         timer = 0;
         //yield return new WaitForSeconds(scaleTime);
         yield break;
@@ -335,5 +376,58 @@ public class Xiongshou : MeleeEnemy
             yield return null;
         }
         transform.position = targetPos;
+    }
+
+    void SwoopHitCheck()
+    {
+        Debug.Log("swoophitcheck");
+        Collider2D[] p = new Collider2D[5];
+        ContactFilter2D cf = new ContactFilter2D();
+        cf.useTriggers = true;
+        Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), cf, p);
+        if (p.Length > 0)
+        {
+            foreach (Collider2D hit in p)
+            {
+                if (hit != null)
+                {
+                    if (hit.tag == "Player")
+                    {
+                        if(!hittedObjects.Contains(hit))
+                        {
+                            Player.MyInstance.TakeDamage(transform.position, 1f, 35);
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+    void DashHitCheck()
+    {
+        Debug.Log("Dashhitcheck");
+        Collider2D[] p = new Collider2D[5];
+        ContactFilter2D cf = new ContactFilter2D();
+        cf.useTriggers = true;
+        Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), cf, p);
+        if (p.Length > 0)
+        {
+            foreach (Collider2D hit in p)
+            {
+                if (hit != null)
+                {
+                    if (hit.tag == "Player")
+                    {
+                        if (!hittedObjects.Contains(hit))
+                        {
+                            Player.MyInstance.TakeDamage(transform.position, 1f, 35);
+                        }
+                    }
+                }
+
+            }
+
+        }
     }
 }

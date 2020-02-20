@@ -15,16 +15,16 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScene.unity
     guid: d9f28338eeb8f484d9040833c15b11f9
   - enabled: 1
-    path: Assets/Scenes/frost1.unity
+    path: Assets/Scenes/forest1.unity
     guid: b9df5b332e63e8343873e196f1fef362
   - enabled: 1
-    path: Assets/Scenes/frost2.unity
+    path: Assets/Scenes/forest2.unity
     guid: f641509825dc19c45814a7a32c879da0
   - enabled: 1
-    path: Assets/Scenes/frost3.unity
+    path: Assets/Scenes/forest3.unity
     guid: 838c5ee66577f574cbd70e76341dc606
   - enabled: 1
-    path: Assets/Scenes/frost4.unity
+    path: Assets/Scenes/forest4.unity
     guid: 2a50cbd9d4b29984b91aa882b8a7e74a
   - enabled: 1
     path: Assets/Scenes/village1.unity

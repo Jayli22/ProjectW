@@ -84,7 +84,7 @@ public class Archer : Enemy
     {
         animator.SetBool("Attack", true);
         GameObject a = Instantiate(attacksPrefabs[0],transform.position,transform.rotation);
-        a.transform.Rotate(Vector3.forward, ToolsHub.GetAngleBetweenVectors(Vector2.up, playerCharacterPos));
+        //a.transform.Rotate(Vector3.forward, ToolsHub.GetAngleBetweenVectors(Vector2.up, playerCharacterPos));
         a.GetComponent<ArcherArrow>().damage = baseATK;
     }
 
@@ -135,15 +135,12 @@ public class Archer : Enemy
         aimTarget = false;
         StartMoving();
     }
-    public override void TakeDamage(int damage)
+ 
+    public override void DoStiffness()
     {
-        if (hitable)
-        {
-            base.TakeDamage(damage);
-            if(aimTarget)
-                StopAim();
-
-            Debug.Log("我受到了攻击");
-        }
+        base.DoStiffness();
+        if (aimTarget)
+            StopAim();
     }
+  
 }

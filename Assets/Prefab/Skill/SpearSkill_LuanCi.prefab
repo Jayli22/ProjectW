@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6687207850143554759}
   m_Layer: 0
   m_Name: SpearSkill_LuanCi
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6940741909970835823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -0.5}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,13 +57,13 @@ MonoBehaviour:
   - {fileID: 7400000, guid: bca3a37c73f1334488226e25e6ab7042, type: 2}
   - {fileID: 7400000, guid: 734ab77300f9fac49aa617ee73c3da46, type: 2}
   - {fileID: 7400000, guid: d8b5b6d31bf270f46a26b43c28de6b4b, type: 2}
-  damage: 5
+  damage: 6
   description: 
-  knockbackFactor: 1
+  knockbackFactor: 0
   stunDuration: 0
   cooldown: 6
   castingDuration: 3
-  damageCheckCoolDown: 0.1
+  damageCheckCoolDown: 0.2
 --- !u!212 &88687803
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -163,11 +163,13 @@ PolygonCollider2D:
     - - {x: 0.044621646, y: 0.28918356}
       - {x: -0.27806646, y: 0.26374552}
       - {x: -0.53049403, y: 0.14307407}
-      - {x: -0.764772, y: 0.03244684}
-      - {x: -0.0042226035, y: -0.4606708}
-      - {x: 0.02733234, y: -0.46844506}
-      - {x: 0.06, y: -0.45999998}
-      - {x: 0.7664026, y: 0.021752246}
+      - {x: -0.49329594, y: 0.028088689}
+      - {x: -0.19511135, y: -0.4211993}
+      - {x: -0.050238818, y: -0.64381427}
+      - {x: 0.015119014, y: -0.70554113}
+      - {x: 0.12839743, y: -0.5787916}
+      - {x: 0.19294745, y: -0.46203688}
+      - {x: 0.45569175, y: 0.07111753}
       - {x: 0.54238474, y: 0.20586053}
       - {x: 0.32020998, y: 0.26296014}
     - - {x: -0.19, y: -0.22999999}

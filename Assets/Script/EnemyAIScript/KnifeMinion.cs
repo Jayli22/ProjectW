@@ -9,17 +9,19 @@ public class KnifeMinion : MeleeEnemy
         base.Start();
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        baseUpdateInfo();
 
         if (isAlive)
         {
+            base.Update();
+
             if (!isStiffness)
             {
                 AttackDetection(0.5f);
                 AlarmRadiusDetection();
+
             }
         }
         else
@@ -32,14 +34,12 @@ public class KnifeMinion : MeleeEnemy
 
 
 
-
     public override void TakeDamage(int damage)
     {
         if (hitable)
         {
             base.TakeDamage(damage);
-            //KnockBack(Player.MyInstance.transform.position - transform.position);
-            UndoStiffness();
+
             Debug.Log("普通刀兵受到了攻击");
         }
     }

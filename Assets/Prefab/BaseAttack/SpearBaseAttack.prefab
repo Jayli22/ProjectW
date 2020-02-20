@@ -70,6 +70,10 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 03ef4da26d1e9174cae968a7a7240b7b, type: 2}
   - {fileID: 7400000, guid: 4c66543a4d1dd2343970e4d49745fffb, type: 2}
   - {fileID: 7400000, guid: 251b18dcd9633da4e86427ac9dc22b91, type: 2}
+  effectPrefabs:
+  - {fileID: 3521868137765038361, guid: 6c74fc068e7b2914cadbad86135dadbc, type: 3}
+  - {fileID: 6219015260023526556, guid: 94651a4366f40f54694112ca0d83c805, type: 3}
+  - {fileID: 5272798990980345123, guid: 2da574071ba5f0c47979fa12b20b6fa0, type: 3}
   preCastTime:
   - 0.01
   - 0.2

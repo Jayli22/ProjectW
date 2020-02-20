@@ -18,7 +18,7 @@ public class LevelController : MonoBehaviour
     private List<GameObject> enemyList;
     private DDASystem dDASystem;
     private bool ddaEnable;
-    public GameObject guideArrow;
+    private GameObject guideArrow;
     private float tangle;
     //单体高强度怪物
     public Dictionary<string, int> eliteEnemy;
@@ -55,6 +55,11 @@ public class LevelController : MonoBehaviour
             player = Player.MyInstance;
         }
 
+        if (guideArrow == null)
+        {
+            guideArrow = player.guideArrow;
+        }
+
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             levelClear = true;
@@ -73,7 +78,17 @@ public class LevelController : MonoBehaviour
         {
              guideArrow.SetActive(false);
         }
-
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            foreach(GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(g);
+            }
+        }
+        if( Input.GetKeyDown(KeyCode.Delete))
+        {
+            player.currentHp = player.maxHp;
+        }
     }
 
     private void CheckExit()
@@ -85,17 +100,16 @@ public class LevelController : MonoBehaviour
         {
             if (obj.tag == "Player")
             {
-                //  gameManagement.EnterNewLevel("frost2");
                 SwitchLevel();
                 GetComponent<LevelController>().enabled = false;
             }
         }
-    }
+    } 
 
     private void ArrowGuide()
     {
         float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), ((Vector3)GameObject.Find("ExitPoint").transform.position - player.transform.position).normalized);
-        guideArrow.transform.position = player.transform.position;
+        //guideArrow.transform.position = player.transform.position;
         guideArrow.transform.RotateAround(player.transform.position, Vector3.forward, angle - tangle);
         tangle = angle;
         guideArrow.SetActive(true);
@@ -106,12 +120,23 @@ public class LevelController : MonoBehaviour
     /// </summary>
     public void SwitchLevel()
     {
-        if(player.levelTag % 3 == 0)
+        if(SceneManager.GetActiveScene().name == "LanqueBoss")
+        {
+            gameManagement.EnterNewLevel(LanqueCutScenes[cutSceneTag]);
+            DDAEnable = false;
+            cutSceneTag++;
+
+        }
+
+        else if(player.levelTag % 3 == 0)
         {
             if(gameManagement.brachTag == 1)
             {
+                if (cutSceneTag == 2)
+                    cutSceneTag = 3;
                 gameManagement.EnterNewLevel(wuyanCutScenes[cutSceneTag]);
                 DDAEnable = true;
+                
 
             }
             else
@@ -125,7 +150,7 @@ public class LevelController : MonoBehaviour
         else
         {
             int i = Random.Range(1, 5);
-            gameManagement.EnterNewLevel("frost" + i);
+            gameManagement.EnterNewLevel("forest" + i);
         }
     }
 
@@ -133,7 +158,7 @@ public class LevelController : MonoBehaviour
     /// <summary>
     /// 生成新关卡
     /// </summary>
-    public void GenerateNewLevel()
+    public void EnterNewLevel()
     {
         if(levelClear)
         {
@@ -184,7 +209,7 @@ public class LevelController : MonoBehaviour
         //if(player.levelTag < 10)
         //{
         Debug.Log(player.levelTag);
-            for(int i = 0; i < 1 + player.levelTag/3; i++)
+            for(int i = 0; i < 1 + player.levelTag/4; i++)
             {
                 int r = Random.Range(0, normalEnemy.Count);
                 enemyList.Add(enemyPrefabs[r]);
@@ -245,18 +270,18 @@ public class LevelController : MonoBehaviour
     /// <summary>
     //在地图随机范围内随机生成一个敌人对象
     /// </summary>
-    void GenerateEnemy(GameObject g)
+    public void GenerateEnemy(GameObject g)
     {
         Vector2 pos;
-        pos.x = Random.Range(-4.5f, 4.5f);
-        pos.y = Random.Range(-4.5f, 4.5f);
+        pos.x = Random.Range(-4.0f, 4.0f);
+        pos.y = Random.Range(-4.0f, 4.0f);
         GameObject newEnemy = Instantiate(g, pos, Quaternion.identity);
 
     }
     /// <summary>
     //在指定位置生成一个敌人对象(-4.5,4.5)
     /// </summary>
-    void GenerateEnemy(GameObject g, Vector2 pos)
+    public void GenerateEnemy(GameObject g, Vector2 pos)
     {
         GameObject newEnemy = Instantiate(g, pos, Quaternion.identity);
     }
@@ -291,7 +316,7 @@ public class LevelController : MonoBehaviour
         foreach (GameObject g in enemyPrefabs)
         {
             Enemy gs = g.GetComponent<Enemy>();
-            switch(gs.Type)
+            switch(gs.type)
             {
                 case 1:
                     normalEnemy.Add(gs.name, gs.StrengthValue);
@@ -301,6 +326,9 @@ public class LevelController : MonoBehaviour
                     break;
                 case 3:
                     eliteEnemy.Add(gs.name, gs.StrengthValue);
+                    break;
+                default:
+                    normalEnemy.Add(gs.name, gs.StrengthValue);
                     break;
             }
 

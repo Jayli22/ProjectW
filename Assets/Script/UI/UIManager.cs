@@ -26,12 +26,12 @@ public class UIManager : MonoBehaviour
             {
             case "StartButton1":
                 //levelChanger.FadeToLevel(Random.Range(1,5));
-                gameManagement.EnterNewLevel("frost1");
+                gameManagement.EnterNewLevel("forest1");
                 gameManagement.brachTag = 1;
                 break;
             case "StartButton2":
                 //levelChanger.FadeToLevel(Random.Range(1,5));
-                gameManagement.EnterNewLevel("frost1");
+                gameManagement.EnterNewLevel("forest1");
                 gameManagement.brachTag = 2;
 
                 break;
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     {
         levelChanger = FindObjectOfType<LevelChanger>();
         gameManagement = GameManager.MyInstance;
-        LogOutput.console.LogStart();
+        //LogOutput.console.LogStart();
     }
 
     // Update is called once per frame

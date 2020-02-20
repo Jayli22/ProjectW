@@ -9384,6 +9384,31 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 823
       objectReference: {fileID: 0}
+    - target: {fileID: 8418292801834956910, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802149385780, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292802988615432, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803310262291, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418292803443707675, guid: e12bab1c4126a8f46896483b37dcd52d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12bab1c4126a8f46896483b37dcd52d, type: 3}
 --- !u!1 &1000495618 stripped
@@ -18277,7 +18302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: "besieged manB:\u201CWhat I have is used for saving life. How can I possibly
+  storyText: "Besieged manB:\u201CWhat I have is used for saving life. How can I possibly
     give it to you\u201D"
   description: 
   character: {fileID: 0}
@@ -18305,8 +18330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "villain:\u201C You are almost dead man, still have so much words, give
-    us all your fortune, maybe we will consider sparing your life.\u201D"
+  storyText: "villain:\u201C You are almost dead men, you still have so many words,
+    give us all your fortune, maybe we will consider sparing your lives.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -18333,8 +18358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "besieged manA:\u201C You guys just bully people with human number advantage,
-    how mean.\u201D"
+  storyText: "Besieged manA:\u201C You guys just bully people with human number advantage,
+    how mean.\u201D "
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -18485,7 +18510,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1956082371}
   selectedCommands:
-  - {fileID: 1956082365}
+  - {fileID: 1956082366}
   variables:
   - {fileID: 1956082357}
   description: 
@@ -18693,8 +18718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 15
   indentLevel: 0
-  storyText: "Wuyan: \u201CYou people, just because no one rules TianYun valley, that
-    you will be free to kill and rob?\u201D"
+  storyText: "Wuyan: \u201CYou people, just because no one rules Meteorites valley,
+    that you will be free to kill and rob?\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -18775,7 +18800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: "player:\u201C He is\u2026 the man met in the forest.\u201D"
+  storyText: "player:\u201C He is\u2026 the man I met in the forest.\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
