@@ -1,3 +1,0 @@
-2020/2/17 18:06:48 [Exception][Player.UIBinding () (at Assets/Script/Player.cs:737)
-Player.Awake () (at Assets/Script/Player.cs:100)
-] : NullReferenceException: Object reference not set to an instance of an object

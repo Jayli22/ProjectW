@@ -4673,7 +4673,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 602778213}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 602778211}
   variables:
   - {fileID: 602778207}
   - {fileID: 602778218}
@@ -4715,7 +4716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  text: for the villagers, let her go
+  text: For the villagers, let her go
   description: 
   targetBlock: {fileID: 602778214}
   hideIfVisited: 0
@@ -4740,7 +4741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  text: Kill Lanque, get the herb
+  text: Kill Blue Sparrow, get the herb
   description: 
   targetBlock: {fileID: 602778215}
   hideIfVisited: 0
@@ -7288,16 +7289,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3220364377303862152, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c947cfc2df9f6f247a0f288201bf861e, type: 2}
+    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66e0ab37ba7e26247b4a20fcfc4ff691, type: 3}

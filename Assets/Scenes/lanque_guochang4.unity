@@ -960,6 +960,11 @@ GameObject:
   - component: {fileID: 153230480}
   - component: {fileID: 153230479}
   - component: {fileID: 153230478}
+  - component: {fileID: 153230482}
+  - component: {fileID: 153230483}
+  - component: {fileID: 153230485}
+  - component: {fileID: 153230484}
+  - component: {fileID: 153230486}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -994,6 +999,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 153230481}
   - {fileID: 153230480}
+  - {fileID: 153230482}
   - {fileID: 153230479}
   - {fileID: 153230478}
 --- !u!114 &153230457
@@ -1176,8 +1182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: ".The woman\uFF1AThat\u2019s right, Nine-death herb can only be found
-    in the Meteorites valley, I want to get this herb to save the people in the BaiNiao
+  storyText: "The woman\uFF1AThat\u2019s right, Nine-death herb can only be found
+    in the Meteorites valley, I want to get this herb to save the people in the hundreds-bird
     village\u201D"
   description: 
   character: {fileID: 0}
@@ -1205,7 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "Player\uFF1A\u201CWhat\u2019s the BaiNiao village\uFF1F\u201D"
+  storyText: "Player\uFF1A\u201CWhat\u2019s the hundreds-bird village\uFF1F\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1232,9 +1238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "Lanque\uFF1A\u201CThe BaiNiao village is a village I visited during
-    my travels\uFF0Cmy name is Lanque, this village\u2019s name has some connection
-    with my name\uFF0Cso I stayed for a couple of days. "
+  storyText: "Blue Sparrow\uFF1A\u201CThe hundreds-bird village is a village I visited
+    during my travels\uFF0Cmy name is Blue Sparrow, this village\u2019s name has some
+    interesting connection with mine.\""
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1289,7 +1295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "Lanque\uFF1ASacrificing oneself to save others is the essence of Xia
+  storyText: "Blue Sparrow:Sacrificing oneself to save others is the essence of Xia
     spirit. Even the people you don\u2018t know, you should also try your best to
     save. I have to go, the earlier I get the herb. the more lives I can save.\u201C"
   description: 
@@ -1319,9 +1325,7 @@ MonoBehaviour:
   itemId: 4
   indentLevel: 0
   storyText: "Player\uFF1A\u201CDon\u2019t mention it, you said you will avoid fighting
-    with others, but there are many evil people in the Meteorites valley. You are
-    alone and sick, It\u2019s easy for you to be attacked, you should leave the valley
-    as soon as possible. \u201C"
+    with others, but there are many evil people in the Meteorites valley. "
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1532,17 +1536,21 @@ MonoBehaviour:
   - {fileID: 153230471}
   - {fileID: 153230469}
   - {fileID: 153230468}
+  - {fileID: 153230483}
   - {fileID: 153230457}
-  - {fileID: 153230458}
   - {fileID: 153230459}
+  - {fileID: 153230458}
   - {fileID: 153230460}
   - {fileID: 153230461}
   - {fileID: 153230462}
   - {fileID: 153230463}
   - {fileID: 153230464}
   - {fileID: 153230465}
+  - {fileID: 153230485}
   - {fileID: 153230476}
   - {fileID: 153230477}
+  - {fileID: 153230486}
+  - {fileID: 153230484}
   - {fileID: 153230466}
   - {fileID: 153230467}
   - {fileID: 153230470}
@@ -1559,20 +1567,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 15.865935, y: 6.5257635}
+  scrollPos: {x: 6.618514, y: 3.0618548}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.97
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 153230473}
   selectedCommands:
-  - {fileID: 153230468}
+  - {fileID: 153230486}
   variables:
   - {fileID: 153230472}
   description: 
@@ -1613,10 +1622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 18
   indentLevel: 0
-  storyText: "During this time\uFF0CI found that there is a strange disease prevalent
-    in the village. People who have caught this disease will get weaker and weaker
-    until death. People who practice Wu will not lose their lives, but will also became
-    weak."
+  storyText: "Blue Sparrow:During this time\uFF0CI found that there is a strange disease
+    prevalent in the village. People who have caught this disease will get weaker
+    and weaker until death. "
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1643,11 +1651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 17
   indentLevel: 0
-  storyText: "I want to cure the people in BaiNiao village, according to a famous
-    doctor\u2019s word\uFF0Conly Nine-death herb can cure this disease. That\u2019s
-    why I entered the TianYun valley\uFF0CNine-death herb is a worthy treasure. I
-    doubted your intention at the first time\uFF0Cso I didn\u2019t tell the truth\uFF0CI
-    hope you can excuse me.\u201D"
+  storyText: Blue Sparrow:People who practice Wu will not lose their lives, but will
+    also became weak.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1765,9 +1770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 20
   indentLevel: 0
-  storyText: "Lanque\uFF1A\u201CIt is said that Nine-death herb grows in the sea of
-    flowers\uFF0CYou can find it though the road with flowers. If I meet some situation\uFF0Cyou
-    can get it by yourself, keep it as a reward for saving my life. \u201C"
+  storyText: "Blue Sparrow: It is said that Nine-death herb grows in the sea of flowers\uFF0CYou
+    can find it though the road with flowers."
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1844,6 +1848,146 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &153230482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153230455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 23
+  indentLevel: 0
+  storyText: "Blue Sparrow: If I meet some situation\uFF0Cyou can get it by yourself,
+    keep it as a reward for saving my life. "
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &153230483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153230455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 24
+  indentLevel: 0
+  storyText: "Player\uFF1A\u201C You are alone and sick, It\u2019s easy for you to
+    be attacked, you should leave the valley as soon as possible. \u201C"
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &153230484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153230455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 26
+  indentLevel: 0
+  storyText: "Blue Sparrow:That\u2019s why I entered the meteorite valley, Nine-death
+    herb is a worthy treasure. I doubted your intention at the first time\uFF0Cso
+    I didn\u2019t tell the truth\uFF0CI hope you can excuse me.\u201D"
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &153230485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153230455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 25
+  indentLevel: 0
+  storyText: "Blue Sparrow:\u201C\uFF0Cso I stayed for a couple of days at there.\""
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &153230486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153230455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 27
+  indentLevel: 0
+  storyText: "Blue Sparrow: I want to cure the people in BaiNiao village, according
+    to a famous doctor\u2019s word\uFF0Conly Nine-death herb can cure this disease. "
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &155651287
 GameObject:
   m_ObjectHideFlags: 0

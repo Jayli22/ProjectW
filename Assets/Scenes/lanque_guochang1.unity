@@ -4809,7 +4809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: "I heard some noise ahead, what happened?\u201C\r\n"
+  storyText: "Player: I heard some noise ahead, what happened?\u201C\r\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4875,8 +4875,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 511481736}
-  selectedCommands: []
+  - {fileID: 511481729}
+  selectedCommands:
+  - {fileID: 511481728}
   variables:
   - {fileID: 511481734}
   description: 

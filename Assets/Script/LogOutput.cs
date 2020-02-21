@@ -44,8 +44,8 @@ public class LogOutput
             _LogDisplay = LogDisplay;
             _AllDisplay = AllDisplay;
             _LogData = LogData;
-            if (IsIDE == true) //判断当前场景运行环境，如果是Editor中则不执行
-            {
+            //if (IsIDE == true) //判断当前场景运行环境，如果是Editor中则不执行
+            //{
                 Directory.CreateDirectory(Application.dataPath + "/StreamingAssets");
                 Directory.CreateDirectory(Application.dataPath + "/StreamingAssets/" + "Log");
                 NowTime = DateTime.Now.ToString().Replace(" ", "_").Replace("/", "_").Replace(":", "_");
@@ -55,7 +55,7 @@ public class LogOutput
                 FileWriter = fileInfo.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
                 encoding = new UTF8Encoding();
                 Application.logMessageReceived += LogCallback;
-            }
+            //}
         }
     }
 
@@ -70,8 +70,8 @@ public class LogOutput
         {
             if (_LogData)
                 Debug.Log(_log);
-            if (IsIDE == false)
-            {
+            //if (IsIDE == false)
+            //{
                 try
                 {
                     var trace = new StackTrace(); //获取调用类信息
@@ -86,7 +86,7 @@ public class LogOutput
                     Debug.Log("请检测是否调用了Console.LogStart方法,或者关闭控制台Log写入与所有数据写入项");
                 }
 
-            }
+            //}
         }
         else
         {

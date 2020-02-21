@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     {
         levelChanger = FindObjectOfType<LevelChanger>();
         gameManagement = GameManager.MyInstance;
-        //LogOutput.console.LogStart();
+       // LogOutput.console.LogStart();
     }
 
     // Update is called once per frame

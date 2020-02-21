@@ -10633,16 +10633,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3220364377303862152, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7e8ef05e84bdff840b4302d53cdeef8b, type: 2}
+    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66e0ab37ba7e26247b4a20fcfc4ff691, type: 3}
 --- !u!1 &1518462938
@@ -12039,7 +12039,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1774176373}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1774176369}
   variables:
   - {fileID: 1774176377}
   description: 

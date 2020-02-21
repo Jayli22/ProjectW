@@ -20,6 +20,7 @@ public class Enemy : Character
 
     private float randomSpeed;
 
+
     /// <summary>
     /// 怪物强度系数，用于关卡生成计算
     /// </summary>
@@ -49,7 +50,7 @@ public class Enemy : Character
         animator.SetBool("Move", true);
         randomIdleCoolDownTimer.Duration = Random.Range(2, 5);
         randomIdleCoolDownTimer.Run();
-     
+
 
         isRandomIdle = false;
     }
@@ -95,7 +96,6 @@ public class Enemy : Character
             RandomIdle();
 
 
-
     }
 
     protected void baseUpdateInfo()
@@ -116,7 +116,8 @@ public class Enemy : Character
         if (currentHp <= 0)
         {
             isAlive = false;
-            //
+            currentHp = 0;
+
         }
         else
         {
@@ -305,4 +306,6 @@ public class Enemy : Character
         }
 
     }
+
+
 }

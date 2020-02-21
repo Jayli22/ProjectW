@@ -5631,16 +5631,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3220364377303862152, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c947cfc2df9f6f247a0f288201bf861e, type: 2}
+    - target: {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6041595888034843566, guid: 66e0ab37ba7e26247b4a20fcfc4ff691, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66e0ab37ba7e26247b4a20fcfc4ff691, type: 3}
@@ -8473,6 +8473,7 @@ GameObject:
   - component: {fileID: 1665301999}
   - component: {fileID: 1665301998}
   - component: {fileID: 1665301997}
+  - component: {fileID: 1665302001}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -8494,9 +8495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: "Lanque\uFF1A\u201CNine-death herb is powerful\uFF0CI feel my power get
-    back. Now I have to move to the BaiNiao village, this secret book is Tang school\u2019s
-    treasure\uFF0Cyou looks like talented at Wu. It must be helpful for you.\u201D"
+  storyText: 'Blue Sparrow: Nine-death herb is powerful, I feel my power get back..
+    Now I have to move to the Hundreds-bird village.'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8535,6 +8535,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 1665301997}
+  - {fileID: 1665302001}
 --- !u!114 &1665301999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8562,7 +8563,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1665301998}
   selectedCommands:
-  - {fileID: 1665301997}
+  - {fileID: 1665302001}
   variables: []
   description: 
   stepPause: 0
@@ -8588,6 +8589,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1665302001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665301996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 2
+  indentLevel: 0
+  storyText: "Blue Sparrow: This secret book is Tang school\u2019s treasure\uFF0Cyou
+    looks like talented at Wu. It must be helpful for you."
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1723364929
 GameObject:
   m_ObjectHideFlags: 0

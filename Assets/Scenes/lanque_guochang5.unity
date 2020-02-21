@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: "Player: \u201CLanque\uFF01\u201D"
+  storyText: 'Player: Blue Sparrow!'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 322.9011
+    x: 321.8022
     y: 51
     width: 120
     height: 40
@@ -642,8 +642,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 11769911}
-  selectedCommands: []
+  - {fileID: 11769896}
+  selectedCommands:
+  - {fileID: 11769894}
   variables:
   - {fileID: 11769900}
   description: 

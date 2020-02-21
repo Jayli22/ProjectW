@@ -13924,7 +13924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "WuYan:\u201DI can\u2019t imagine how much people will die by your hand
+  storyText: "WuYan:\u201DI can\u2019t imagine how many people will die by your hand
     if I keep such a wicked person like you living, today I must enforce justice on
     behalf of Heaven.\u201D"
   description: 
@@ -14157,7 +14157,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1885335833}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1885335827}
   variables:
   - {fileID: 1885335832}
   description: 

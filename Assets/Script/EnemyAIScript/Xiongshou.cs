@@ -108,6 +108,8 @@ public class Xiongshou : MeleeEnemy
             if (currentHp <= 0)
             {
                 isAlive = false;
+                currentHp = 0;
+
 
             }
             //else
@@ -126,7 +128,8 @@ public class Xiongshou : MeleeEnemy
         if (currentHp <= 0)
         {
             isAlive = false;
-            //
+            currentHp = 0;
+
         }
         //else
         //{

@@ -127,6 +127,7 @@ public class Character : MonoBehaviour
             if (currentHp <= 0)
             {
                 isAlive = false;
+                currentHp = 0;
             }
             else
             {
@@ -146,6 +147,8 @@ public class Character : MonoBehaviour
             if (currentHp <= 0)
             {
                 isAlive = false;
+                currentHp = 0;
+
                 //m_animator.SetBool("death", false);    
             }
             //DoStiffness();//造成硬直
