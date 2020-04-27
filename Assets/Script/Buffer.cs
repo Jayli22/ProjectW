@@ -20,22 +20,17 @@ public class Buffer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(durationTimer.Finished)
-        {
-            Inactive();
-        }
+       
     }
 
     public void Active(float t)
     {
-        Player.MyInstance.moveSpeed = 1.5f;
-        durationTimer.Duration = t;
-        durationTimer.Run();
+      
     }
 
     public void Inactive()
     {
-        Player.MyInstance.moveSpeed = 3;
+        
 
     }
 

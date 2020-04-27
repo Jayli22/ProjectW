@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5370e90840524f346b68e4daa23bd27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 0
-  knockBackFactor: 0.1
+  rotateTag: 1
+  knockBackFactor: 1
   duration: 0
+  extraAttack_t: 0
+  extraAttack_p: 1

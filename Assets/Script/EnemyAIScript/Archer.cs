@@ -27,50 +27,110 @@ public class Archer : Enemy
         baseUpdateInfo();
         if (isAlive)
         {
-            base.Update();
-            if (!isStiffness)
-            {
-                AttackDetection(0.5f);
-                //AlarmRadiusDetection();
-                //YieldAniFinish("Skill");
-                if (aimTarget)
-                {
-                    AimTarget();
-                    Turn();
-                
-                if (aimTimer.Finished)
-                {
-                    aimTarget = false;
-                    canMove = true;
+            baseUpdateInfo();
+            DashOverTime();
 
-                    aimLine.SetActive(false);
-                    TriggerAttack();
-                }
-                }
-                if(stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= 1.0f)
-                {
-                    animator.SetBool("Attack", false);
+            StatusDetermination();
+            StatusBehavior();
 
-                }
-            }
         }
         else
         {
-            canMove = false;
-            hitable = false;
-            DeathComing();
+            StatusSwitch(NPCCurrentState.Death);
+        }
+    }
+    /// <summary>
+    /// 判定角色现应处于的状态
+    /// </summary>
+    public void StatusDetermination()
+    {
+        if (currentStatus == NPCCurrentState.Normal || currentStatus == NPCCurrentState.MoveToPlayer)
+        {
+            if (playerDistance > attackDetectionRadius)
+            {
+                if(aimTarget)
+                {
+                    StopAim();
+                }
+                if (RandomIdleDetermination())
+                {
+                    StatusSwitch(NPCCurrentState.RandomIdle);
+                }
+                else if (RandomMoveDetermination())
+                {
+                    StatusSwitch(NPCCurrentState.RandomMove);
+                }
+                else
+                {
+                    StatusSwitch(NPCCurrentState.MoveToPlayer);
+                }
+            }
+            else
+            {
+                if (baseattackCooldownTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.BaseAttack);
+                }
+            }
+        }
+        if (currentStatus == NPCCurrentState.Hitteed || currentStatus == NPCCurrentState.Shocked)
+        {
+            if (stiffnessTimer.Finished)
+            {
+                StatusSwitch(NPCCurrentState.Normal);
+            }
+        }
+    }
+    /// <summary>
+    /// 各状态所执行的行为
+    /// </summary>
+    public void StatusBehavior()
+    {
+        switch (currentStatus)
+        {
+            case NPCCurrentState.MoveToPlayer:
+                MoveToPlayer();
+                break;
+            case NPCCurrentState.RandomIdle:
+                if (randomIdleTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            case NPCCurrentState.RandomMove:
+                RandomMove();
+                if (randomMoveTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            case NPCCurrentState.BaseAttack:
+                if (aimTarget == false)
+                {
+                    BaseAttack();
+                }
+                else
+                {
+                    AimTarget();
+                }
+                if (playerDistance > attackDetectionRadius && !actionCastTri)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            default:
+                break;
         }
     }
 
-
-    protected override void BaseAttack(float t)
+    protected override void BaseAttack(float t = 0)
     {
-        StopMoving();
-        animator.SetBool("Move", false);
-        aimTarget = true;
-        animator.SetBool("Aim", true);
-        aimTimer.Duration = aimTime;
-        aimTimer.Run();
+       
+            aimTarget = true;
+            animator.SetBool("Aim", true);
+            aimTimer.Duration = aimTime;
+            aimTimer.Run();
+
 
         //StartCoroutine(TriggerAttack(t));
 
@@ -86,36 +146,12 @@ public class Archer : Enemy
         GameObject a = Instantiate(attacksPrefabs[0],transform.position,transform.rotation);
         //a.transform.Rotate(Vector3.forward, ToolsHub.GetAngleBetweenVectors(Vector2.up, playerCharacterPos));
         a.GetComponent<ArcherArrow>().damage = baseATK;
+        baseattackCooldownTimer.Run();
+        StopAim();
+        StatusSwitch(NPCCurrentState.Normal);
     }
 
-    /// <summary>
-    /// 基础攻击范围检测
-    /// </summary>
-    /// <param name="t"></param>
-    public void AttackDetection(float t)
-    {
-        if (playerDistance < attackDetectionRadius)
-        {
-            //Debug.Log("进入范围");
-            StopMoving();
-            // StartCoroutine(AttackDelay(0.2f));
-            if (baseattackCooldownTimer.Finished)
-            {
-                BaseAttack(t);
-                baseattackCooldownTimer.Run();
-            }
-            else
-            {
-               // animator.SetBool("Attack", false);
-            }
-        }
-        else
-        {
-            StopAim();
 
-        }
-    }
- 
     /// <summary>
     /// 瞄准目标
     /// </summary>
@@ -125,22 +161,35 @@ public class Archer : Enemy
         aimLine.transform.RotateAround(gameObject.transform.position, Vector3.forward, angle - tangle);
         tangle = angle;
         aimLine.SetActive(true);
+        Turn();
+        if(aimTimer.Finished)
+        {
+            TriggerAttack();
+            aimTimer.Run();
+        }
     }
 
     private void StopAim()
     {
-        animator.SetBool("Aim", false);
-        
+        animator.SetBool("Aim", false);      
         aimLine.SetActive(false);
         aimTarget = false;
-        StartMoving();
     }
  
-    public override void DoStiffness()
+    public override void DoStiffness(bool shock = false)
     {
         base.DoStiffness();
         if (aimTarget)
             StopAim();
     }
-  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Barrier" && currentStatus == NPCCurrentState.Shocked)
+        {
+            stiffnessTimer.Duration = 1f;
+            TakeDamage(20);
+            DoStiffness();
+            Debug.Log("推动推动");
+        }
+    }
 }

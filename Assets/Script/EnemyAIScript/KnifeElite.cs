@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KnifeElite : MeleeEnemy
 {
+  
+
     protected override void Start()
     {
         base.Start();
@@ -16,16 +18,13 @@ public class KnifeElite : MeleeEnemy
 
         if (isAlive)
         {
-            if (!isStiffness)
-            {
-                AttackDetection(0.5f);
-                AlarmRadiusDetection();
-            }
+            
+           
         }
         else
         {
             canMove = false;
-            hitable = false;
+            hitableTag = false;
             DeathComing();
         }
     }
@@ -35,11 +34,10 @@ public class KnifeElite : MeleeEnemy
 
     public override void TakeDamage(int damage)
     {
-        if (hitable)
+        if (hitableTag)
         {
             base.TakeDamage(damage);
             //KnockBack(Player.MyInstance.transform.position - transform.position);
-            UndoStiffness();
             Debug.Log("普通刀兵受到了攻击");
         }
     }

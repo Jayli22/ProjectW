@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class Xiongshou : MeleeEnemy
 {
-    private Timer skillTimer_0;
-    private Timer skillTimer_1;
-    private Timer skillTimer_2;
-    private Timer skillTimer_3;
+    private Timer skillCooldownTimer_0;
+    private Timer skillCooldownTimer_1;
+    private Timer skillCooldownTimer_2;
+    private Timer skillCooldownTimer_3;
     private Timer actionCooldownTimer;
 
 
     [ShowInInspector, PropertyTooltip("各技能的冷却时间")]
     public float[] skillsCooldown;
-    //"当前状态0-未攻击,1-普通攻击,2-技能1，3-技能2..
-    private int curState;
 
     [ShowInInspector, PropertyTooltip("最长动作间隔时间")]
     public float actionCooldown;
@@ -28,7 +26,6 @@ public class Xiongshou : MeleeEnemy
     private Vector2 jumpTargetPos;
     private Vector2 jumpStartPos;
 
-    private bool skillTrigger_4;
 
     protected List<Collider2D> hittedObjects;
     public GameObject[] fellowPrefabs;
@@ -40,28 +37,29 @@ public class Xiongshou : MeleeEnemy
     protected override void Start()
     {
         base.Start();
-        skillTimer_0 = gameObject.AddComponent<Timer>();
-        skillTimer_1 = gameObject.AddComponent<Timer>();
-        skillTimer_2 = gameObject.AddComponent<Timer>();
-        skillTimer_3 = gameObject.AddComponent<Timer>();
+        stableTag = true;
+        skillCooldownTimer_0 = gameObject.AddComponent<Timer>();
+        skillCooldownTimer_1 = gameObject.AddComponent<Timer>();
+        skillCooldownTimer_2 = gameObject.AddComponent<Timer>();
+        skillCooldownTimer_3 = gameObject.AddComponent<Timer>();
         actionCooldownTimer = gameObject.AddComponent<Timer>();
         castingTimer = gameObject.AddComponent<Timer>();
-        curState = 0;
-        skillTimer_0.Duration = skillsCooldown[0];
-        skillTimer_1.Duration = skillsCooldown[1];
-        skillTimer_2.Duration = skillsCooldown[2];
-        skillTimer_3.Duration = skillsCooldown[3];
+        castingTimer.Duration = 0.1f;
+        castingTimer.Run();
+        skillCooldownTimer_0.Duration = skillsCooldown[0];
+        skillCooldownTimer_1.Duration = skillsCooldown[1];
+        skillCooldownTimer_2.Duration = skillsCooldown[2];
+        skillCooldownTimer_3.Duration = skillsCooldown[3];
         actionCooldownTimer.Duration = Random.Range(0, actionCooldown);
-        skillTimer_0.Run();
-        skillTimer_1.Run();
-        skillTimer_2.Run();
-        skillTimer_3.Run();
+        skillCooldownTimer_0.Run();
+        skillCooldownTimer_1.Run();
+        skillCooldownTimer_2.Run();
+        skillCooldownTimer_3.Run();
         actionCooldownTimer.Run();
-        skillTimer_0.RemainTime = 0.1f;
-        skillTimer_1.RemainTime = 0.1f;
-        skillTimer_2.RemainTime = 0.1f;
-        skillTimer_3.RemainTime = 0.1f;
-        skillTrigger_4 = false;
+        skillCooldownTimer_0.RemainTime = 0.1f;
+        skillCooldownTimer_1.RemainTime = 0.1f;
+        skillCooldownTimer_2.RemainTime = 0.1f;
+        skillCooldownTimer_3.RemainTime = 0.1f;
         hittedObjects = new List<Collider2D>();
 
     }
@@ -72,98 +70,193 @@ public class Xiongshou : MeleeEnemy
         baseUpdateInfo();
         if (isAlive)
         {
-            base.Update();
-            if (castingTimer.Finished)
-            {
-                skillTrigger_4 = false;
-            }
-            if (!isStiffness)
-            {
-                //AttackDetection(0.5f);
-                //AlarmRadiusDetection();
-                CombatLogic();
-                YieldAniFinish("Skill");
-            }
+            StatusDetermination();
+            StatusBehavior();
+
         }
         else
         {
-            canMove = false;
-            hitable = false;
-            animator.SetInteger("CurState", 0);
-
-            DeathComing();
+            StatusSwitch(NPCCurrentState.Death);
         }
     }
 
 
-
-
-    public override void TakeDamage(int damage)
+    /// <summary>
+    /// 判定角色现应处于的状态
+    /// </summary>
+    public void StatusDetermination()
     {
-        if (hitable)
+        if(castingTimer.Finished)
         {
-            //health reduce 
-            Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
-            currentHp -= damage;
-            if (currentHp <= 0)
+            StatusSwitch(NPCCurrentState.Normal);
+        }
+        if (currentStatus == NPCCurrentState.Normal || currentStatus == NPCCurrentState.MoveToPlayer)
+        {
+            if (playerDistance > attackDetectionRadius)
             {
-                isAlive = false;
-                currentHp = 0;
-
-
+                if (RandomIdleDetermination())
+                {
+                    StatusSwitch(NPCCurrentState.RandomIdle);
+                }
+                else if (RandomMoveDetermination())
+                {
+                    StatusSwitch(NPCCurrentState.RandomMove);
+                }
+                else
+                {
+                    CombatLogic();
+                }
             }
-            //else
-            //{
-            //    DoStiffness();//造成硬直
-            //}
-            Debug.Log("我受到了攻击");
+            else
+            {
+                if (baseattackCooldownTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.BaseAttack);
+                }
+            }
         }
-    }
-    public override void TakeDamage(Vector3 pos, float backFactor, int damage)
-    {
-        //health reduce 
-        currentHp -= damage;
-        Instantiate(hittedEffectPrefab, transform.position, transform.rotation);
-
-        if (currentHp <= 0)
+        if (currentStatus == NPCCurrentState.Hitteed)
         {
-            isAlive = false;
-            currentHp = 0;
-
+            if (stiffnessTimer.Finished)
+            {
+                StatusSwitch(NPCCurrentState.Normal);
+            }
         }
-        //else
-        //{
-        //    DoStiffness();//造成硬直
-        //    KnockBack(pos - transform.position, backFactor);
-        //}
     }
+    /// <summary>
+    /// 各状态所执行的行为
+    /// </summary>
+    public void StatusBehavior()
+    {
+        switch (currentStatus)
+        {
+            case NPCCurrentState.MoveToPlayer:
+                MoveToPlayer();
+                break;
+            case NPCCurrentState.RandomIdle:
+                if (randomIdleTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            case NPCCurrentState.RandomMove:
+                RandomMove();
+                if (randomMoveTimer.Finished)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            case NPCCurrentState.BaseAttack:
+                if (castingTimer.Finished)
+                {
+                    Bite();
+                }
+                    if (playerDistance > attackDetectionRadius)
+                {
+                    StatusSwitch(NPCCurrentState.Normal);
+                }
+                break;
+            case NPCCurrentState.Skill_1:
+                if (castingTimer.Finished)
+                {
+                    Dash();
+                }
+                break;
+            case NPCCurrentState.Skill_2:
+                if (castingTimer.Finished)
+                {
+                    Roar();
+                }
+                break;
+            case NPCCurrentState.Skill_3:
+                if (castingTimer.Finished)
+                {
+                    Swoop();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+    public override void StatusSwitch(NPCCurrentState status)
+    {
+        //Debug.Log("From" + currentStatus + "to" + status);
+        switch (status)
+        {
+            case NPCCurrentState.Normal:
+                StopMoving();
+                currentStatus = status;
+                break;
+            case NPCCurrentState.MoveToPlayer:
+                currentStatus = status;
+                break;
+            case NPCCurrentState.RandomIdle:
+                StopMoving();
+                EnterRandomIdle();
+                currentStatus = status;
+                break;
+            case NPCCurrentState.RandomMove:
+                currentStatus = status;
+                EnterRandomMove();
+                StopMoving();
+                break;
+            case NPCCurrentState.Hitteed:
+                currentStatus = status;
+                StopMoving();
+                break;
+            case NPCCurrentState.BaseAttack:
+                StopMoving();
+                currentStatus = status;
+                actionCastTri = false;
+                break;
+            case NPCCurrentState.Death:
+                currentStatus = status;
+                DeathComing();
+                break;
+            case NPCCurrentState.Skill_1:
+                currentStatus = status;
+                StopMoving();
+                break;
+            case NPCCurrentState.Skill_2:
+                currentStatus = status;
+                StopMoving();
+                break;
+            case NPCCurrentState.Skill_3:
+                currentStatus = status;
+                StopMoving();
+                break;
+            default:
+                currentStatus = status;
+                break;
+        }
+    }
+
 
     /// <summary>
     /// 凶兽攻击逻辑
     /// </summary>
     private void CombatLogic()
     {
-        if (actionCooldownTimer.Finished && !isRandomIdle && !isRandomMove)
+        if (actionCooldownTimer.Finished)
         {
             switch (Random.Range(0, 4))
             {
                 case 0:
-                    Dash();
-
+                    StatusSwitch(NPCCurrentState.Skill_1);
                     break;
                 case 1:
-                    Roar();
+                    StatusSwitch(NPCCurrentState.Skill_2);
                     break;
                 case 2:
-                    Bite();
+                    StatusSwitch(NPCCurrentState.Skill_3);
                     break;
                 case 3:
-                    Swoop();
+                    StatusSwitch(NPCCurrentState.MoveToPlayer);
 
                     break;
             }
 
-            //actionCooldownTimer.Duration = Random.Range(2, actionCooldown);
             actionCooldownTimer.Duration = actionCooldown;
             actionCooldownTimer.Run();
 
@@ -211,8 +304,6 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 1);
         //skillScript.GetComponent<BaseSkill>().Release();
-        StopMoving();
-        curState = 1;
         StartLineDrive(4f, 2f);
         hittedObjects = new List<Collider2D>();
         DashHitCheck();
@@ -226,8 +317,6 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 2);
         //skillScript.GetComponent<BaseSkill>().Release();
-        StopMoving();
-        curState = 2;
         GenerateEnemy(fellowPrefabs[Random.Range(0, 2)]);
 
     }
@@ -250,12 +339,8 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Duration = 1f;
         castingTimer.Run();
         animator.SetInteger("CurState", 3);
-        //skillScript.GetComponent<BaseSkill>().Release();
         actionCastTri = true;
-        StartCoroutine(TriggerAttack(0.3f));
-        StopMoving();
-        curState = 3;
-
+        StartCoroutine(TriggerAttack(precastTime[0]));
     }
     /// <summary>
     /// 飞扑
@@ -266,8 +351,6 @@ public class Xiongshou : MeleeEnemy
         castingTimer.Run();
         animator.SetInteger("CurState", 4);
         //skillScript.GetComponent<BaseSkill>().Release();
-        StopMoving();
-        curState = 4;
         hittedObjects = new List<Collider2D>();
         JumpToPostion();
     }
@@ -281,7 +364,6 @@ public class Xiongshou : MeleeEnemy
         StartCoroutine(ToPosition(playerCharacterPos, 0.3f));
 
         jumpTargetPos = playerCharacterPos;
-        skillTrigger_4 = true;
     }
 
     /// <summary>
@@ -293,7 +375,6 @@ public class Xiongshou : MeleeEnemy
         StartCoroutine(ScaleUp(0.1f, 1.03f, 2.5f));
         StartCoroutine(ToPosition(playerCharacterPos, 0.3f));
         jumpTargetPos = pos;
-        skillTrigger_4 = true;
     }
 
     IEnumerator ScaleUp(float scaleTime, float growFactor, float maxScale)
@@ -354,7 +435,6 @@ public class Xiongshou : MeleeEnemy
 
         if (stateinfo.IsTag(aniName) && (stateinfo.normalizedTime >= 1.0f))
         {
-            curState = 0;
             animator.SetInteger("CurState", 0);
             StartMoving();
                 }

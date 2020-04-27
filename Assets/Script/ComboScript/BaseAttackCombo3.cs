@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BaseAttackCombo3 : StateMachineBehaviour
 {
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Player.MyInstance.StatusSwitch(PlayerCurrentState.BaseAttack);
+    }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.MyInstance.StatusSwitch(Player.CurrentState.BaseAttack);
+        
+        //Player.MyInstance.StatusSwitch(Player.CurrentState.BaseAttack);
 
         if (stateInfo.normalizedTime > Player.MyInstance.baseAttackPreCastTime[2] && Player.MyInstance.comboEffectMark == false)
         {
@@ -64,7 +69,7 @@ public class BaseAttackCombo3 : StateMachineBehaviour
         {
             animator.SetInteger("AttackCMD", 1);
         }
-        Player.MyInstance.StatusSwitch(Player.CurrentState.Normal);
+        Player.MyInstance.StatusSwitch(PlayerCurrentState.Normal);
 
     }
 }

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     LevelChanger levelChanger;
     private static UIManager instance;
+    public GameObject skillInventory;
     public static UIManager MyInstance {
         get
         {
@@ -54,6 +55,21 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            skillInventory.SetActive(false);
+
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+           if(skillInventory.activeSelf)
+            {
+                skillInventory.SetActive(false);
+            }
+           else
+            {
+                skillInventory.SetActive(true);
+            }
+        }
     }
 }

@@ -78,17 +78,17 @@ public class LevelController : MonoBehaviour
         {
              guideArrow.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            foreach(GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                Destroy(g);
-            }
-        }
-        if( Input.GetKeyDown(KeyCode.Delete))
-        {
-            player.currentHp = player.maxHp;
-        }
+        //if (Input.GetKeyDown(KeyCode.Backspace))
+        //{
+        //    foreach(GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+        //    {
+        //        Destroy(g);
+        //    }
+        //}
+        //if( Input.GetKeyDown(KeyCode.Delete))
+        //{
+        //    player.currentHp = player.maxHp;
+        //}
     }
 
     private void CheckExit()
@@ -216,7 +216,7 @@ public class LevelController : MonoBehaviour
             }
             EnemyList.Sort(delegate (GameObject g1, GameObject g2) // 按照怪物强度对怪物进行排序
             {
-                return g1.GetComponent<Enemy>().StrengthValue.CompareTo(g2.GetComponent<Enemy>().StrengthValue);
+                return g1.GetComponent<Enemy>().strengthValue.CompareTo(g2.GetComponent<Enemy>().strengthValue);
             });
        // }
     }
@@ -319,16 +319,16 @@ public class LevelController : MonoBehaviour
             switch(gs.type)
             {
                 case 1:
-                    normalEnemy.Add(gs.name, gs.StrengthValue);
+                    normalEnemy.Add(gs.name, gs.strengthValue);
                     break;
                 case 2:
-                    gregariousEnemy.Add(gs.name, gs.StrengthValue);
+                    gregariousEnemy.Add(gs.name, gs.strengthValue);
                     break;
                 case 3:
-                    eliteEnemy.Add(gs.name, gs.StrengthValue);
+                    eliteEnemy.Add(gs.name, gs.strengthValue);
                     break;
                 default:
-                    normalEnemy.Add(gs.name, gs.StrengthValue);
+                    normalEnemy.Add(gs.name, gs.strengthValue);
                     break;
             }
 

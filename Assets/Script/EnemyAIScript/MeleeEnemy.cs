@@ -21,32 +21,30 @@ public class MeleeEnemy : Enemy
 
     protected override void BaseAttack(float t)
     {
-        canMove = false;
-        animator.SetBool("Move", false);
-        animator.SetBool("Attack", true);
-        // EnterIdle();
-        actionCastTri = true;
-        StartCoroutine(TriggerAttack(t));
-
+        if (!actionCastTri)
+        {
+            animator.SetBool("Attack", true);
+            actionCastTri = true;
+            StartCoroutine(TriggerAttack(t));
+        }
 
     }
 
     /// <summary>
     /// 触发攻击(生成攻击碰撞检测盒子等）
     /// </summary>
-    protected IEnumerator TriggerAttack(float t)
+    protected virtual IEnumerator TriggerAttack(float t)
     {
         yield return new WaitForSeconds(t);
-        //Debug.Log(actionCastTri);
-        if (actionCastTri)
+        if (currentStatus == NPCCurrentState.BaseAttack)
         {
-            //GameObject p = ChooseHitBox();
-            // GameObject a = Instantiate(attacksPrefabs[0], transform.position, transform.rotation, transform);
             GameObject a = Instantiate(attacksPrefabs[0], transform);
             float angle = ToolsHub.GetAngleBetweenVectors(new Vector2(0, 1), Player.MyInstance.transform.position - gameObject.transform.position);
             a.transform.RotateAround(gameObject.transform.position, Vector3.forward, angle);
             //a.transform.Rotate(Vector3.forward, 45f,relativeTo:Space.World);
             a.SetActive(true);
+            baseattackCooldownTimer.Run();
+            StatusSwitch(NPCCurrentState.Normal);
         }
 
     }
@@ -59,7 +57,7 @@ public class MeleeEnemy : Enemy
     {
         if (playerDistance < attackDetectionRadius)
         {
-            StopMoving();
+            StatusSwitch(NPCCurrentState.BaseAttack);
             // StartCoroutine(AttackDelay(0.2f));
             if (baseattackCooldownTimer.Finished)
             {

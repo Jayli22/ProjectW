@@ -44,11 +44,11 @@ public class DDASystem : MonoBehaviour
     /// </summary>
     private void GetPlayerStat()
     {
-        playerMaxHp = player.maxHp;
+        playerMaxHp = player.maxHp_f;
         playerCurHp = player.currentHp;
         playerSkillPoint = player.skillStars;
-        playerQi = player.qi;
-        playerATK = player.baseATK;
+        playerQi = player.maxQi;
+        playerATK = player.atk_f;
         levelTag = player.levelTag;
     }
 
@@ -76,7 +76,7 @@ public class DDASystem : MonoBehaviour
         CurrentLevelFactor = 0;
         foreach(GameObject g in enemyList)
         {
-            CurrentLevelFactor += g.GetComponent<Enemy>().StrengthValue;
+            CurrentLevelFactor += g.GetComponent<Enemy>().strengthValue;
         }
         Debug.Log("clf:" + currentLevelFactor);
 

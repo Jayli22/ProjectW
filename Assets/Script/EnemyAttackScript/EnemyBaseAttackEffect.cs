@@ -68,7 +68,7 @@ public class EnemyBaseAttackEffect : MonoBehaviour
                     if (hit.tag == "Player")
                     {
                         hit.GetComponent<Player>().TakeDamage(damage);
-                        if(Player.MyInstance.hitable)
+                        if(Player.MyInstance.hitableTag)
                             KnockBack(hit);
                     }
                 }

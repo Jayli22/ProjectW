@@ -166,7 +166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192025118358711663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.287}
+  m_LocalPosition: {x: 0, y: 0.35, z: -0.287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5192025118705739997}
@@ -187,7 +187,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.25
 --- !u!114 &5192025118358711657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,11 +301,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5192025118705739997}
   - component: {fileID: 5192025118705739996}
-  - component: {fileID: 5192025118705739986}
   - component: {fileID: 5192025118705739998}
   - component: {fileID: 5192025118705739999}
   - component: {fileID: 4843554960690432170}
   - component: {fileID: 2177336341790935789}
+  - component: {fileID: 7314203543203360699}
   m_Layer: 9
   m_Name: Tiger
   m_TagString: Enemy
@@ -387,32 +387,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5192025118705739986
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192025118705739984}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.017007947, y: -0.022296071}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.46008873, y: 0.419513}
-  m_EdgeRadius: 0
 --- !u!114 &5192025118705739998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +402,7 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 3.5
   mass: 20
-  stoppingDistance: 0.1
+  stoppingDistance: 1
   slowingDistance: 1
   accelerationRate: 2
   decelerationRate: 2
@@ -472,7 +446,7 @@ Animator:
   m_GameObject: {fileID: 5192025118705739984}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2f30911e2bceaf74dbeb84c4f006211f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9e43ce5cdf60c7e4eb782bfdb4b86110, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -493,29 +467,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b91245f62e499499592eb3cca405f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 150
-  currentHp: 150
+  maxHp: 400
+  currentHp: 400
+  maxHp_t: 0
+  maxHp_p: 0
+  maxHp_f: 0
   baseATK: 20
-  qi: 0
-  qiEffect: 0
+  atk_t: 0
+  atk_p: 0
+  atk_f: 0
+  maxQi: 0
+  maxQi_t: 0
+  maxQi_p: 0
+  maxQi_f: 0
+  currentQi: 0
   skillStars: 0
-  attackPositions: []
   moveSpeed: 2.2
+  moveSpeed_t: 0
+  moveSpeed_p: 0
+  moveSpeed_f: 0
   isAlive: 0
-  hitable: 0
+  hitableTag: 0
+  stableTag: 0
+  randomMoveTendency: 0.3
+  randomIdleTendency: 0.1
   canMove: 0
+  onFangun: 0
   hittedEffectPrefab: {fileID: 537426716137418970, guid: 710b345e82439984e8982833bc69ea48,
     type: 3}
-  stiffnessDuration: 0.2
+  stiffnessDuration: 0.5
   inhitableDuration: 0
+  learnedSkill_id: 
+  activeSkill_id: 0
+  skillInventory: {fileID: 0}
+  dashTime: 0
+  dashSpeed: 0
+  dashDir: {x: 0, y: 0}
+  testTag: 0
   attacksPrefabs:
   - {fileID: 5192025118358711663}
+  attackDetectionRadius: 1.3
   alarmRadius: 1
   attackCooldown: 3
-  backFactor: 0.05
+  backFactor: 0.3
   type: 1
+  currentStatus: 0
+  precastTime:
+  - 1
   strengthValue: 16
-  attackDetectionRadius: 0.5
+--- !u!58 &7314203543203360699
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192025118705739984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.07}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &5192025119247696637
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +636,7 @@ PrefabInstance:
     - target: {fileID: 8038873340188124517, guid: eaa135b08e0c56c46a9af20630d0d91a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.056
       objectReference: {fileID: 0}
     - target: {fileID: 8038873340188124517, guid: eaa135b08e0c56c46a9af20630d0d91a,
         type: 3}

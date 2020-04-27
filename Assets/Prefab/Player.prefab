@@ -287,8 +287,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 200
   currentHp: 200
+  hp_t: 0
+  hp_p: 0
+  hp_f: 0
   baseATK: 10
+  atk_t: 0
+  atk_p: 0
+  atk_f: 0
   qi: 0
+  qi_t: 0
+  qi_p: 0
+  qi_f: 0
   qiEffect: 0
   skillStars: 0
   attackPositions:
@@ -301,13 +310,20 @@ MonoBehaviour:
   - {fileID: 4347650521587653222}
   - {fileID: 2907463129278334984}
   moveSpeed: 2.5
+  moveSpeed_t: 0
+  moveSpeed_p: 0
+  moveSpeed_f: 0
   isAlive: 0
   hitable: 0
   canMove: 0
+  onFangun: 0
   hittedEffectPrefab: {fileID: 4670253870007630376, guid: 8a64b7aaf89d02c44b5a646ca385f3fd,
     type: 3}
   stiffnessDuration: 0.1
   inhitableDuration: 0.3
+  learnedSkill_id: 
+  activeSkill_id: 0
+  skillInventory: {fileID: 11400000, guid: 6508362382326e149996226d7ac31401, type: 2}
   HealthBar: {fileID: 0}
   uiiSkill_1_CoolDown: {fileID: 0}
   uiiSkill_2_CoolDown: {fileID: 0}
@@ -323,12 +339,18 @@ MonoBehaviour:
   - {fileID: 6940741909970835823, guid: 3ccd1797bb32b3a408eac9988c0c662d, type: 3}
   - {fileID: 8238338042834468688, guid: f6a4d5eef2bf54e478f9bbb243668298, type: 3}
   - {fileID: 5152649062417941006, guid: d06c7ba4fc6132e47a962fdd2b2d88cf, type: 3}
+  - {fileID: 4199246964200850912, guid: 0a1b31a3ba02f4e4f84de076cb05ec75, type: 3}
+  - {fileID: 2319948683965975299, guid: 5264102868e28914aaee4c403c7d17b8, type: 3}
+  - {fileID: 1910310590849891443, guid: c77430d362bf3eb4b934a6d7049a9928, type: 3}
+  - {fileID: 8658637935504001365, guid: 1d2ba5f8956ccfd418d6693acb499fb9, type: 3}
+  - {fileID: 1430891277288028602, guid: 1cf1345b2e7fdc04ca4c702ecacefe18, type: 3}
   baseAttackPrefabs:
   - {fileID: 9102580481832831120, guid: 49935d9d4a8c3a2488c843e31b90b9e4, type: 3}
-  skills: []
+  - {fileID: 9102580481832831120, guid: 25deaf3e124b43345a5c006d67daff38, type: 3}
+  - {fileID: 8499777014672805773, guid: 805d2980910a8ef49bc624e75c89d4d5, type: 3}
+  activeSkills: []
   releasedSkills: []
-  baseAttackIndex: 0
-  skillIndex: 0
+  activeSkillsCd: []
   canChangeMouseDir: 0
   mouseAngle: 0
   tmouseAngle: 0

@@ -10,6 +10,8 @@ public class BaseAttackPrefab : MonoBehaviour
     public GameObject[] effectPrefabs;
     [SerializeField]
     public float[] preCastTime;
+    [SerializeField]
+    public float[] animationSpeed;
     // Start is called before the first frame update
     void Start()
     {

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9102580481832831120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4308487069472727853}
+  - component: {fileID: 7464322074283574602}
+  m_Layer: 0
+  m_Name: BladeBaseAttack
+  m_TagString: PlayerSkill
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4308487069472727853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102580481832831120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5922887, y: -0.23819901, z: 674.7646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7464322074283574602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102580481832831120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077f6ff5e33203243b7d24bcce2cf03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_1:
+  - {fileID: 7400000, guid: bd1ce4aa8b704874aacb6edcd25ac9c7, type: 2}
+  - {fileID: 7400000, guid: 996a8603eb143c646a7e105c91c55637, type: 2}
+  - {fileID: 7400000, guid: 87423e8425289b145b3b36e114c183c2, type: 2}
+  - {fileID: 7400000, guid: 35d4d2d3c95ee8642a09432a3067908a, type: 2}
+  - {fileID: 7400000, guid: 087d4f8cd85b3b140a38cd438f09e3eb, type: 2}
+  - {fileID: 7400000, guid: 18f2b073900d15c4ba6439e41a2b851c, type: 2}
+  - {fileID: 7400000, guid: 191f8a16fa9c3a34cafbd16aa13339aa, type: 2}
+  - {fileID: 7400000, guid: e6f932586e082b544a9a625a917885d2, type: 2}
+  attack_2:
+  - {fileID: 7400000, guid: 8053a774f68bf524faecb3b2547cb5aa, type: 2}
+  - {fileID: 7400000, guid: be1b10bf9de89174f91ec02549b07d49, type: 2}
+  - {fileID: 7400000, guid: 82ef47dd2ef137f44b8db1b96c3d473c, type: 2}
+  - {fileID: 7400000, guid: d4e74307319726b41924a0245c375a04, type: 2}
+  - {fileID: 7400000, guid: c060ee5e4e8f11a4aa01062edfd8b0fa, type: 2}
+  - {fileID: 7400000, guid: f6f500609cda55d46972ceb412750214, type: 2}
+  - {fileID: 7400000, guid: b185550e80456454aa4a2a897b36a43b, type: 2}
+  - {fileID: 7400000, guid: d5f3b4d1c279a97438e45898b5acbacb, type: 2}
+  attack_3:
+  - {fileID: 7400000, guid: 4106c84386b130048957ff3aa17986e5, type: 2}
+  - {fileID: 7400000, guid: 2443ff5531d1b80449491aa0fef2d252, type: 2}
+  - {fileID: 7400000, guid: 82b3044312d5c8740b9a6e14daaebfc6, type: 2}
+  - {fileID: 7400000, guid: 0d8a58fe75e3a2443aded19c12b1a90f, type: 2}
+  - {fileID: 7400000, guid: c51609016c61c9a4fbd36e3f7fb3e267, type: 2}
+  - {fileID: 7400000, guid: c5350aaa10774a341807e5dafd2cb6bd, type: 2}
+  - {fileID: 7400000, guid: 7f3f1ef856c8e9747b4217bf1e281697, type: 2}
+  - {fileID: 7400000, guid: ec82549c4a97aca43babab7906540713, type: 2}
+  effectPrefabs:
+  - {fileID: 5877825303858447052, guid: a2cd5dbd9082ce64b9ec5a0afc73ca97, type: 3}
+  - {fileID: 1954651439545873567, guid: fb759d77c332f67448ee042abe7d69b5, type: 3}
+  - {fileID: 2601869802865492390, guid: 3df8afc2a4b116444a3a6050d88d4a44, type: 3}
+  preCastTime:
+  - 0.2
+  - 0.2
+  - 0.3
+  animationSpeed:
+  - 2.2
+  - 1.1
+  - 1.6

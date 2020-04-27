@@ -9,6 +9,8 @@ TagManager:
   - CameraBound
   - Enemy
   - PlayerSkill
+  - pickableItem
+  - Barrier
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - 
   - Character
   - Enemy
-  - 
-  - 
+  - pickableitem
+  - Barrier
   - 
   - 
   - 

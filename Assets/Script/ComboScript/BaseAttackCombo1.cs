@@ -5,17 +5,16 @@ using UnityEngine;
 public class BaseAttackCombo1 : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    Player.MyInstance.comboEffectMark = true ;
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Player.MyInstance.StatusSwitch(PlayerCurrentState.BaseAttack);
 
-
-    //}
+    }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.MyInstance.StatusSwitch(Player.CurrentState.BaseAttack);
+        //Player.MyInstance.StatusSwitch(Player.CurrentState.BaseAttack);
 
         if (stateInfo.normalizedTime > Player.MyInstance.baseAttackPreCastTime[0] && Player.MyInstance.comboEffectMark == false)
         {
@@ -74,7 +73,7 @@ public class BaseAttackCombo1 : StateMachineBehaviour
         {
             animator.SetInteger("AttackCMD", 2);
         }
-        Player.MyInstance.StatusSwitch(Player.CurrentState.Normal);
+        Player.MyInstance.StatusSwitch(PlayerCurrentState.Normal);
 
     }
 }
